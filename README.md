@@ -1,5 +1,13 @@
+<!-- TOC -->
+* [Introduction](#introduction)
+  * [Why yet another good-first-issue project?](#why-yet-another-good-first-issue-project)
+  * [Need fix](#need-fix)
+<!-- TOC -->
+
 # Introduction
-###### Why yet another good-first-issue project?
+YAGFI - yet another good first issue
+
+## Why yet another good-first-issue project?
 First of all, when I searched for projects to contribute, I met one thing. 
 Existing projects does not support all variety of labels:
 - good-first-issue

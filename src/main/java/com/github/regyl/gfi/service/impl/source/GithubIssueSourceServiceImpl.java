@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.impl.source;
 
-import com.github.regyl.gfi.dto.github.IssueData;
+import com.github.regyl.gfi.controller.dto.github.IssueData;
 import com.github.regyl.gfi.model.IssueRequestDto;
 import com.github.regyl.gfi.model.LabelModel;
 import com.github.regyl.gfi.service.DataService;

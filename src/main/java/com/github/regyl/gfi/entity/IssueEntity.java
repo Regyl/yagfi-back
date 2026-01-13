@@ -30,6 +30,7 @@ public class IssueEntity extends AbstractEntity {
     private String sourceId;
 
     @NotEmpty
+    @Column(columnDefinition = "TEXT")
     private String title;
 
     @NotEmpty
@@ -40,7 +41,10 @@ public class IssueEntity extends AbstractEntity {
     @NotNull
     private OffsetDateTime createdAt;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private RepositoryEntity repository;
 
+    @NotNull
+    @Column(name = "repository_id", insertable = false, updatable = false)
+    private Long repositoryId;
 }

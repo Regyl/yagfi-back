@@ -1,3 +1,7 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
 spring:
   properties:
     host-name: localhost
@@ -6,6 +10,9 @@ spring:
     async:
       max-pool-size: 100
       core-pool-size: 20
+    auto-upload:
+      enabled: false
+      period-mills: 720000 # 12 minutes
   application:
       name: good-first-issue-back
   datasource:

@@ -12,6 +12,10 @@ public class DefaultAsyncUncaughtExceptionHandlerImpl implements AsyncUncaughtEx
 
     @Override
     public void handleUncaughtException(@NonNull Throwable ex, Method method, @Nullable Object... params) {
-        log.error("Async uncaught exception, method: {}, ex: {}, params: {}", method.getName(), ex, params);
+        while (ex.getCause() != null) {
+            ex = ex.getCause();
+        }
+
+        log.error("Async uncaught exception, ex: {}, method: {}, params: {}", ex.getMessage(), method.getName(), params);
     }
 }

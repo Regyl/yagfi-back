@@ -1,11 +1,8 @@
 package com.github.regyl.gfi.entity;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +22,7 @@ import java.time.OffsetDateTime;
 public abstract class AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(columnDefinition = "BIGSERIAL")
     private Long id;
 
 

@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.dto.github;
+package com.github.regyl.gfi.controller.dto.github;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

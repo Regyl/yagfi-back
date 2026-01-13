@@ -28,9 +28,11 @@ To compare with, look for other similar projects:
 - https://forgoodfirstissue.github.com/
 - https://up-for-grabs.net/
 
+# Implementation
+Updates data every 12 minutes since GitHub rate limit allows no more
+
 # Need fix
 - supply each new query as task to task executor
-- add insert on conflict do nothing
 - add view and supply result to front from it. While one table is filling, other supply one hour older results
 - remove all issues with label stale by filtering the response since it contains labels
 

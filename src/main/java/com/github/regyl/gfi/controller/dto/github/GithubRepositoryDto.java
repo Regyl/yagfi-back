@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.dto.github;
+package com.github.regyl.gfi.controller.dto.github;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,15 +11,14 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubIssueDto {
+public class GithubRepositoryDto {
 
     private String id;
-    private int number;
-    private String title;
+    private String nameWithOwner;
     private String url;
-    private GithubIssueState state;
+    private String description;
+    private Integer stargazerCount;
     private OffsetDateTime updatedAt;
-    private OffsetDateTime createdAt;
-    private GithubRepositoryDto repository;
-    private GithubLabelsDto labels;
+    private GithubLanguageDto primaryLanguage;
+
 }

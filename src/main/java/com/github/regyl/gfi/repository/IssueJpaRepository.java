@@ -4,5 +4,5 @@ import com.github.regyl.gfi.entity.IssueEntity;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IssueRepository extends AbstractRepository<IssueEntity> {
+public interface IssueJpaRepository extends AbstractJpaRepository<IssueEntity> {
 }

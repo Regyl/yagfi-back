@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.mapper;
 
-import com.github.regyl.gfi.dto.github.GithubIssueDto;
+import com.github.regyl.gfi.controller.dto.github.GithubIssueDto;
 import com.github.regyl.gfi.entity.IssueEntity;
 import com.github.regyl.gfi.entity.RepositoryEntity;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class IssueMapperServiceImpl implements BiFunction<Map<String, Repository
                 .url(dto.getUrl())
                 .updatedAt(dto.getUpdatedAt())
                 .createdAt(dto.getCreatedAt())
-                .repository(repos.get(dto.getRepository().getId()))
+                .repositoryId(repos.get(dto.getRepository().getId()).getId())
                 .build();
     }
 }

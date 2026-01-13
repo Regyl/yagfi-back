@@ -23,7 +23,8 @@ public class AsyncConfiguration implements AsyncConfigurer {
         executor.setCorePoolSize(configProps.getCorePoolSize());
         executor.setMaxPoolSize(configProps.getMaxPoolSize());
         executor.setPrestartAllCoreThreads(false);
-        executor.setThreadGroupName("default-async-");
+        executor.setThreadGroupName("default-group-async-");
+        executor.setThreadNamePrefix("default-async-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         executor.initialize();
         return executor;

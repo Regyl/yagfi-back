@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.dto.github;
+package com.github.regyl.gfi.controller.dto.github;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,8 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubSearchDto {
+public class GithubLabelsDto {
 
-    private GithubPageInfo pageInfo;
-    private List<GithubIssueDto> nodes;
+    private List<GithubLabelDto> nodes;
 }

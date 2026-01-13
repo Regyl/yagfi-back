@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.dto.github;
+package com.github.regyl.gfi.controller.dto.github;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubPageInfo {
+public class IssueGraphQlResponseDto {
 
-    private boolean hasNextPage;
-    private String endCursor;
+    private IssueData data;
+
 }

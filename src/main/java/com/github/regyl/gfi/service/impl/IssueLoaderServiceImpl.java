@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.cache.CacheManager;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -27,6 +28,7 @@ public class IssueLoaderServiceImpl implements ScheduledService {
     private final Collection<IssueSourceService> sourceServices;
 
     private final JdbcTemplate jdbcTemplate;
+    private final CacheManager cacheManager;
 
     @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
     public void schedule() {
@@ -71,7 +73,9 @@ public class IssueLoaderServiceImpl implements ScheduledService {
 
         jdbcTemplate.execute(String.format("alter sequence gfi.%s_id_seq restart", expiredTable.getIssueTableName()));
         jdbcTemplate.execute(String.format("alter sequence gfi.%s_id_seq restart", expiredTable.getRepoTableName()));
-
         log.info("Sequences restarted");
+
+        cacheManager.getCacheNames().forEach(cacheName -> cacheManager.getCache(cacheName).clear());
+        log.info("Caches evicted");
     }
 }

@@ -16,6 +16,7 @@ import com.github.regyl.gfi.repository.RepoRepository;
 import com.github.regyl.gfi.service.DataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -73,6 +74,7 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
+    @Cacheable(cacheNames = "languages")
     public Collection<String> findAllLanguages() {
         return dataRepository.findAllLanguages();
     }

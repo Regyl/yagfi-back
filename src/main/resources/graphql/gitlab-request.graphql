@@ -1,0 +1,23 @@
+query SearchIssuesByLabel($labels: [String!], $after: String) {
+    issues(
+        state: opened
+        or: { labelNames: $labels }
+        first: 100
+        after: $after
+        assigneeId: "NONE"
+        includeArchived: false
+    ) {
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+        nodes {
+            id
+            title
+            webUrl
+            state
+            updatedAt
+            createdAt
+        }
+    }
+}

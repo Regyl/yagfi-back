@@ -38,6 +38,8 @@ public class AsyncConfiguration implements AsyncConfigurer {
 
     @Bean("issueLoadAsyncExecutor")
     public ThreadPoolTaskExecutor issueLoadAsyncExecutor() {
+        //TODO maybe Executors#workStealing
+        //since graphql calls got blocked on I/O
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(configProps.getCorePoolSize());
         executor.setMaxPoolSize(configProps.getMaxPoolSize());

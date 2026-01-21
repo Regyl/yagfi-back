@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.mapper;
+package com.github.regyl.gfi.mapper.github;
 
 import com.github.regyl.gfi.controller.dto.github.GithubIssueDto;
 import com.github.regyl.gfi.entity.IssueEntity;
@@ -11,7 +11,7 @@ import java.util.function.BiFunction;
 
 @Component
 @RequiredArgsConstructor
-public class IssueMapperServiceImpl implements BiFunction<Map<String, RepositoryEntity>, GithubIssueDto, IssueEntity> {
+public class GithubIssueMapperServiceImpl implements BiFunction<Map<String, RepositoryEntity>, GithubIssueDto, IssueEntity> {
 
     @Override
     public IssueEntity apply(Map<String, RepositoryEntity> repos, GithubIssueDto dto) {

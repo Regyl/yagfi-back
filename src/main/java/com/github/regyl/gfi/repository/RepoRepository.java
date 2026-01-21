@@ -12,5 +12,5 @@ public interface RepoRepository {
 
     void saveAll(@Param("entities") Set<RepositoryEntity> entities, @Param("tableName") String tableName);
 
-    Collection<RepositoryEntity> findAll(@Param("tableName") String tableName);
+    Collection<RepositoryEntity> findAll(@Param("tableName") String tableName, @Param("source") String source);
 }

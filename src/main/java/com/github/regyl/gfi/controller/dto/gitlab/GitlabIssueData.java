@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.github;
+package com.github.regyl.gfi.controller.dto.gitlab;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -10,18 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IssueData {
+public class GitlabIssueData {
 
-    private GithubRateLimit rateLimit;
-    private GithubSearchDto search;
+    private GitlabSearchDto issues;
 
     @JsonIgnore
     public String getEndCursor() {
-        if (search == null) {
+        if (issues == null) {
             return null;
         }
 
-        GithubPageInfo pageInfo = search.getPageInfo();
+        GitlabPageInfo pageInfo = issues.getPageInfo();
         if (pageInfo == null) {
             return null;
         }

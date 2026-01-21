@@ -30,4 +30,6 @@ public class RepositoryEntity extends AbstractEntity {
     private String description;
 
     private String language;
+
+    private String source;
 }

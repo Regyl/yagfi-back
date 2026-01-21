@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS e_repository_1
     url         VARCHAR(255)             NOT NULL,
     stars       INTEGER                  NOT NULL,
     description TEXT,
-    language    VARCHAR(255)
+    language    VARCHAR(255),
+    source      VARCHAR(255)             NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS e_repository_2
@@ -22,7 +23,8 @@ CREATE TABLE IF NOT EXISTS e_repository_2
     url         VARCHAR(255)             NOT NULL,
     stars       INTEGER                  NOT NULL,
     description TEXT,
-    language    VARCHAR(255)
+    language    VARCHAR(255),
+    source      VARCHAR(255)             NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS e_issue_1 (

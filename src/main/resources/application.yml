@@ -7,11 +7,17 @@ spring:
     host-name: ${APP_HOST_NAME}
     github:
       token: ${GithubBearer}
+      url: https://api.github.com/graphql
+    gitlab:
+      token: ${GitlabBearer}
+      url: https://gitlab.com/api/graphql
     async:
       max-pool-size: 100
       core-pool-size: 20
     auto-upload:
       enabled: true
+      github: false
+      gitlab: true
       period-mills: 720000 # 12 minutes
     db:
       schema: gfi

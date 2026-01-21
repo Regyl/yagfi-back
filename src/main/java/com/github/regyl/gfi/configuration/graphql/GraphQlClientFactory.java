@@ -1,5 +1,7 @@
-package com.github.regyl.gfi.configuration.github;
+package com.github.regyl.gfi.configuration.graphql;
 
+import com.github.regyl.gfi.configuration.graphql.github.GithubConfigurationProperties;
+import com.github.regyl.gfi.configuration.graphql.gitlab.GitlabConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.graphql.client.GraphQlClient;
@@ -15,7 +17,17 @@ public class GraphQlClientFactory {
     @Bean
     public GraphQlClient githubClient(GithubConfigurationProperties configProps) {
         String authHeaderValue = String.format("Bearer %s", configProps.getToken());
-        RestClient restClient = RestClient.create("https://api.github.com/graphql");
+        RestClient restClient = RestClient.create("https://api.github.com/graphql"); //FIXME move to configuration props
+        return HttpSyncGraphQlClient.create(restClient)
+                .mutate()
+                .header("Authorization", authHeaderValue)
+                .build();
+    }
+
+    @Bean
+    public GraphQlClient gitlabClient(GitlabConfigurationProperties configProps) {
+        String authHeaderValue = String.format("Bearer %s", configProps.getToken());
+        RestClient restClient = RestClient.create(configProps.getUrl());
         return HttpSyncGraphQlClient.create(restClient)
                 .mutate()
                 .header("Authorization", authHeaderValue)

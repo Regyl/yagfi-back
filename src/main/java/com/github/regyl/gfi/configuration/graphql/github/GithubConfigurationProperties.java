@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.configuration.github;
+package com.github.regyl.gfi.configuration.graphql.github;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

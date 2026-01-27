@@ -52,3 +52,4 @@ if you would like to fix it.
 - AI to looking for new labels that might be another custom form of good-first-issue
 - Pass OpenSSF Best practices https://www.bestpractices.dev/en/projects/11787/passing
 - Think about [RecGFI](https://github.com/mcxwx123/RecGFI) LLM
+- One of the main problem everyone talking about is customization. "I think people do better to work on a project they use and care about" (c) Reddit

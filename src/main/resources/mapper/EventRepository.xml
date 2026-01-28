@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.regyl.gfi.repository.EventRepository">
+
+    <select id="findLatestEvent"
+            resultType="com.github.regyl.gfi.controller.dto.response.EventResponseDto">
+        SELECT
+            MAX(last_acquired) AS lastAcquired
+        FROM gfi.e_issue_event
+    </select>
+
+    <insert id="insertEvent">
+        INSERT INTO gfi.e_issue_event (issue_id, last_acquired, created)
+        VALUES (#{issueId}, #{lastAcquired}, NOW())
+    </insert>
+
+</mapper>

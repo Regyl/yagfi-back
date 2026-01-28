@@ -78,4 +78,14 @@ public class DataServiceImpl implements DataService {
     public Collection<String> findAllLanguages() {
         return dataRepository.findAllLanguages();
     }
+
+    @Override
+    public String findRandomIssueUrl(Map<String, String> filters) {
+        String link = issueRepository.findRandomIssueLink();
+
+        if (link == null) {
+            return "links aren't found!";
+        }
+        return link;
+    }
 }

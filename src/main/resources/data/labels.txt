@@ -28,7 +28,7 @@ easy_to_fix
 effort/easy
 exp:novice
 first contribution
-open your road
+starter issue
 first timers
 first-contribution
 first-timers-only

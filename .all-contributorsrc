@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "Ahmed-Sobh77",
+      "name": "Ahmed Sobh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/145682065?v=4",
+      "profile": "https://github.com/Ahmed-Sobh77",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "yagfi-back",
+  "projectOwner": "Regyl"
+}

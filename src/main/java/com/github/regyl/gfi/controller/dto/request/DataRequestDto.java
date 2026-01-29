@@ -7,19 +7,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class DataRequestDto {
 
-    @NotNull
     @Max(20)
     private Integer limit;
-    @NotNull
     private Integer offset;
 
     private FilterRequestDto filter;
 
     private Collection<OrderDto> orders;
+    private List<String> languages;
 }

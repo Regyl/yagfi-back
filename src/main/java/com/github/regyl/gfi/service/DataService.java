@@ -6,7 +6,6 @@ import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
 import com.github.regyl.gfi.model.IssueTables;
 
 import java.util.Collection;
-import java.util.Map;
 
 public interface DataService {
 
@@ -15,5 +14,5 @@ public interface DataService {
     DataResponseDto findAllIssues(DataRequestDto requestDto);
 
     Collection<String> findAllLanguages();
-    String findRandomIssueUrl(Map<String, String> filters);
+    String findRandomIssueUrl(DataRequestDto filters);
 }

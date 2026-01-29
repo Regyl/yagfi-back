@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.mapper;
 
-import com.github.regyl.gfi.controller.dto.github.GithubIssueDto;
+import com.github.regyl.gfi.controller.dto.github.issue.GithubIssueDto;
 import com.github.regyl.gfi.entity.IssueEntity;
 import com.github.regyl.gfi.entity.RepositoryEntity;
 import lombok.RequiredArgsConstructor;

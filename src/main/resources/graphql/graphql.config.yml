@@ -1,2 +1,2 @@
 schema: ./github-schema.docs.graphql
-documents: '**/github-request.graphql'
+documents: '**/github-*.graphql'

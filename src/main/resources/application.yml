@@ -3,6 +3,13 @@ server:
   servlet:
     context-path: /api
 spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          CycloneDxFeignClient:
+            connect-timeout: 10000
+            read-timeout: 180000
   properties:
     host-name: ${APP_HOST_NAME}
     github:
@@ -11,7 +18,7 @@ spring:
       max-pool-size: 100
       core-pool-size: 20
     auto-upload:
-      enabled: true
+      enabled: false
       period-mills: 720000 # 12 minutes
     db:
       schema: gfi
@@ -41,3 +48,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.github.regyl.gfi.controller.dto
+
+logging:
+  level:
+    root: debug

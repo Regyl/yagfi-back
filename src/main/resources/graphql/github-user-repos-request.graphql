@@ -1,0 +1,22 @@
+query GetUserRepositories($login: String!) {
+    user(login: $login) {
+        repositories(
+            ownerAffiliations: OWNER
+            first: 100
+            orderBy: { field: UPDATED_AT, direction: DESC }
+        ) {
+            nodes {
+                url
+            }
+        }
+
+        starredRepositories(
+            first: 100
+            orderBy: { field: STARRED_AT, direction: DESC }
+        ) {
+            nodes {
+                url
+            }
+        }
+    }
+}

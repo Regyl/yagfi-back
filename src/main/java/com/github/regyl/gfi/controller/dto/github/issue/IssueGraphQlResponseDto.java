@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.github;
+package com.github.regyl.gfi.controller.dto.github.issue;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubLanguageDto {
+public class IssueGraphQlResponseDto {
 
-    private String id;
-    private String name;
+    private IssueDataDto data;
+
 }

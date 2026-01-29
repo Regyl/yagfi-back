@@ -23,7 +23,7 @@
         <postgresql.version>42.7.7</postgresql.version>
 
         <!--tests-->
-        <assertj.version>3.27.6</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
 
         <!--plugins-->
         <jib.version>3.5.1</jib.version>

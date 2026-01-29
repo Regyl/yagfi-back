@@ -1,11 +1,26 @@
-version: '3.9'
-
 services:
   postgres:
     image: 'postgres:15.3'
+    container_name: postgres
     ports:
       - '5432:5432'
     environment:
       POSTGRES_USER: 'idk_user'
       POSTGRES_PASSWORD: 'SomeUselessPassword02'
       POSTGRES_DB: 'uj'
+  cdxgen:
+    image: ghcr.io/cyclonedx/cdxgen:latest
+    container_name: cdxgen
+    ports:
+      - '9090:9090'
+    environment:
+      CDXGEN_DEBUG_MODE: "debug"
+      CDXGEN_DISABLE_CONTAINER_SCAN: "true"
+      NODE_OPTIONS: "--max-old-space-size=2048"
+      CDX_MAVEN_PLUGIN: 'org.cyclonedx:cyclonedx-maven-plugin:2.9.1'
+    command: >
+      cdxgen
+      --no-babel
+      --server
+      --server-host 0.0.0.0
+      --server-port 9090

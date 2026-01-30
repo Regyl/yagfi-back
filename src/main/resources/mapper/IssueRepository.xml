@@ -1,14 +1,50 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.regyl.gfi.repository.IssueRepository">
 
-    <insert id="saveAll">
-        INSERT INTO gfi.${tableName} (source_id, title, url, updated_at, created_at, repository_id)
-        VALUES
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.sourceId}, #{entity.title}, #{entity.url}, #{entity.updatedAt}, #{entity.createdAt}, #{entity.repositoryId})
-        </foreach>
-        ON CONFLICT (source_id) DO NOTHING
-    </insert>
+    <select id="findRandomIssueLink" resultType="java.lang.String">
+        SELECT i.url
+        FROM gfi.issue_v i
+        JOIN gfi.repository_v r ON i.repository_id = r.id
+        <where>
+            <if test="filters.languages != null and !filters.languages.isEmpty()">
+                AND r.language IN
+                <foreach item="lang" collection="filters.languages" open="(" separator="," close=")">
+                    #{lang}
+                </foreach>
+            </if>
+            <if test="filters.filter != null">
+
+                <if test="filters.filter.stars != null and filters.filter.stars.value != null">
+                    <choose>
+                        <when test="filters.filter.stars.operator.name() == 'GREATER'"> AND r.stars &gt; #{filters.filter.stars.value} </when>
+                        <when test="filters.filter.stars.operator.name() == 'GREATER_OR_EQUAL'"> AND r.stars &gt;= #{filters.filter.stars.value} </when>
+                        <when test="filters.filter.stars.operator.name() == 'LESS'"> AND r.stars &lt; #{filters.filter.stars.value} </when>
+                        <when test="filters.filter.stars.operator.name() == 'LESS_OR_EQUAL'"> AND r.stars &lt;= #{filters.filter.stars.value} </when>
+                        <when test="filters.filter.stars.operator.name() == 'EQUALS'"> AND r.stars = #{filters.filter.stars.value} </when>
+                        <when test="filters.filter.stars.operator.name() == 'NOT_EQUALS'"> AND r.stars != #{filters.filter.stars.value} </when>
+                    </choose>
+                </if>
+
+                <if test="filters.filter.languages != null and filters.filter.languages.values != null and !filters.filter.languages.values.isEmpty()">
+                    <choose>
+                        <when test="filters.filter.languages.operator.name() == 'IN'">
+                            AND r.language IN
+                            <foreach item="val" collection="filters.filter.languages.values" open="(" separator="," close=")">
+                                #{val}
+                            </foreach>
+                        </when>
+                        <when test="filters.filter.languages.operator.name() == 'NOT_IN'">
+                            AND r.language NOT IN
+                            <foreach item="val" collection="filters.filter.languages.values" open="(" separator="," close=")">
+                                #{val}
+                            </foreach>
+                        </when>
+                    </choose>
+                </if>
+            </if>
+        </where>
+        ORDER BY RANDOM() LIMIT 1
+    </select>
 
 </mapper>

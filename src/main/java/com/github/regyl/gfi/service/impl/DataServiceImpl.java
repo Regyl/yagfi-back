@@ -85,7 +85,6 @@ public class DataServiceImpl implements DataService {
         String link = issueRepository.findRandomIssueLink(filters);
 
         if (link == null) {
-            // Χρησιμοποιούμε τη νέα μας κλάση εδώ
             throw new IssueNotFoundException("Random issue link not found!");
         }
         return link;

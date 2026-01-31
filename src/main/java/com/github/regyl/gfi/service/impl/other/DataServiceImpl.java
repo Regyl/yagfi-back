@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.impl;
+package com.github.regyl.gfi.service.impl.other;
 
 import com.github.regyl.gfi.controller.dto.github.issue.GithubIssueDto;
 import com.github.regyl.gfi.controller.dto.github.issue.GithubRepositoryDto;
@@ -13,7 +13,7 @@ import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.repository.DataRepository;
 import com.github.regyl.gfi.repository.IssueRepository;
 import com.github.regyl.gfi.repository.RepoRepository;
-import com.github.regyl.gfi.service.DataService;
+import com.github.regyl.gfi.service.other.DataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;

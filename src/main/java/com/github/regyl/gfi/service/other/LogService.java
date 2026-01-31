@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service;
+package com.github.regyl.gfi.service.other;
 
 import jakarta.servlet.http.HttpServletRequest;
 

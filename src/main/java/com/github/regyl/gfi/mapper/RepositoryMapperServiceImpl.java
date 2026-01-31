@@ -5,11 +5,15 @@ import com.github.regyl.gfi.entity.RepositoryEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.OffsetDateTime;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 @Component
 @RequiredArgsConstructor
 public class RepositoryMapperServiceImpl implements Function<GithubRepositoryDto, RepositoryEntity> {
+
+    private final Supplier<OffsetDateTime> dateTimeSupplier;
 
     @Override
     public RepositoryEntity apply(GithubRepositoryDto dto) {
@@ -21,6 +25,7 @@ public class RepositoryMapperServiceImpl implements Function<GithubRepositoryDto
                 .stars(dto.getStargazerCount())
                 .language(primaryLanguage)
                 .description(dto.getDescription())
+                .created(dateTimeSupplier.get())
                 .build();
     }
 }

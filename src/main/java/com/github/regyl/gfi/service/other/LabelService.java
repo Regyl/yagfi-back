@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.label;
+package com.github.regyl.gfi.service.other;
 
 import com.github.regyl.gfi.model.LabelModel;
 

@@ -1,6 +1,7 @@
 package com.github.regyl.gfi.configuration.async;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.hc.core5.http.HttpHost;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.Collection;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -45,6 +47,19 @@ public class AsyncConfiguration implements AsyncConfigurer {
         executor.setThreadGroupName("load-group-async-");
         executor.setThreadNamePrefix("load-async-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.initialize();
+        return executor;
+    }
+
+    @Bean("cdxgenTaskPool")
+    public ThreadPoolTaskExecutor cdxgenTaskPool(Collection<HttpHost> cdxgenHosts) {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(cdxgenHosts.size());
+        executor.setMaxPoolSize(cdxgenHosts.size());
+        executor.setPrestartAllCoreThreads(false);
+        executor.setThreadGroupName("cdxgen-group-async-");
+        executor.setThreadNamePrefix("cdxgen-async-");
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
         executor.initialize();
         return executor;
     }

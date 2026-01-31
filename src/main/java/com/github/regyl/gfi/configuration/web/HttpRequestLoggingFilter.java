@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.configuration.web;
 
-import com.github.regyl.gfi.service.LogService;
+import com.github.regyl.gfi.service.other.LogService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

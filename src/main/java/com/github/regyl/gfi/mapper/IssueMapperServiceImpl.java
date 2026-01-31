@@ -7,13 +7,17 @@ import com.github.regyl.gfi.entity.RepositoryEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 @Component
 @RequiredArgsConstructor
 public class IssueMapperServiceImpl implements BiFunction<Map<String, RepositoryEntity>, GithubIssueDto, IssueEntity> {
+
+    private final Supplier<OffsetDateTime> dateTimeSupplier;
 
     @Override
     public IssueEntity apply(Map<String, RepositoryEntity> repos, GithubIssueDto dto) {
@@ -29,6 +33,7 @@ public class IssueMapperServiceImpl implements BiFunction<Map<String, Repository
                 .createdAt(dto.getCreatedAt())
                 .repositoryId(repos.get(dto.getRepository().getId()).getId())
                 .labels(labels)
+                .created(dateTimeSupplier.get())
                 .build();
     }
 }

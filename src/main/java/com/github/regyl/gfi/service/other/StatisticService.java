@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.statistic;
+package com.github.regyl.gfi.service.other;
 
 import com.github.regyl.gfi.controller.dto.response.LanguageStatisticResponseDto;
 

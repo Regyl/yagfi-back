@@ -1,7 +1,7 @@
-package com.github.regyl.gfi.service.impl.label;
+package com.github.regyl.gfi.service.impl.other;
 
 import com.github.regyl.gfi.model.LabelModel;
-import com.github.regyl.gfi.service.label.LabelService;
+import com.github.regyl.gfi.service.other.LabelService;
 import com.github.regyl.gfi.util.ResourceUtil;
 import org.springframework.stereotype.Component;
 

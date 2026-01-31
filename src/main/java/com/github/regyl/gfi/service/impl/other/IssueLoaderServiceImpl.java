@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.impl;
+package com.github.regyl.gfi.service.impl.other;
 
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.service.ScheduledService;
@@ -30,6 +30,7 @@ public class IssueLoaderServiceImpl implements ScheduledService {
     private final JdbcTemplate jdbcTemplate;
     private final CacheManager cacheManager;
 
+    @Override
     @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
     public void schedule() {
         IssueTables table = determineTable();

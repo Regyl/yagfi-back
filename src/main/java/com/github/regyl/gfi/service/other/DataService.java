@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service;
+package com.github.regyl.gfi.service.other;
 
 import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.DataRequestDto;

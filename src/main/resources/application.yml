@@ -15,6 +15,13 @@ spring:
       period-mills: 600000 # 15 minutes
     db:
       schema: gfi
+    cyclonedx:
+      ports:
+        - 9090
+        - 9091
+        - 9092
+        - 9093
+        - 9094
   flyway:
     enabled: true
     clean-disabled: true
@@ -42,3 +49,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.github.regyl.gfi.controller.dto
   type-handlers-package: com.github.regyl.gfi.typehandler
+
+logging:
+  level:
+    root: info

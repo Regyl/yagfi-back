@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.impl.cyclonedx;
 
-import com.github.regyl.gfi.controller.dto.cyclonedx.SbomResponseDto;
+import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.impl.cyclonedx;
 
-import com.github.regyl.gfi.controller.dto.cyclonedx.SbomResponseDto;
+import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
 import com.github.regyl.gfi.controller.dto.github.repos.UserDataGraphQlResponseDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;

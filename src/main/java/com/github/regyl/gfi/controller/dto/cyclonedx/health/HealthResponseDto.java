@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.cyclonedx;
+package com.github.regyl.gfi.controller.dto.cyclonedx.health;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,8 +2,8 @@ package com.github.regyl.gfi.service.impl.cyclonedx;
 
 import com.github.regyl.gfi.configuration.httpclient.HealthHttpClientResponseHandlerImpl;
 import com.github.regyl.gfi.configuration.httpclient.SbomHttpClientResponseHandlerImpl;
-import com.github.regyl.gfi.controller.dto.cyclonedx.HealthResponseDto;
-import com.github.regyl.gfi.controller.dto.cyclonedx.SbomResponseDto;
+import com.github.regyl.gfi.controller.dto.cyclonedx.health.HealthResponseDto;
+import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
 import com.github.regyl.gfi.service.cyclonedx.CycloneDxProxyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

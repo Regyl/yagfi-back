@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.cyclonedx;
 
-import com.github.regyl.gfi.controller.dto.cyclonedx.SbomResponseDto;
+import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
 
 import java.util.concurrent.CompletableFuture;
 

@@ -6,10 +6,11 @@ import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import com.github.regyl.gfi.repository.UserFeedRequestRepository;
 import com.github.regyl.gfi.service.ScheduledService;
-import com.github.regyl.gfi.service.cyclonedx.CycloneDxProxyService;
+import com.github.regyl.gfi.service.cyclonedx.CycloneDxService;
 import com.github.regyl.gfi.util.ResourceUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.hc.core5.http.HttpHost;
 import org.springframework.graphql.client.ClientGraphQlResponse;
 import org.springframework.graphql.client.GraphQlClient;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -33,13 +34,13 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
 
     private final GraphQlClient githubClient;
     private final UserFeedRequestRepository repository;
-    private final CycloneDxProxyService cycloneDxProxyService;
+    private final CycloneDxService cycloneDxService;
     private final BiConsumer<SbomResponseDto, Throwable> resultConsumer;
 
     @Override
-    @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
+    @Scheduled(fixedRate = 60_000, initialDelay = 1_000)
     public void schedule() {
-        boolean isAnyAlive = cycloneDxProxyService.anyAlive();
+        boolean isAnyAlive = cycloneDxService.anyAlive();
         if (!isAnyAlive) {
             log.info("All cdxgen services are busy, will try again later");
             return;
@@ -52,6 +53,7 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         }
 
         UserFeedRequestEntity entity = optionalRequest.get();
+        log.info("Started feed generation for nickname {}", entity.getNickname());
         repository.updateStatusById(entity.getId(), UserFeedRequestStatuses.PROCESSING);
         idk(entity);
     }
@@ -61,14 +63,18 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         Queue<String> userRepos = new ArrayDeque<>(responseDto.getRepoUrls());
 
         while (!userRepos.isEmpty()) {
-            int freeThreads = cycloneDxProxyService.getFreeServiceQuantity();
-            for (int i = 0; i < freeThreads; i++) {
-                cycloneDxProxyService.getSbom(userRepos.poll())
+            Queue<HttpHost> hosts = cycloneDxService.getFreeHosts();
+            while (!hosts.isEmpty() && !userRepos.isEmpty()) {
+                String url = userRepos.poll();
+                HttpHost host = hosts.poll();
+                cycloneDxService.getSbom(url, host)
                         .whenComplete(resultConsumer);
             }
 
             LockSupport.parkNanos(Duration.ofMinutes(1L).toNanos());
         }
+
+        repository.deleteById(rq.getId());
     }
 
     private UserDataGraphQlResponseDto getRepos(String login) {

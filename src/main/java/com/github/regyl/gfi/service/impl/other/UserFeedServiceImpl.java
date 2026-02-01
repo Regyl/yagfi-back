@@ -21,6 +21,7 @@ public class UserFeedServiceImpl implements UserFeedService {
     @Override
     public UserFeedRequestEntity saveFeedRequest(UserFeedRequestDto feedRequestDto) {
         UserFeedRequestEntity entity = feedRequestMapper.apply(feedRequestDto);
-        return userFeedRequestRepository.save(entity);
+        userFeedRequestRepository.save(entity);
+        return entity;
     }
 }

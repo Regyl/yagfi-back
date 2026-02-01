@@ -2,6 +2,7 @@ package com.github.regyl.gfi.mapper;
 
 import com.github.regyl.gfi.controller.dto.request.UserFeedRequestDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
+import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,7 @@ public class UserFeedRequestDtoToEntityMapperServiceImpl implements Function<Use
                 .nickname(dto.getNickname())
                 .email(dto.getEmail())
                 .created(dateTimeSupplier.get())
+                .status(UserFeedRequestStatuses.WAITING_FOR_PROCESS.getValue())
                 .build();
     }
 }

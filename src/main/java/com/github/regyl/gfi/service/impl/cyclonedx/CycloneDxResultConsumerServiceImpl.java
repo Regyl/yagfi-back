@@ -26,6 +26,6 @@ public class CycloneDxResultConsumerServiceImpl implements BiConsumer<SbomRespon
     }
 
     private void accept(SbomResponseDto dto) {
-
+        log.info(dto.toString());
     }
 }

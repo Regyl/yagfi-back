@@ -4,7 +4,7 @@ import com.github.regyl.gfi.configuration.httpclient.HealthHttpClientResponseHan
 import com.github.regyl.gfi.configuration.httpclient.SbomHttpClientResponseHandlerImpl;
 import com.github.regyl.gfi.controller.dto.cyclonedx.health.HealthResponseDto;
 import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
-import com.github.regyl.gfi.service.cyclonedx.CycloneDxProxyService;
+import com.github.regyl.gfi.service.cyclonedx.CycloneDxService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
@@ -14,14 +14,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayDeque;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class CycloneDxProxyServiceImpl implements CycloneDxProxyService {
+public class CycloneDxServiceImpl implements CycloneDxService {
 
     private static final String SBOM_PATH = "/sbom?url=";
     private static final HttpGet HEALTH_GET = new HttpGet("/health");
@@ -45,15 +48,9 @@ public class CycloneDxProxyServiceImpl implements CycloneDxProxyService {
 
     @Async("cdxgenTaskPool")
     @Override
-    public CompletableFuture<SbomResponseDto> getSbom(String url) {
-        Collection<HttpHost> freeHosts = getFreeHosts();
-        if (freeHosts.isEmpty()) {
-            throw new IllegalStateException("No free cdxgen hosts available");
-        }
-
-        HttpHost host = freeHosts.iterator().next();
+    public CompletableFuture<SbomResponseDto> getSbom(String url, HttpHost host) {
         HttpGet sbomGet = new HttpGet(SBOM_PATH + url);
-        log.info("Using host: {}", host);
+        log.info("Using host {} and repository {}", host, url);
         try {
             SbomResponseDto response = cdxgenSbomClient.execute(host, sbomGet, new SbomHttpClientResponseHandlerImpl());
             return CompletableFuture.completedFuture(response);
@@ -62,8 +59,9 @@ public class CycloneDxProxyServiceImpl implements CycloneDxProxyService {
         }
     }
 
-    private Collection<HttpHost> getFreeHosts() {
-        return cycloneDxHosts.stream().map(host -> {
+    @Override
+    public Queue<HttpHost> getFreeHosts() {
+        List<HttpHost> freeHosts = cycloneDxHosts.stream().map(host -> {
             try {
                 HealthResponseDto result = cdxgenHealthClient.execute(host, HEALTH_GET, new HealthHttpClientResponseHandlerImpl());
                 if ("OK".equals(result.getStatus())) {
@@ -78,5 +76,6 @@ public class CycloneDxProxyServiceImpl implements CycloneDxProxyService {
                 return null;
             }
         }).filter(Objects::nonNull).toList();
+        return new ArrayDeque<>(freeHosts);
     }
 }

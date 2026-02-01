@@ -9,7 +9,13 @@ import java.util.Optional;
 @Mapper
 public interface UserFeedRequestRepository {
 
-    UserFeedRequestEntity save(UserFeedRequestEntity entity);
+    void save(UserFeedRequestEntity entity);
+
     Optional<UserFeedRequestEntity> findOldestByStatus(String status);
+
     void updateStatusById(Long id, UserFeedRequestStatuses status);
+
+    void resetProcessingRecords();
+
+    void deleteById(Long id);
 }

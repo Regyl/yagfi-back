@@ -67,8 +67,17 @@ CREATE TABLE IF NOT EXISTS gfi.e_log
     url            TEXT                     NOT NULL,
     http_method    VARCHAR(10)              NOT NULL,
     request_body   JSONB,
-    country        VARCHAR(20),
+    country        VARCHAR(50),
     os             VARCHAR(50),
     browser_family VARCHAR(50),
     device_type    VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS gfi.e_user_feed_request
+(
+    id       BIGSERIAL PRIMARY KEY,
+    created  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    nickname VARCHAR(255)             NOT NULL,
+    email    VARCHAR(255)             NOT NULL,
+    status   VARCHAR(50)              NOT NULL
 );

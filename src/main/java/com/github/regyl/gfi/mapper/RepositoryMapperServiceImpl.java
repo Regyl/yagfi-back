@@ -14,6 +14,7 @@ public class RepositoryMapperServiceImpl implements Function<GithubRepositoryDto
     @Override
     public RepositoryEntity apply(GithubRepositoryDto dto) {
         String primaryLanguage = dto.getPrimaryLanguage() == null ? null : dto.getPrimaryLanguage().getName();
+        String license = dto.getLicenseInfo() == null ? null : dto.getLicenseInfo().getName();
         return RepositoryEntity.builder()
                 .sourceId(dto.getId())
                 .title(dto.getNameWithOwner())
@@ -21,6 +22,7 @@ public class RepositoryMapperServiceImpl implements Function<GithubRepositoryDto
                 .stars(dto.getStargazerCount())
                 .language(primaryLanguage)
                 .description(dto.getDescription())
+                .license(license)
                 .build();
     }
 }

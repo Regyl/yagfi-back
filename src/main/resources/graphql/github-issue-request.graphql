@@ -29,6 +29,9 @@ query SearchIssuesByLabel($query: String!, $cursor: String) {
                         name
                     }
                     updatedAt
+                    licenseInfo {
+                        name
+                    }
                 }
                 labels(first: 20) {
                     nodes {

@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 @Component
 @RequiredArgsConstructor
-public class RepositoryMapperServiceImpl implements Function<GithubRepositoryDto, RepositoryEntity> {
+public class RepositoryMapperImpl implements Function<GithubRepositoryDto, RepositoryEntity> {
 
     private final Supplier<OffsetDateTime> dateTimeSupplier;
 

@@ -81,3 +81,13 @@ CREATE TABLE IF NOT EXISTS gfi.e_user_feed_request
     email    VARCHAR(255)             NOT NULL,
     status   VARCHAR(50)              NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS gfi.e_user_feed_dependency
+(
+    id                    BIGSERIAL PRIMARY KEY,
+    created               TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    nickname              VARCHAR(255)             NOT NULL,
+    source_repo           VARCHAR(500)            NOT NULL,
+    dependency_github_url VARCHAR(500),
+    UNIQUE (nickname, source_repo, dependency_github_url)
+);

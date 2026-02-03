@@ -7,7 +7,7 @@ import ua_parser.Parser;
 
 @Slf4j
 @UtilityClass
-public class UserAgentParser {
+public class UserAgentUtil {
 
     private static final Parser PARSER = new Parser();
 

@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.controller;
 
-import com.github.regyl.gfi.service.cyclonedx.CycloneDxService;
+import com.github.regyl.gfi.service.feed.cyclonedx.CycloneDxService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

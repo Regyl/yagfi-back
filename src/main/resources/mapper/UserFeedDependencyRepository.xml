@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.regyl.gfi.repository.UserFeedDependencyRepository">
+
+    <insert id="saveAll">
+        INSERT INTO gfi.e_user_feed_dependency (nickname, source_repo, dependency_github_url, created)
+        VALUES
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.nickname}, #{entity.sourceRepo}, #{entity.dependencyGithubUrl}, COALESCE(#{entity.created}, NOW()))
+        </foreach>
+        ON CONFLICT (nickname, source_repo, dependency_github_url) DO NOTHING
+    </insert>
+
+</mapper>

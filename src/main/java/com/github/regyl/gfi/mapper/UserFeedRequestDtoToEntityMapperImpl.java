@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 @Component
 @RequiredArgsConstructor
-public class UserFeedRequestDtoToEntityMapperServiceImpl implements Function<UserFeedRequestDto, UserFeedRequestEntity> {
+public class UserFeedRequestDtoToEntityMapperImpl implements Function<UserFeedRequestDto, UserFeedRequestEntity> {
 
     private final Supplier<OffsetDateTime> dateTimeSupplier;
 

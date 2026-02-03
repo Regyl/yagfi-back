@@ -1,12 +1,12 @@
-package com.github.regyl.gfi.service.impl.cyclonedx;
+package com.github.regyl.gfi.service.impl.feed;
 
-import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
 import com.github.regyl.gfi.controller.dto.github.repos.UserDataGraphQlResponseDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
+import com.github.regyl.gfi.model.SbomModel;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import com.github.regyl.gfi.repository.UserFeedRequestRepository;
 import com.github.regyl.gfi.service.ScheduledService;
-import com.github.regyl.gfi.service.cyclonedx.CycloneDxService;
+import com.github.regyl.gfi.service.feed.cyclonedx.CycloneDxService;
 import com.github.regyl.gfi.util.ResourceUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
     private final GraphQlClient githubClient;
     private final UserFeedRequestRepository repository;
     private final CycloneDxService cycloneDxService;
-    private final BiConsumer<SbomResponseDto, Throwable> resultConsumer;
+    private final BiConsumer<SbomModel, Throwable> resultConsumer;
 
     @Override
     @Scheduled(fixedRate = 60_000, initialDelay = 1_000)
@@ -55,11 +55,12 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         UserFeedRequestEntity entity = optionalRequest.get();
         log.info("Started feed generation for nickname {}", entity.getNickname());
         repository.updateStatusById(entity.getId(), UserFeedRequestStatuses.PROCESSING);
-        idk(entity);
+        process(entity);
     }
 
-    private void idk(UserFeedRequestEntity rq) {
-        UserDataGraphQlResponseDto responseDto = getRepos(rq.getNickname());
+    private void process(UserFeedRequestEntity rq) {
+        String nickname = rq.getNickname();
+        UserDataGraphQlResponseDto responseDto = getRepos(nickname);
         Queue<String> userRepos = new ArrayDeque<>(responseDto.getRepoUrls());
 
         while (!userRepos.isEmpty()) {
@@ -68,13 +69,14 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
                 String url = userRepos.poll();
                 HttpHost host = hosts.poll();
                 cycloneDxService.getSbom(url, host)
-                        .whenComplete(resultConsumer);
+                        .whenComplete((dto, throwable) -> resultConsumer.accept(new SbomModel(rq, dto, url), throwable));
             }
 
             LockSupport.parkNanos(Duration.ofMinutes(1L).toNanos());
         }
 
         repository.deleteById(rq.getId());
+        log.info("Finished generating feed for nickname {}", nickname);
     }
 
     private UserDataGraphQlResponseDto getRepos(String login) {

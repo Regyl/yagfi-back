@@ -1,10 +1,10 @@
-package com.github.regyl.gfi.service.impl.cyclonedx;
+package com.github.regyl.gfi.service.impl.feed.cyclonedx;
 
 import com.github.regyl.gfi.configuration.httpclient.HealthHttpClientResponseHandlerImpl;
 import com.github.regyl.gfi.configuration.httpclient.SbomHttpClientResponseHandlerImpl;
 import com.github.regyl.gfi.controller.dto.cyclonedx.health.HealthResponseDto;
 import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
-import com.github.regyl.gfi.service.cyclonedx.CycloneDxService;
+import com.github.regyl.gfi.service.feed.cyclonedx.CycloneDxService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.client5.http.classic.methods.HttpGet;

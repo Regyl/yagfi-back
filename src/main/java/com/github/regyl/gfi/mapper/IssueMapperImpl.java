@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 @Component
 @RequiredArgsConstructor
-public class IssueMapperServiceImpl implements BiFunction<Map<String, RepositoryEntity>, GithubIssueDto, IssueEntity> {
+public class IssueMapperImpl implements BiFunction<Map<String, RepositoryEntity>, GithubIssueDto, IssueEntity> {
 
     private final Supplier<OffsetDateTime> dateTimeSupplier;
 

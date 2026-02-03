@@ -2,7 +2,7 @@ package com.github.regyl.gfi.mapper;
 
 import com.github.regyl.gfi.entity.LogEntity;
 import com.github.regyl.gfi.model.HttpRequestModel;
-import com.github.regyl.gfi.util.UserAgentParser;
+import com.github.regyl.gfi.util.UserAgentUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 @Component
 @RequiredArgsConstructor
-public class HttpRequestModelToEntityMapperServiceImpl implements Function<HttpRequestModel, LogEntity> {
+public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestModel, LogEntity> {
 
     @Override
     public LogEntity apply(HttpRequestModel model) {
@@ -26,9 +26,9 @@ public class HttpRequestModelToEntityMapperServiceImpl implements Function<HttpR
                 .httpMethod(request.getMethod())
                 .requestBody(model.getRequestBody())
                 .country(country)
-                .os(UserAgentParser.parseOS(userAgent))
-                .browserFamily(UserAgentParser.parseBrowserFamily(userAgent))
-                .deviceType(UserAgentParser.parseDeviceType(userAgent))
+                .os(UserAgentUtil.parseOS(userAgent))
+                .browserFamily(UserAgentUtil.parseBrowserFamily(userAgent))
+                .deviceType(UserAgentUtil.parseDeviceType(userAgent))
                 .build();
     }
 

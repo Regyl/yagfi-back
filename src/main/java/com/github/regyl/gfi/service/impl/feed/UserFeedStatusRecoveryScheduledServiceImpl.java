@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.impl.cyclonedx;
+package com.github.regyl.gfi.service.impl.feed;
 
 import com.github.regyl.gfi.repository.UserFeedRequestRepository;
 import lombok.RequiredArgsConstructor;

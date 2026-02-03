@@ -4,8 +4,10 @@ import com.github.regyl.gfi.controller.dto.github.repos.UserDataGraphQlResponseD
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.SbomModel;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
+import com.github.regyl.gfi.model.smtp.EmailModel;
 import com.github.regyl.gfi.repository.UserFeedRequestRepository;
 import com.github.regyl.gfi.service.ScheduledService;
+import com.github.regyl.gfi.service.email.EmailService;
 import com.github.regyl.gfi.service.feed.CycloneDxService;
 import com.github.regyl.gfi.util.ResourceUtil;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.LockSupport;
 import java.util.function.BiConsumer;
 
@@ -31,15 +34,23 @@ import java.util.function.BiConsumer;
 public class UserFeedGeneratorServiceImpl implements ScheduledService {
 
     private static final String QUERY = ResourceUtil.getFilePayload("graphql/github-user-repos-request.graphql");
+    private static final AtomicBoolean STATE = new AtomicBoolean(false);
 
     private final GraphQlClient githubClient;
     private final UserFeedRequestRepository repository;
     private final CycloneDxService cycloneDxService;
     private final BiConsumer<SbomModel, Throwable> resultConsumer;
+    private final EmailService emailService;
 
     @Override
     @Scheduled(fixedRate = 60_000, initialDelay = 1_000)
     public void schedule() {
+        if (STATE.get()) {
+            log.debug("Still running");
+            return;
+        }
+        STATE.set(true);
+
         boolean isAnyAlive = cycloneDxService.anyAlive();
         if (!isAnyAlive) {
             log.info("All cdxgen services are busy, will try again later");
@@ -56,10 +67,13 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         log.info("Started feed generation for nickname {}", entity.getNickname());
         repository.updateStatusById(entity.getId(), UserFeedRequestStatuses.PROCESSING);
         process(entity);
+
+        STATE.set(false);
     }
 
     private void process(UserFeedRequestEntity rq) {
         long start = System.nanoTime();
+
         String nickname = rq.getNickname();
         UserDataGraphQlResponseDto responseDto = getRepos(nickname);
         Queue<String> userRepos = new ArrayDeque<>(responseDto.getRepoUrls());
@@ -77,6 +91,14 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         }
 
         repository.updateStatusById(rq.getId(), UserFeedRequestStatuses.PROCESSED);
+
+        EmailModel emailModel = new EmailModel(
+                rq.getEmail(),
+                "Your custom feed generated!",
+                "Feed generation completed. Please check yagfi.com"
+        );
+        emailService.send(emailModel);
+
         long processTime = Duration.ofNanos(System.nanoTime() - start).toMinutes();
         log.info("Finished generating feed for nickname {} and took {} minutes (but maybe not everything processed/uploaded yet)", nickname, processTime);
     }

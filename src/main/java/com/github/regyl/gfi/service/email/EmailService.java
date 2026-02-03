@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.smtp;
+package com.github.regyl.gfi.service.email;
 
 import com.github.regyl.gfi.model.smtp.EmailModel;
 

@@ -16,7 +16,6 @@
     <properties>
         <!--core-->
         <spring.version>4.0.0</spring.version>
-        <spring-cloud.version>2025.1.0</spring-cloud.version>
         <postgresql.version>42.7.7</postgresql.version>
 
         <!--libs-->
@@ -59,6 +58,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -22,6 +22,9 @@ spring:
         - 9092
         - 9093
         - 9094
+    email:
+      username: ${EMAIL_USERNAME}
+      password: ${EMAIL_PASSWORD}
   flyway:
     enabled: true
     clean-disabled: true

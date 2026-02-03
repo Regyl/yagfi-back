@@ -2,6 +2,7 @@ package com.github.regyl.gfi.controller;
 
 import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
+import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
 import com.github.regyl.gfi.service.DataService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,4 +36,10 @@ public class DataController {
     public Collection<String> findAllLanguages() {
         return dataService.findAllLanguages();
     }
+
+    // new endpoint for label statistics
+    @GetMapping("/labels")
+public List<LabelStatisticResponseDto> findAllLabels() {
+    return dataService.findAllLabels();
+}
 }

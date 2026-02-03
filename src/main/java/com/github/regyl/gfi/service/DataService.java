@@ -3,9 +3,11 @@ package com.github.regyl.gfi.service;
 import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
+import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
 import com.github.regyl.gfi.model.IssueTables;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface DataService {
 
@@ -15,4 +17,6 @@ public interface DataService {
 
     Collection<String> findAllLanguages();
     String findRandomIssueUrl(DataRequestDto filters);
+
+    List<LabelStatisticResponseDto> findAllLabels();
 }

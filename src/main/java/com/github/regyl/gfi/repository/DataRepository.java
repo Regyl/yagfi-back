@@ -2,6 +2,7 @@ package com.github.regyl.gfi.repository;
 
 import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.IssueResponseDto;
+import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collection;
@@ -15,4 +16,7 @@ public interface DataRepository {
     Collection<String> findAllLanguages();
 
     String findRandomIssueLink(DataRequestDto filters);
+
+    // ← new!
+    List<LabelStatisticResponseDto> findAllLabels();  // extract all labels
 }

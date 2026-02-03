@@ -57,6 +57,20 @@
         ORDER BY RANDOM() LIMIT 1
     </select>
 
+    <!--  The new sql-->
+
+   <select id="findAllLabels" resultType="com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto">
+    WITH labels_cte AS (
+        SELECT unnest(labels) AS label FROM gfi.issue_v
+    )
+    SELECT label, COUNT(1) as count 
+    FROM labels_cte 
+    GROUP BY label 
+    ORDER BY COUNT(1) DESC
+  </select>
+
+  
+
     <sql id="dataFilter">
         <where>
             <if test="filter != null and filter.languages != null and filter.languages.values != null and filter.languages.values.size() > 0">

@@ -54,15 +54,12 @@ CREATE TABLE IF NOT EXISTS e_issue_2
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS e_issue_event
+CREATE TABLE IF NOT EXISTS e_event
 (
-    id BIGSERIAL       PRIMARY KEY,
-    created            TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    issue_id BIGINT    NOT NULL,
-    last_acquired      TIMESTAMP WITH TIME ZONE NOT NULL,
-    CONSTRAINT fk_issue_event FOREIGN KEY (issue_id)
-        REFERENCES e_issue_1 (id)
-        ON DELETE CASCADE
+    id               BIGSERIAL PRIMARY KEY,
+    source           VARCHAR(255)             NOT NULL UNIQUE,
+    last_update_dttm TIMESTAMP WITH TIME ZONE NOT NULL,
+    created          TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
 CREATE VIEW issue_v as select * from e_issue_1;

@@ -1,16 +1,20 @@
 package com.github.regyl.gfi.repository;
 
-import com.github.regyl.gfi.controller.dto.response.EventResponseDto;
+import com.github.regyl.gfi.entity.EventEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface EventRepository {
 
-    EventResponseDto findLatestEvent();
+    Optional<EventEntity> findBySource(@Param("source") String source);
 
-    void insertEvent(@Param("issueId") Long issueId,
-                     @Param("lastAcquired") OffsetDateTime lastAcquired);
+    List<EventEntity> findAll();
+
+    void insert(EventEntity event);
+
+    void update(EventEntity event);
 }

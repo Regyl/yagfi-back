@@ -17,8 +17,8 @@ import java.time.OffsetDateTime;
 public class EventEntity extends AbstractEntity {
 
     @NotNull
-    private Long issueId;
+    private String source;
 
     @NotNull
-    private OffsetDateTime lastAcquired;
+    private OffsetDateTime lastUpdateDttm;
 }

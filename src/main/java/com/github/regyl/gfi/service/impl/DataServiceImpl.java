@@ -9,7 +9,6 @@ import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
 import com.github.regyl.gfi.controller.dto.response.IssueResponseDto;
 import com.github.regyl.gfi.entity.IssueEntity;
 import com.github.regyl.gfi.entity.RepositoryEntity;
-import com.github.regyl.gfi.listener.event.IssueAcquiredEvent;
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.repository.DataRepository;
 import com.github.regyl.gfi.repository.IssueRepository;
@@ -18,12 +17,10 @@ import com.github.regyl.gfi.service.DataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +39,6 @@ public class DataServiceImpl implements DataService {
     private final BiFunction<Map<String, RepositoryEntity>, GithubIssueDto, IssueEntity> issueMapper;
     private final Function<GithubRepositoryDto, RepositoryEntity> repoMapper;
     private final DataRepository dataRepository;
-    private final ApplicationEventPublisher eventPublisher;
 
     @Async
     @Override
@@ -69,10 +65,6 @@ public class DataServiceImpl implements DataService {
 
         log.info("Issues loaded: {}", issues.size());
         issueRepository.saveAll(issues, table.getIssueTableName());
-
-        issues.forEach(issue -> eventPublisher.publishEvent(
-                new IssueAcquiredEvent(this, issue.getId(), OffsetDateTime.now())
-        ));
     }
 
     @Override

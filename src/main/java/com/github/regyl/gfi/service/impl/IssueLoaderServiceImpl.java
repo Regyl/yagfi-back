@@ -66,8 +66,6 @@ public class IssueLoaderServiceImpl implements ScheduledService {
         log.info("Views recreated");
 
         IssueTables expiredTable = IssueTables.getDifferent(table);
-        jdbcTemplate.execute("TRUNCATE TABLE gfi.e_issue_event CASCADE");
-        jdbcTemplate.execute(String.format("TRUNCATE TABLE gfi.%s CASCADE", expiredTable.getIssueTableName()));
         jdbcTemplate.execute("TRUNCATE TABLE gfi." + expiredTable.getIssueTableName());
         jdbcTemplate.execute(String.format("TRUNCATE TABLE gfi.%s CASCADE", expiredTable.getRepoTableName()));
 

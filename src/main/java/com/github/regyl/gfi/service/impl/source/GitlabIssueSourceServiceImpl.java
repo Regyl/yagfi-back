@@ -25,3 +25,4 @@ public class GitlabIssueSourceServiceImpl implements IssueSourceService {
 
         eventPublisher.publishEvent(new IssueSyncCompletedEvent(GITLAB, OffsetDateTime.now()));
     }
+}

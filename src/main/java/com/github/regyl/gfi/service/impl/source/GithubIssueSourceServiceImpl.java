@@ -60,7 +60,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
             String query = String.format("is:issue is:open no:assignee label:\"%s\"", label.getTitle());
             taskExecutor.submit(() -> {
                 try {
-                    IssueData response = getIssues(new IssueRequestDto(query, null));
+                    IssueDataDto response = getIssues(new IssueRequestDto(query, null));
                     dataService.save(response, table);
 
                     String cursor = response.getEndCursor();

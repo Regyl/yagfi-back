@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.feed.cyclonedx;
+package com.github.regyl.gfi.service.feed;
 
 import com.github.packageurl.PackageURL;
 

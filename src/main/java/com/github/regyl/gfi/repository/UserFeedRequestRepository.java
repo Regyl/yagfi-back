@@ -16,6 +16,4 @@ public interface UserFeedRequestRepository {
     void updateStatusById(Long id, UserFeedRequestStatuses status);
 
     void resetProcessingRecords();
-
-    void deleteById(Long id);
 }

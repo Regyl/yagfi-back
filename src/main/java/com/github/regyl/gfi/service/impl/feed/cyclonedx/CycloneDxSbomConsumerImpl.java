@@ -6,16 +6,18 @@ import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
 import com.github.regyl.gfi.entity.UserFeedDependencyEntity;
 import com.github.regyl.gfi.model.SbomModel;
 import com.github.regyl.gfi.repository.UserFeedDependencyRepository;
-import com.github.regyl.gfi.service.feed.cyclonedx.PurlToHomepageService;
+import com.github.regyl.gfi.service.feed.PurlToHomepageService;
 import com.github.regyl.gfi.util.PurlUtil;
 import com.github.regyl.gfi.util.ServicePredicateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
@@ -30,7 +32,20 @@ public class CycloneDxSbomConsumerImpl implements Consumer<SbomModel> {
 
     @Override
     public void accept(SbomModel model) {
+        try {
+            accept0(model);
+        } catch (Exception e) {
+            String msg = String.format("Error processing SbomModel: %s", e.getMessage());
+            log.error(msg, e);
+        }
+    }
+
+    private void accept0(SbomModel model) {
         List<UserFeedDependencyEntity> dependencies = extractDependencies(model);
+        if (CollectionUtils.isEmpty(dependencies)) {
+            return;
+        }
+
         userFeedDependencyRepository.saveAll(dependencies);
     }
 
@@ -44,11 +59,15 @@ public class CycloneDxSbomConsumerImpl implements Consumer<SbomModel> {
                 continue;
             }
 
-            // Пробуем извлечь в зависимости от типа пакета
-            PurlToHomepageService service = ServicePredicateUtil.getTargetService(homepageServices, purl);
+            Optional<PurlToHomepageService> optionalService = ServicePredicateUtil.getTargetServiceNullSafe(homepageServices, purl);
+            if (optionalService.isEmpty()) {
+                continue;
+            }
+
+            PurlToHomepageService service = optionalService.get();
             String githubUrl = service.apply(purl);
             if (githubUrl == null) {
-                log.warn("Github url could not be resolved by purl {}", purl);
+                log.debug("Github url could not be resolved by purl {}", purl);
                 continue;
             }
 

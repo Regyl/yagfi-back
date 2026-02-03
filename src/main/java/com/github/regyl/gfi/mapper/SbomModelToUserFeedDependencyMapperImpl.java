@@ -17,15 +17,14 @@ public class SbomModelToUserFeedDependencyMapperImpl implements BiFunction<SbomM
     private final Supplier<OffsetDateTime> dateTimeSupplier;
 
     @Override
-    public UserFeedDependencyEntity apply(SbomModel model, String githubUrl) {
+    public UserFeedDependencyEntity apply(SbomModel model, String dependencyUrl) {
         UserFeedRequestEntity rq = model.getRq();
-        String nickname = rq.getNickname();
         String sourceRepo = model.getRepositoryUrl();
 
         return UserFeedDependencyEntity.builder()
-                .nickname(nickname)
+                .requestId(rq.getId())
                 .sourceRepo(sourceRepo)
-                .dependencyGithubUrl(githubUrl)
+                .dependencyUrl(dependencyUrl)
                 .created(dateTimeSupplier.get())
                 .build();
     }

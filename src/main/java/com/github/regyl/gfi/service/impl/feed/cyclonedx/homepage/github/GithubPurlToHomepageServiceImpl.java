@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.service.impl.feed.cyclonedx.homepage.github;
 
 import com.github.packageurl.PackageURL;
-import com.github.regyl.gfi.service.feed.cyclonedx.PurlToHomepageService;
+import com.github.regyl.gfi.service.feed.PurlToHomepageService;
 import org.springframework.stereotype.Component;
 
 /**

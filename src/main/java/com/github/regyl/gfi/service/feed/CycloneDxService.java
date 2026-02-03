@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.feed.cyclonedx;
+package com.github.regyl.gfi.service.feed;
 
 import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
 import org.apache.hc.core5.http.HttpHost;

@@ -41,8 +41,6 @@ public class IssueLoaderServiceImpl implements ScheduledService {
             if (taskExecutor.getQueueSize() == 0) {
                 break;
             }
-
-            //FIXME set timeout
         }
 
         log.info("Issue pulling finished (but maybe not all uploaded to DB yet)");

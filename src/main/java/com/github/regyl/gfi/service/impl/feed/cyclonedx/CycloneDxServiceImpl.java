@@ -4,7 +4,7 @@ import com.github.regyl.gfi.configuration.httpclient.HealthHttpClientResponseHan
 import com.github.regyl.gfi.configuration.httpclient.SbomHttpClientResponseHandlerImpl;
 import com.github.regyl.gfi.controller.dto.cyclonedx.health.HealthResponseDto;
 import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
-import com.github.regyl.gfi.service.feed.cyclonedx.CycloneDxService;
+import com.github.regyl.gfi.service.feed.CycloneDxService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.net.SocketTimeoutException;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.List;
@@ -70,6 +71,9 @@ public class CycloneDxServiceImpl implements CycloneDxService {
                     log.error("CycloneDX status is not OK: {}", result.getStatus());
                     return null;
                 }
+            } catch (SocketTimeoutException e) {
+                log.info("Host {} is busy", host);
+                return null;
             } catch (Exception e) {
                 //info because timeout exceptions will be a common case (cdxgen is a single-thread service)
                 log.info("Error while getting CycloneDX service statuses: {}", e.getMessage());

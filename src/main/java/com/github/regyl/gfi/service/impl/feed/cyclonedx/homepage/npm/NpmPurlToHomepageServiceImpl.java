@@ -3,8 +3,9 @@ package com.github.regyl.gfi.service.impl.feed.cyclonedx.homepage.npm;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.packageurl.PackageURL;
-import com.github.regyl.gfi.service.feed.cyclonedx.PurlToBuildFileService;
-import com.github.regyl.gfi.service.feed.cyclonedx.PurlToHomepageService;
+import com.github.regyl.gfi.service.feed.PurlToBuildFileService;
+import com.github.regyl.gfi.service.feed.PurlToHomepageService;
+import com.github.regyl.gfi.util.LinkUtil;
 import com.github.regyl.gfi.util.ServicePredicateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,8 @@ public class NpmPurlToHomepageServiceImpl implements PurlToHomepageService {
             return null;
         }
 
-        return extractGithubUrlFromPackageJson(buildFile);
+        String repoUrl = extractGithubUrlFromPackageJson(buildFile);
+        return LinkUtil.normalizeRepositoryUrl(repoUrl);
     }
 
     private String extractGithubUrlFromPackageJson(String packageJson) {

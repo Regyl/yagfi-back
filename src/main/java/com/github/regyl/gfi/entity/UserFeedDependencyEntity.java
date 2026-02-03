@@ -13,7 +13,11 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 public class UserFeedDependencyEntity extends AbstractEntity {
 
-    private String nickname;
+    /**
+     * ID of the entity below.
+     * @see UserFeedRequestEntity
+     */
+    private Long requestId;
     private String sourceRepo;
-    private String dependencyGithubUrl;
+    private String dependencyUrl;
 }

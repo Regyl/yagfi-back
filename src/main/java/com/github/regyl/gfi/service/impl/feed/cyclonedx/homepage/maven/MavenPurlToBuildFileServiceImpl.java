@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.service.impl.feed.cyclonedx.homepage.maven;
 
 import com.github.packageurl.PackageURL;
-import com.github.regyl.gfi.service.feed.cyclonedx.PurlToBuildFileService;
+import com.github.regyl.gfi.service.feed.PurlToBuildFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -28,12 +28,12 @@ public class MavenPurlToBuildFileServiceImpl implements PurlToBuildFileService {
         String artifactId = purl.getName();
         String version = purl.getVersion();
 
-        String pomUrl = buildPomUrl(groupId, artifactId, version);
-        return downloadBuildFile(pomUrl);
+        String buildFileUrl = buildBuildFileUrl(groupId, artifactId, version);
+        return downloadBuildFile(buildFileUrl);
     }
 
-    private String buildPomUrl(String group, String artifact, String version) {
-        String groupPath = group.replace('.', '/');
+    private String buildBuildFileUrl(String group, String artifact, String version) {
+        String groupPath = group.replace(".", "/");
         return String.format("%s/%s/%s/%s/%s-%s.pom",
                 MAVEN_CENTRAL_BASE_URL, groupPath, artifact, version, artifact, version);
     }
@@ -45,7 +45,7 @@ public class MavenPurlToBuildFileServiceImpl implements PurlToBuildFileService {
                     .retrieve()
                     .body(String.class);
         } catch (HttpClientErrorException.NotFound e) {
-            log.warn("Not found pom.xml by url {}", pomUrl);
+            log.debug("Not found pom.xml by url {}", pomUrl);
             return null;
         } catch (Exception e) {
             log.warn("Failed to fetch POM from Maven Central: {}", pomUrl, e);

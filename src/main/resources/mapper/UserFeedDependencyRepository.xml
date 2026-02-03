@@ -3,12 +3,12 @@
 <mapper namespace="com.github.regyl.gfi.repository.UserFeedDependencyRepository">
 
     <insert id="saveAll">
-        INSERT INTO gfi.e_user_feed_dependency (nickname, source_repo, dependency_github_url, created)
+        INSERT INTO gfi.e_user_feed_dependency (request_id, source_repo, dependency_url, created)
         VALUES
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.nickname}, #{entity.sourceRepo}, #{entity.dependencyGithubUrl}, COALESCE(#{entity.created}, NOW()))
+            (#{entity.requestId}, #{entity.sourceRepo}, #{entity.dependencyUrl}, COALESCE(#{entity.created}, NOW()))
         </foreach>
-        ON CONFLICT (nickname, source_repo, dependency_github_url) DO NOTHING
+        ON CONFLICT (source_repo, dependency_url) DO NOTHING
     </insert>
 
 </mapper>

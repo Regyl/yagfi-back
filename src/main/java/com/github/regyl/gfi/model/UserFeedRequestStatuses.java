@@ -9,6 +9,7 @@ public enum UserFeedRequestStatuses {
 
     WAITING_FOR_PROCESS("waiting-for-process"),
     PROCESSING("processing"),
+    PROCESSED("processed"),
 
     ;
 

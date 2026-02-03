@@ -55,7 +55,7 @@ public class DataServiceImpl implements DataService {
         repoRepository.saveAll(repos, table.getRepoTableName());
 
         //fetching because previous "insert on conflict do nothing" does not return IDs for already existing entities
-        //FIXME but maybe change the FK from repository_id to repository_source_id to improve performance
+        //but maybe change the FK from repository_id to repository_source_id to improve performance
         Map<String, RepositoryEntity> repoCollection = repoRepository.findAll(table.getRepoTableName()).stream()
                 .collect(Collectors.toMap(RepositoryEntity::getSourceId, repo -> repo));
 

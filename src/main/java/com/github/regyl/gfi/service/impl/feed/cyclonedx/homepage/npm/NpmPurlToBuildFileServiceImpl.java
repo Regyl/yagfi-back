@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.service.impl.feed.cyclonedx.homepage.npm;
 
 import com.github.packageurl.PackageURL;
-import com.github.regyl.gfi.service.feed.cyclonedx.PurlToBuildFileService;
+import com.github.regyl.gfi.service.feed.PurlToBuildFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -31,11 +31,11 @@ public class NpmPurlToBuildFileServiceImpl implements PurlToBuildFileService {
         String artifactId = purl.getName();
         String version = purl.getVersion();
 
-        String pomUrl = buildPomUrl(groupId, artifactId, version);
-        return downloadBuildFile(pomUrl);
+        String buildFileUrl = buildBuildFileUrl(groupId, artifactId, version);
+        return downloadBuildFile(buildFileUrl);
     }
 
-    private String buildPomUrl(String groupId, String artifactId, String version) {
+    private String buildBuildFileUrl(String groupId, String artifactId, String version) {
         return Stream.of(NPM_REGISTRY_BASE_URL, groupId, artifactId, version)
                 .filter(Objects::nonNull)
                 .collect(Collectors.joining("/"));

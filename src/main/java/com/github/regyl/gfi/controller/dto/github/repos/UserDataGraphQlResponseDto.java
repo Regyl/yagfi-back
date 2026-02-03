@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,16 +24,24 @@ public class UserDataGraphQlResponseDto {
             return Collections.emptyList();
         }
 
-        //FIXME check npe/empty collection
-        List<String> urls = user.getRepositories().getNodes().stream()
-                .map(RepositoryNodeDto::getUrl)
-                .collect(Collectors.toList());
-
-        //FIXME check npe/empty collection
-        List<String> starredUrls = user.getStarredRepositories().getNodes().stream()
-                .map(RepositoryNodeDto::getUrl)
-                .toList();
+        List<String> urls = getUrls(user.getRepositories());
+        List<String> starredUrls = getUrls(user.getStarredRepositories());
         urls.addAll(starredUrls);
         return urls;
+    }
+
+    private List<String> getUrls(RepositoriesConnectionDto dto) {
+        if (dto == null) {
+            return new ArrayList<>();
+        }
+
+        List<RepositoryNodeDto> nodes = dto.getNodes();
+        if (CollectionUtils.isEmpty(nodes)) {
+            return new ArrayList<>();
+        }
+
+        return nodes.stream()
+                .map(RepositoryNodeDto::getUrl)
+                .collect(Collectors.toList());
     }
 }

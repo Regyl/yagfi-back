@@ -20,8 +20,7 @@
             id,
             created,
             nickname,
-            email,
-            status
+            email
         FROM gfi.e_user_feed_request
         WHERE status = #{status}
         ORDER BY created ASC
@@ -39,10 +38,5 @@
         SET status = 'waiting-for-process'
         WHERE status = 'processing'
     </update>
-
-    <delete id="deleteById">
-        DELETE FROM gfi.e_user_feed_request
-        WHERE id = #{id}
-    </delete>
 
 </mapper>

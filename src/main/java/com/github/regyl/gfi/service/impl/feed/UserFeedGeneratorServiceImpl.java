@@ -6,7 +6,7 @@ import com.github.regyl.gfi.model.SbomModel;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import com.github.regyl.gfi.repository.UserFeedRequestRepository;
 import com.github.regyl.gfi.service.ScheduledService;
-import com.github.regyl.gfi.service.feed.cyclonedx.CycloneDxService;
+import com.github.regyl.gfi.service.feed.CycloneDxService;
 import com.github.regyl.gfi.util.ResourceUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +48,7 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
 
         Optional<UserFeedRequestEntity> optionalRequest = repository.findOldestByStatus(UserFeedRequestStatuses.WAITING_FOR_PROCESS.getValue());
         if (optionalRequest.isEmpty()) {
-            log.info("No user feed request found, will try again later");
+            log.debug("No user feed request found, will try again later");
             return;
         }
 
@@ -59,6 +59,7 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
     }
 
     private void process(UserFeedRequestEntity rq) {
+        long start = System.nanoTime();
         String nickname = rq.getNickname();
         UserDataGraphQlResponseDto responseDto = getRepos(nickname);
         Queue<String> userRepos = new ArrayDeque<>(responseDto.getRepoUrls());
@@ -75,8 +76,9 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
             LockSupport.parkNanos(Duration.ofMinutes(1L).toNanos());
         }
 
-        repository.deleteById(rq.getId());
-        log.info("Finished generating feed for nickname {}", nickname);
+        repository.updateStatusById(rq.getId(), UserFeedRequestStatuses.PROCESSED);
+        long processTime = Duration.ofNanos(System.nanoTime() - start).toMinutes();
+        log.info("Finished generating feed for nickname {} and took {} minutes (but maybe not everything processed/uploaded yet)", nickname, processTime);
     }
 
     private UserDataGraphQlResponseDto getRepos(String login) {

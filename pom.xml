@@ -14,23 +14,23 @@
     <version>0.0.1</version>
 
     <properties>
-        <lombok.version>1.18.42</lombok.version>
+        <!--core-->
         <spring.version>4.0.0</spring.version>
-
         <spring-cloud.version>2025.1.0</spring-cloud.version>
-
-        <!--database-->
         <postgresql.version>42.7.7</postgresql.version>
 
+        <!--libs-->
+        <user-agent-parser.version>1.6.1</user-agent-parser.version>
+        <lombok.version>1.18.42</lombok.version>
+
         <!--tests-->
-        <assertj.version>3.27.6</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
 
         <!--plugins-->
         <jib.version>3.5.1</jib.version>
-
         <java.version>25</java.version>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -89,14 +89,10 @@
             <version>${spring.version}</version>
             <scope>compile</scope>
         </dependency>
-
-        <!--spring-cloud-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
-        <!-- Database -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -109,6 +105,12 @@
             <version>${flyway.version}</version>
         </dependency>
 
+        <!--libs-->
+        <dependency>
+            <groupId>com.github.ua-parser</groupId>
+            <artifactId>uap-java</artifactId>
+            <version>${user-agent-parser.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -169,7 +171,7 @@
                 <version>${jib.version}</version>
                 <configuration>
                     <from>
-                        <image>eclipse-temurin:25-jre</image>
+                        <image>eclipse-temurin:${java.version}-jre</image>
                     </from>
                     <to>
                         <image>registry.hub.docker.com/regyl/yagfi-back</image>
@@ -179,14 +181,6 @@
                         </auth>
                     </to>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

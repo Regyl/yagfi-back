@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.regyl.gfi.repository.LogRepository">
+
+    <insert id="save">
+        INSERT INTO gfi.e_log (url, http_method, request_body, country, os, browser_family, device_type)
+        VALUES (#{url}, #{httpMethod},
+                <choose>
+                    <when test="requestBody != null">CAST(#{requestBody} AS jsonb)</when>
+                    <otherwise>NULL</otherwise>
+                </choose>,
+                #{country}, #{os}, #{browserFamily}, #{deviceType})
+    </insert>
+
+</mapper>

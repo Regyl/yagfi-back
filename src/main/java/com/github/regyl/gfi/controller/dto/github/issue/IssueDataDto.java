@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.github;
+package com.github.regyl.gfi.controller.dto.github.issue;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IssueData {
+public class IssueDataDto {
 
-    private GithubRateLimit rateLimit;
+    private GithubRateLimitDto rateLimit;
     private GithubSearchDto search;
 
     @JsonIgnore
@@ -21,7 +21,7 @@ public class IssueData {
             return null;
         }
 
-        GithubPageInfo pageInfo = search.getPageInfo();
+        GithubPageInfoDto pageInfo = search.getPageInfo();
         if (pageInfo == null) {
             return null;
         }

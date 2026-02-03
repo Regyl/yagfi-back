@@ -8,6 +8,7 @@
         <result property="issueUrl" column="issueUrl"/>
         <result property="issueUpdated" column="issueUpdated"/>
         <result property="issueCreated" column="issueCreated"/>
+        <result property="issueLabels" column="issueLabels"/>
         <result property="repositoryTitle" column="repositoryTitle"/>
         <result property="repositoryUrl" column="repositoryUrl"/>
         <result property="repositoryStars" column="repositoryStars"/>
@@ -22,6 +23,7 @@
             ei.url AS issueUrl,
             ei.updated_at AS issueUpdated,
             ei.created_at AS issueCreated,
+            ei.labels as issueLabels,
             er.title AS repositoryTitle,
             er.url AS repositoryUrl,
             er.stars AS repositoryStars,
@@ -29,6 +31,33 @@
             er.language AS repositoryLanguage
         FROM gfi.issue_v ei
         INNER JOIN gfi.repository_v er ON ei.repository_id = er.id
+        <include refid="dataFilter"/>
+        <if test="orders != null and orders.size() > 0">
+            ORDER BY
+            <foreach collection="orders" item="order" separator=",">
+                ${order.field} ${order.type}
+            </foreach>
+        </if>
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="findAllLanguages" resultType="java.lang.String">
+        select language, count(1) as cnt
+        from gfi.issue_v issue
+        inner join gfi.repository_v repo on issue.repository_id = repo.id
+        group by language
+        order by cnt desc
+    </select>
+
+    <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.DataRequestDto">
+        SELECT ei.url
+        FROM gfi.issue_v ei
+        INNER JOIN gfi.repository_v er ON ei.repository_id = er.id
+        <include refid="dataFilter"/>
+        ORDER BY RANDOM() LIMIT 1
+    </select>
+
+    <sql id="dataFilter">
         <where>
             <if test="filter != null and filter.languages != null and filter.languages.values != null and filter.languages.values.size() > 0">
                 <choose>
@@ -60,20 +89,5 @@
                 </choose>
             </if>
         </where>
-        <if test="orders != null and orders.size() > 0">
-            ORDER BY
-            <foreach collection="orders" item="order" separator=",">
-                ${order.field} ${order.type}
-            </foreach>
-        </if>
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
-
-    <select id="findAllLanguages" resultType="java.lang.String">
-        select language, count(1) as cnt
-        from gfi.issue_v issue
-                 inner join gfi.repository_v repo on issue.repository_id = repo.id
-        group by language
-        order by cnt desc
-    </select>
+    </sql>
 </mapper>

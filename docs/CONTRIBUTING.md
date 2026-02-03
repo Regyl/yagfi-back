@@ -6,6 +6,7 @@ can help:
 ## Suggest labels
 Feel free to open an issue with _another one_ custom good-first-issue label with example 
 where it's used.
+The list of current supported issues is [here](https://github.com/Regyl/yagfi-back/blob/master/src/main/resources/data/labels.txt)
 
 ## Frontend issues
 Since I'm primarily a backend developer and only studying in frontend, I would be very 

@@ -28,6 +28,7 @@ easy_to_fix
 effort/easy
 exp:novice
 first contribution
+starter issue
 first timers
 first-contribution
 first-timers-only
@@ -78,3 +79,5 @@ upforgrabs
 You Can Do This
 you-take-it
 status: ideal-for-contribution
+help wanted
+help-wanted

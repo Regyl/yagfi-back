@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.impl.source;
 
-import com.github.regyl.gfi.controller.dto.github.IssueData;
+import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.IssueRequestDto;
 import com.github.regyl.gfi.listener.event.IssueSyncCompletedEvent;
 import com.github.regyl.gfi.model.IssueTables;
@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequiredArgsConstructor
 public class GithubIssueSourceServiceImpl implements IssueSourceService {
 
-    private static final String QUERY = ResourceUtil.getFilePayload("graphql/github-reuqest.graphql");
+    private static final String QUERY = ResourceUtil.getFilePayload("graphql/github-issue-request.graphql");
 
     private final GraphQlClient githubClient;
     private final LabelService labelService;
@@ -82,7 +82,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
         }
     }
 
-    private IssueData getIssues(IssueRequestDto dto) {
+    private IssueDataDto getIssues(IssueRequestDto dto) {
         Map<String, Object> variables = new HashMap<>();
         variables.put("query", dto.getQuery());
         variables.put("cursor", dto.getCursor());
@@ -92,6 +92,6 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
         if (!clientGraphQlResponse.isValid()) {
             log.error("graph ql response is invalid");
         }
-        return clientGraphQlResponse.toEntity(IssueData.class);
+        return clientGraphQlResponse.toEntity(IssueDataDto.class);
     }
 }

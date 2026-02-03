@@ -1,16 +1,19 @@
-package com.github.regyl.gfi.controller.dto.github;
+package com.github.regyl.gfi.controller.dto.github.issue;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.OffsetDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IssueGraphQlResponseDto {
+public class GithubRateLimitDto {
 
-    private IssueData data;
-
+    private int cost;
+    private int remaining;
+    private OffsetDateTime resetAt;
 }

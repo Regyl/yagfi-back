@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Data
 @SuperBuilder
@@ -36,4 +37,6 @@ public class IssueEntity extends AbstractEntity {
 
     @NotNull
     private Long repositoryId;
+
+    private List<String> labels;
 }

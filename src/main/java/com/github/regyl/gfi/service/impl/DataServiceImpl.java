@@ -1,9 +1,9 @@
 package com.github.regyl.gfi.service.impl;
 
-import com.github.regyl.gfi.controller.dto.github.GithubIssueDto;
-import com.github.regyl.gfi.controller.dto.github.GithubRepositoryDto;
-import com.github.regyl.gfi.controller.dto.github.GithubSearchDto;
-import com.github.regyl.gfi.controller.dto.github.IssueData;
+import com.github.regyl.gfi.controller.dto.github.issue.GithubIssueDto;
+import com.github.regyl.gfi.controller.dto.github.issue.GithubRepositoryDto;
+import com.github.regyl.gfi.controller.dto.github.issue.GithubSearchDto;
+import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
 import com.github.regyl.gfi.controller.dto.response.IssueResponseDto;
@@ -42,7 +42,7 @@ public class DataServiceImpl implements DataService {
 
     @Async
     @Override
-    public void save(IssueData response, IssueTables table) {
+    public void save(IssueDataDto response, IssueTables table) {
         if (response == null || response.getSearch() == null || CollectionUtils.isEmpty(response.getSearch().getNodes())) {
             return;
         }
@@ -77,5 +77,10 @@ public class DataServiceImpl implements DataService {
     @Cacheable(cacheNames = "languages")
     public Collection<String> findAllLanguages() {
         return dataRepository.findAllLanguages();
+    }
+
+    @Override
+    public String findRandomIssueUrl(DataRequestDto filters) {
+        return dataRepository.findRandomIssueLink(filters);
     }
 }

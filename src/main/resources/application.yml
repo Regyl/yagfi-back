@@ -12,7 +12,7 @@ spring:
       core-pool-size: 20
     auto-upload:
       enabled: true
-      period-mills: 720000 # 12 minutes
+      period-mills: 600000 # 15 minutes
     db:
       schema: gfi
   flyway:
@@ -41,3 +41,4 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.github.regyl.gfi.controller.dto
+  type-handlers-package: com.github.regyl.gfi.typehandler

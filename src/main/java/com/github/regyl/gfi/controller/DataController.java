@@ -20,6 +20,11 @@ public class DataController {
 
     private final DataService dataService;
 
+    @PostMapping("/random")
+    public String findRandom(@RequestBody @Valid DataRequestDto filters) {
+        return dataService.findRandomIssueUrl(filters);
+    }
+
     @PostMapping
     public DataResponseDto findAll(@RequestBody @Valid DataRequestDto requestDto) {
         return dataService.findAllIssues(requestDto);

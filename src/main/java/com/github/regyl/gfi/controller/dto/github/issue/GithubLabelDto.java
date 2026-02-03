@@ -1,17 +1,15 @@
-package com.github.regyl.gfi.controller.dto.github;
+package com.github.regyl.gfi.controller.dto.github.issue;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GithubLabelsDto {
+public class GithubLabelDto {
 
-    private List<GithubLabelDto> nodes;
+    private String name;
 }

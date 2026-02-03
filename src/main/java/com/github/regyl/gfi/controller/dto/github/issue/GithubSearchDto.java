@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.github;
+package com.github.regyl.gfi.controller.dto.github.issue;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GithubSearchDto {
 
-    private GithubPageInfo pageInfo;
+    private GithubPageInfoDto pageInfo;
     private List<GithubIssueDto> nodes;
 }

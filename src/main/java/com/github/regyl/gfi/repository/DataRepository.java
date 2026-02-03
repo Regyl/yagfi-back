@@ -13,4 +13,6 @@ public interface DataRepository {
     List<IssueResponseDto> findAllIssues(DataRequestDto requestDto);
 
     Collection<String> findAllLanguages();
+
+    String findRandomIssueLink(DataRequestDto filters);
 }

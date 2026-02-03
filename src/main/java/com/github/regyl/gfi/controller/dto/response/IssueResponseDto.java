@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +17,7 @@ public class IssueResponseDto {
     private String issueUrl;
     private OffsetDateTime issueUpdated;
     private OffsetDateTime issueCreated;
+    private List<String> issueLabels;
 
     private String repositoryTitle;
     private String repositoryUrl;

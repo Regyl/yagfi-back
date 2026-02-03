@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.regyl.gfi.repository.EventRepository">
+
+    <resultMap id="EventResultMap" type="com.github.regyl.gfi.entity.EventEntity">
+        <id property="id" column="id"/>
+        <result property="source" column="source"/>
+        <result property="lastUpdateDttm" column="last_update_dttm"/>
+        <result property="created" column="created"/>
+    </resultMap>
+
+    <select id="findBySource" resultMap="EventResultMap">
+        SELECT id, source, last_update_dttm, created
+        FROM gfi.e_event
+        WHERE source = #{source}
+    </select>
+
+    <select id="findAll" resultMap="EventResultMap">
+        SELECT id, source, last_update_dttm, created
+        FROM gfi.e_event
+        ORDER BY last_update_dttm DESC
+    </select>
+
+    <insert id="insert" parameterType="com.github.regyl.gfi.entity.EventEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO gfi.e_event (source, last_update_dttm, created)
+        VALUES (#{source}, #{lastUpdateDttm}, #{created})
+    </insert>
+
+    <update id="update">
+        UPDATE gfi.e_event
+        SET last_update_dttm = #{lastUpdateDttm}
+        WHERE source = #{source}
+    </update>
+
+</mapper>

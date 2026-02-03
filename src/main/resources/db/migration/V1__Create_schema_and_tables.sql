@@ -57,6 +57,14 @@ CREATE TABLE IF NOT EXISTS e_issue_2
         ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS e_event
+(
+    id               BIGSERIAL PRIMARY KEY,
+    source           VARCHAR(255)             NOT NULL UNIQUE,
+    last_update_dttm TIMESTAMP WITH TIME ZONE NOT NULL,
+    created          TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
 CREATE VIEW issue_v as select * from e_issue_1;
 CREATE VIEW repository_v as select * from e_repository_1;
 

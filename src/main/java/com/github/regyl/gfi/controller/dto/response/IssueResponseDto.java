@@ -24,4 +24,5 @@ public class IssueResponseDto {
     private Integer repositoryStars;
     private String repositoryDescription;
     private String repositoryLanguage;
+    private String repositoryLicense;
 }

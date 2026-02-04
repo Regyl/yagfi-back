@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.listener.event;
+package com.github.regyl.gfi.model.event;
 
 import com.github.regyl.gfi.model.IssueSources;
 import lombok.Data;

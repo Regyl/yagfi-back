@@ -54,6 +54,7 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         boolean isAnyAlive = cycloneDxService.anyAlive();
         if (!isAnyAlive) {
             log.info("All cdxgen services are busy, will try again later");
+            STATE.set(false);
             return;
         }
 
@@ -62,6 +63,7 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         );
         if (optionalRequest.isEmpty()) {
             log.debug("No user feed request found, will try again later");
+            STATE.set(false);
             return;
         }
 

@@ -2,10 +2,10 @@ package com.github.regyl.gfi.service.impl.source;
 
 import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.IssueRequestDto;
-import com.github.regyl.gfi.listener.event.IssueSyncCompletedEvent;
 import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.model.LabelModel;
+import com.github.regyl.gfi.model.event.IssueSyncCompletedEvent;
 import com.github.regyl.gfi.service.other.DataService;
 import com.github.regyl.gfi.service.other.LabelService;
 import com.github.regyl.gfi.service.source.IssueSourceService;

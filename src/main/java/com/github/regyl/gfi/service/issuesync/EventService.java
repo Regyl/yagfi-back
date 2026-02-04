@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.other;
+package com.github.regyl.gfi.service.issuesync;
 
 import com.github.regyl.gfi.controller.dto.response.EventResponseDto;
 import com.github.regyl.gfi.model.IssueSources;

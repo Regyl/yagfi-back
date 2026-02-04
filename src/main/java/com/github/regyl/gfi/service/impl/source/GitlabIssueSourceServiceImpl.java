@@ -1,8 +1,8 @@
 package com.github.regyl.gfi.service.impl.source;
 
-import com.github.regyl.gfi.listener.event.IssueSyncCompletedEvent;
 import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.model.IssueTables;
+import com.github.regyl.gfi.model.event.IssueSyncCompletedEvent;
 import com.github.regyl.gfi.service.source.IssueSourceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

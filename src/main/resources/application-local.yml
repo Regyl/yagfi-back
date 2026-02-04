@@ -3,3 +3,21 @@ spring:
     host-name: localhost
     auto-upload:
       enabled: false
+    email:
+      username: ${EMAIL_USERNAME:test}
+      password: ${EMAIL_PASSWORD:test}
+
+logging:
+  level:
+    com:
+      github:
+        regyl:
+          gfi:
+            service:
+              impl:
+                feed:
+                  cyclonedx:
+                    CycloneDxSbomConsumerImpl: INFO
+                    homepage:
+                      maven:
+                        MavenPurlToBuildFileServiceImpl: INFO

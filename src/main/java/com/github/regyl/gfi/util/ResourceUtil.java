@@ -13,7 +13,6 @@ public class ResourceUtil {
 
     public String getFilePayload(String filePath) {
         try {
-            // Search for in directory "resources"
             var resource = ResourceUtil.class.getClassLoader().getResource(filePath);
             Objects.requireNonNull(resource, "File not found in resources: " + filePath);
 

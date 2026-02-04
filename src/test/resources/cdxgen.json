@@ -1,0 +1,1663 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:88524154-4793-4e5a-a756-2dd13060fabb",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-01-31T23:17:09Z",
+    "tools": {
+      "components": [
+        {
+          "group": "@cyclonedx",
+          "name": "cdxgen",
+          "version": "11.11.0",
+          "purl": "pkg:npm/%40cyclonedx/cdxgen@11.11.0",
+          "type": "application",
+          "bom-ref": "pkg:npm/@cyclonedx/cdxgen@11.11.0",
+          "publisher": "OWASP Foundation",
+          "authors": [
+            {
+              "name": "OWASP Foundation"
+            }
+          ]
+        }
+      ]
+    },
+    "authors": [
+      {
+        "name": "OWASP Foundation"
+      }
+    ],
+    "lifecycles": [
+      {
+        "phase": "build"
+      }
+    ],
+    "component": {
+      "group": "com.github.regyl",
+      "name": "gebaqi",
+      "version": "1.0-SNAPSHOT",
+      "properties": [
+        {
+          "name": "SrcFile",
+          "value": "/tmp/cdxgen-temp/scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "purl": "pkg:maven/com.github.regyl/gebaqi@1.0-SNAPSHOT?type=jar",
+      "bom-ref": "pkg:maven/com.github.regyl/gebaqi@1.0-SNAPSHOT?type=jar",
+      "type": "application"
+    },
+    "properties": [
+      {
+        "name": "cdx:bom:componentTypes",
+        "value": "maven"
+      },
+      {
+        "name": "cdx:bom:componentNamespaces",
+        "value": "ch.qos.logback\\ncom.fasterxml.jackson.core\\ncom.fasterxml.jackson.datatype\\ncom.fasterxml.jackson.module\\ncom.ibm.icu\\nio.micrometer\\njakarta.annotation\\norg.apache.commons\\norg.apache.logging.log4j\\norg.apache.tomcat.embed\\norg.projectlombok\\norg.slf4j\\norg.springframework\\norg.springframework.boot\\norg.yaml"
+      },
+      {
+        "name": "cdx:bom:componentSrcFiles",
+        "value": "scammer-utilsl5LNjs/pom.xml"
+      }
+    ]
+  },
+  "components": [
+    {
+      "group": "org.springframework.boot",
+      "name": "spring-boot-starter",
+      "version": "3.5.5",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot-starter@3.5.5?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter@3.5.5?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework.boot",
+      "name": "spring-boot",
+      "version": "3.5.5",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot@3.5.5?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot@3.5.5?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-context",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-context@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-context@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework.boot",
+      "name": "spring-boot-autoconfigure",
+      "version": "3.5.5",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@3.5.5?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@3.5.5?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework.boot",
+      "name": "spring-boot-starter-logging",
+      "version": "3.5.5",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-logging@3.5.5?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-logging@3.5.5?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "ch.qos.logback",
+      "name": "logback-classic",
+      "version": "1.5.18",
+      "scope": "required",
+      "purl": "pkg:maven/ch.qos.logback/logback-classic@1.5.18?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/ch.qos.logback/logback-classic@1.5.18?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "ch.qos.logback",
+      "name": "logback-core",
+      "version": "1.5.18",
+      "scope": "required",
+      "purl": "pkg:maven/ch.qos.logback/logback-core@1.5.18?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/ch.qos.logback/logback-core@1.5.18?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "org.slf4j",
+      "name": "slf4j-api",
+      "version": "2.0.17",
+      "scope": "required",
+      "purl": "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.apache.logging.log4j",
+      "name": "log4j-to-slf4j",
+      "version": "2.24.3",
+      "scope": "required",
+      "purl": "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.24.3?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.24.3?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.apache.logging.log4j",
+      "name": "log4j-api",
+      "version": "2.24.3",
+      "scope": "required",
+      "purl": "pkg:maven/org.apache.logging.log4j/log4j-api@2.24.3?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.apache.logging.log4j/log4j-api@2.24.3?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.slf4j",
+      "name": "jul-to-slf4j",
+      "version": "2.0.17",
+      "scope": "required",
+      "purl": "pkg:maven/org.slf4j/jul-to-slf4j@2.0.17?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.slf4j/jul-to-slf4j@2.0.17?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "jakarta.annotation",
+      "name": "jakarta.annotation-api",
+      "version": "2.1.1",
+      "scope": "required",
+      "purl": "pkg:maven/jakarta.annotation/jakarta.annotation-api@2.1.1?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/jakarta.annotation/jakarta.annotation-api@2.1.1?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-core",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-core@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-core@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-jcl",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-jcl@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-jcl@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.yaml",
+      "name": "snakeyaml",
+      "version": "2.4",
+      "scope": "required",
+      "purl": "pkg:maven/org.yaml/snakeyaml@2.4?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/org.yaml/snakeyaml@2.4?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "org.springframework.boot",
+      "name": "spring-boot-starter-web",
+      "version": "3.5.5",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-web@3.5.5?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-web@3.5.5?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework.boot",
+      "name": "spring-boot-starter-json",
+      "version": "3.5.5",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-json@3.5.5?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-json@3.5.5?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "com.fasterxml.jackson.core",
+      "name": "jackson-databind",
+      "version": "2.19.2",
+      "scope": "required",
+      "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.19.2?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.19.2?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "com.fasterxml.jackson.core",
+      "name": "jackson-annotations",
+      "version": "2.19.2",
+      "scope": "required",
+      "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.19.2?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.19.2?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "com.fasterxml.jackson.core",
+      "name": "jackson-core",
+      "version": "2.19.2",
+      "scope": "required",
+      "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.19.2?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.19.2?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "com.fasterxml.jackson.datatype",
+      "name": "jackson-datatype-jdk8",
+      "version": "2.19.2",
+      "scope": "required",
+      "purl": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jdk8@2.19.2?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jdk8@2.19.2?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "com.fasterxml.jackson.datatype",
+      "name": "jackson-datatype-jsr310",
+      "version": "2.19.2",
+      "scope": "required",
+      "purl": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.19.2?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.19.2?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "com.fasterxml.jackson.module",
+      "name": "jackson-module-parameter-names",
+      "version": "2.19.2",
+      "scope": "required",
+      "purl": "pkg:maven/com.fasterxml.jackson.module/jackson-module-parameter-names@2.19.2?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/com.fasterxml.jackson.module/jackson-module-parameter-names@2.19.2?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "org.springframework.boot",
+      "name": "spring-boot-starter-tomcat",
+      "version": "3.5.5",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@3.5.5?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@3.5.5?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.apache.tomcat.embed",
+      "name": "tomcat-embed-core",
+      "version": "10.1.44",
+      "scope": "required",
+      "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.44?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.44?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.apache.tomcat.embed",
+      "name": "tomcat-embed-el",
+      "version": "10.1.44",
+      "scope": "required",
+      "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@10.1.44?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@10.1.44?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.apache.tomcat.embed",
+      "name": "tomcat-embed-websocket",
+      "version": "10.1.44",
+      "scope": "required",
+      "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@10.1.44?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@10.1.44?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-web",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-web@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-web@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-beans",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-beans@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-beans@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "io.micrometer",
+      "name": "micrometer-observation",
+      "version": "1.14.10",
+      "scope": "required",
+      "purl": "pkg:maven/io.micrometer/micrometer-observation@1.14.10?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/io.micrometer/micrometer-observation@1.14.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "io.micrometer",
+      "name": "micrometer-commons",
+      "version": "1.14.10",
+      "scope": "required",
+      "purl": "pkg:maven/io.micrometer/micrometer-commons@1.14.10?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/io.micrometer/micrometer-commons@1.14.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-webmvc",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-webmvc@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-webmvc@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-aop",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-aop@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-aop@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.springframework",
+      "name": "spring-expression",
+      "version": "6.2.10",
+      "scope": "required",
+      "purl": "pkg:maven/org.springframework/spring-expression@6.2.10?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.springframework/spring-expression@6.2.10?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    },
+    {
+      "group": "org.projectlombok",
+      "name": "lombok",
+      "version": "1.18.40",
+      "scope": "excluded",
+      "purl": "pkg:maven/org.projectlombok/lombok@1.18.40?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/org.projectlombok/lombok@1.18.40?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "provided"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "com.ibm.icu",
+      "name": "icu4j",
+      "version": "74.2",
+      "scope": "required",
+      "purl": "pkg:maven/com.ibm.icu/icu4j@74.2?type=jar",
+      "type": "library",
+      "bom-ref": "pkg:maven/com.ibm.icu/icu4j@74.2?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      }
+    },
+    {
+      "group": "org.apache.commons",
+      "name": "commons-lang3",
+      "version": "3.4",
+      "scope": "required",
+      "purl": "pkg:maven/org.apache.commons/commons-lang3@3.4?type=jar",
+      "type": "framework",
+      "bom-ref": "pkg:maven/org.apache.commons/commons-lang3@3.4?type=jar",
+      "properties": [
+        {
+          "name": "cdx:maven:component_scope",
+          "value": "compile"
+        },
+        {
+          "name": "SrcFile",
+          "value": "scammer-utilsl5LNjs/pom.xml"
+        }
+      ],
+      "evidence": {
+        "identity": [
+          {
+            "field": "purl",
+            "confidence": 0.5,
+            "methods": [
+              {
+                "technique": "manifest-analysis",
+                "confidence": 0.5,
+                "value": "scammer-utilsl5LNjs/pom.xml"
+              }
+            ],
+            "concludedValue": "scammer-utilsl5LNjs/pom.xml"
+          }
+        ]
+      },
+      "tags": [
+        "framework"
+      ]
+    }
+  ],
+  "services": [],
+  "dependencies": [
+    {
+      "ref": "pkg:maven/com.github.regyl/gebaqi@1.0-SNAPSHOT?type=jar",
+      "dependsOn": [
+        "pkg:maven/com.ibm.icu/icu4j@74.2?type=jar",
+        "pkg:maven/org.apache.commons/commons-lang3@3.4?type=jar",
+        "pkg:maven/org.projectlombok/lombok@1.18.40?type=jar",
+        "pkg:maven/org.springframework.boot/spring-boot-starter-web@3.5.5?type=jar",
+        "pkg:maven/org.springframework.boot/spring-boot-starter@3.5.5?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot-starter@3.5.5?type=jar",
+      "dependsOn": [
+        "pkg:maven/jakarta.annotation/jakarta.annotation-api@2.1.1?type=jar",
+        "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@3.5.5?type=jar",
+        "pkg:maven/org.springframework.boot/spring-boot-starter-logging@3.5.5?type=jar",
+        "pkg:maven/org.springframework.boot/spring-boot@3.5.5?type=jar",
+        "pkg:maven/org.springframework/spring-core@6.2.10?type=jar",
+        "pkg:maven/org.yaml/snakeyaml@2.4?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot@3.5.5?type=jar",
+      "dependsOn": [
+        "pkg:maven/org.springframework/spring-context@6.2.10?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-context@6.2.10?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@3.5.5?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-logging@3.5.5?type=jar",
+      "dependsOn": [
+        "pkg:maven/ch.qos.logback/logback-classic@1.5.18?type=jar",
+        "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.24.3?type=jar",
+        "pkg:maven/org.slf4j/jul-to-slf4j@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/ch.qos.logback/logback-classic@1.5.18?type=jar",
+      "dependsOn": [
+        "pkg:maven/ch.qos.logback/logback-core@1.5.18?type=jar",
+        "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/ch.qos.logback/logback-core@1.5.18?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.slf4j/slf4j-api@2.0.17?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.24.3?type=jar",
+      "dependsOn": [
+        "pkg:maven/org.apache.logging.log4j/log4j-api@2.24.3?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.apache.logging.log4j/log4j-api@2.24.3?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.slf4j/jul-to-slf4j@2.0.17?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/jakarta.annotation/jakarta.annotation-api@2.1.1?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-core@6.2.10?type=jar",
+      "dependsOn": [
+        "pkg:maven/org.springframework/spring-jcl@6.2.10?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-jcl@6.2.10?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.yaml/snakeyaml@2.4?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-web@3.5.5?type=jar",
+      "dependsOn": [
+        "pkg:maven/org.springframework.boot/spring-boot-starter-json@3.5.5?type=jar",
+        "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@3.5.5?type=jar",
+        "pkg:maven/org.springframework/spring-web@6.2.10?type=jar",
+        "pkg:maven/org.springframework/spring-webmvc@6.2.10?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-json@3.5.5?type=jar",
+      "dependsOn": [
+        "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.19.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jdk8@2.19.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.19.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.module/jackson-module-parameter-names@2.19.2?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.19.2?type=jar",
+      "dependsOn": [
+        "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.19.2?type=jar",
+        "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.19.2?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.19.2?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.19.2?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jdk8@2.19.2?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.19.2?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/com.fasterxml.jackson.module/jackson-module-parameter-names@2.19.2?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@3.5.5?type=jar",
+      "dependsOn": [
+        "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.44?type=jar",
+        "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@10.1.44?type=jar",
+        "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@10.1.44?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@10.1.44?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@10.1.44?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@10.1.44?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-web@6.2.10?type=jar",
+      "dependsOn": [
+        "pkg:maven/io.micrometer/micrometer-observation@1.14.10?type=jar",
+        "pkg:maven/org.springframework/spring-beans@6.2.10?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-beans@6.2.10?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/io.micrometer/micrometer-observation@1.14.10?type=jar",
+      "dependsOn": [
+        "pkg:maven/io.micrometer/micrometer-commons@1.14.10?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/io.micrometer/micrometer-commons@1.14.10?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-webmvc@6.2.10?type=jar",
+      "dependsOn": [
+        "pkg:maven/org.springframework/spring-aop@6.2.10?type=jar",
+        "pkg:maven/org.springframework/spring-expression@6.2.10?type=jar"
+      ]
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-aop@6.2.10?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.springframework/spring-expression@6.2.10?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.projectlombok/lombok@1.18.40?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/com.ibm.icu/icu4j@74.2?type=jar",
+      "dependsOn": []
+    },
+    {
+      "ref": "pkg:maven/org.apache.commons/commons-lang3@3.4?type=jar",
+      "dependsOn": []
+    }
+  ],
+  "annotations": [
+    {
+      "bom-ref": "metadata-annotations",
+      "subjects": [
+        "pkg:maven/com.github.regyl/gebaqi@1.0-SNAPSHOT?type=jar"
+      ],
+      "annotator": {
+        "component": {
+          "group": "@cyclonedx",
+          "name": "cdxgen",
+          "version": "11.11.0",
+          "purl": "pkg:npm/%40cyclonedx/cdxgen@11.11.0",
+          "type": "application",
+          "bom-ref": "pkg:npm/@cyclonedx/cdxgen@11.11.0",
+          "publisher": "OWASP Foundation",
+          "authors": [
+            {
+              "name": "OWASP Foundation"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-01-31T23:17:09Z",
+      "text": "This Software Bill-of-Materials (SBOM) document was created on Saturday, January 31, 2026 with cdxgen. The data was captured during the build lifecycle phase. The document describes an application named 'gebaqi' with the dev version '1.0-SNAPSHOT'. There are 37 components. The package type in this SBOM is maven with 15 purl namespaces described under components. The components were identified from the source files: scammer-utilsl5LNjs/pom.xml."
+    }
+  ]
+}

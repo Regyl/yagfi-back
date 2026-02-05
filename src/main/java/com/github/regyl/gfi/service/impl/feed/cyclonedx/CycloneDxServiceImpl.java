@@ -44,8 +44,8 @@ public class CycloneDxServiceImpl implements CycloneDxService {
     }
 
     @Override
-    public boolean anyAlive() {
-        return getFreeServiceQuantity() > 0;
+    public boolean allAlive() {
+        return getFreeServiceQuantity() == cycloneDxHosts.size();
     }
 
     @Async("cdxgenTaskPool")
@@ -56,6 +56,9 @@ public class CycloneDxServiceImpl implements CycloneDxService {
         try {
             SbomResponseDto response = cdxgenSbomClient.execute(host, sbomGet, sbomResponseHandler);
             return CompletableFuture.completedFuture(response);
+        } catch (SocketTimeoutException e) {
+            log.warn("Unable to process repository {} since it's huge", url);
+            return CompletableFuture.failedFuture(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

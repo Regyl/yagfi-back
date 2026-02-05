@@ -42,15 +42,14 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
     @Override
     public void raiseUploadEvent() {
         eventPublisher.publishEvent(new IssueSyncCompletedEvent(IssueSources.GITHUB, OffsetDateTime.now()));
-        log.info("ActionLog.upload All github issues synced successfully");
+        log.info("All github issues synced successfully");
     }
 
     @Override
     public void upload(IssueTables table) {
         Collection<LabelModel> labels = labelService.findAll();
-
         if (labels.isEmpty()) {
-            log.warn("ActionLog.upload No labels found for GitHub sync. Skipping...");
+            log.warn("No labels found for GitHub sync. Skipping...");
             return;
         }
 

@@ -11,13 +11,17 @@
         <result property="stars" column="stars"/>
         <result property="description" column="description"/>
         <result property="language" column="language"/>
+        <result property="license" column="license"/>
     </resultMap>
 
     <insert id="saveAll">
-        INSERT INTO gfi.${tableName} (source_id, title, url, stars, description, language)
+        INSERT INTO gfi.${tableName} (source_id, title, url, stars, description, language, license)
         VALUES
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.sourceId}, #{entity.title}, #{entity.url}, #{entity.stars}, #{entity.description}, #{entity.language})
+            (
+            #{entity.sourceId}, #{entity.title}, #{entity.url}, #{entity.stars}, #{entity.description},
+            #{entity.language}, #{entity.license}
+            )
         </foreach>
         ON CONFLICT (source_id) DO NOTHING
     </insert>
@@ -31,7 +35,8 @@
             url,
             stars,
             description,
-            language
+            language,
+            license
         FROM gfi.${tableName}
     </select>
 

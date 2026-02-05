@@ -2,6 +2,8 @@ spring:
   properties:
     host-name: localhost
     auto-upload:
+      enabled: true
+    feed-generation:
       enabled: false
     email:
       username: ${EMAIL_USERNAME:test}

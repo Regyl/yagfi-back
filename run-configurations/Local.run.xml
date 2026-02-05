@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Local" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="local" />
+    <module name="yagfi-back" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.regyl.gfi.YagfiApplication" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.github.regyl.gfi.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.impl.source;
+package com.github.regyl.gfi.service.impl.issueload;
 
 import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.IssueRequestDto;
@@ -6,13 +6,12 @@ import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.model.LabelModel;
 import com.github.regyl.gfi.model.event.IssueSyncCompletedEvent;
+import com.github.regyl.gfi.service.issueload.IssueSourceService;
 import com.github.regyl.gfi.service.other.DataService;
 import com.github.regyl.gfi.service.other.LabelService;
-import com.github.regyl.gfi.service.source.IssueSourceService;
 import com.github.regyl.gfi.util.ResourceUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.graphql.client.ClientGraphQlResponse;
@@ -42,39 +41,29 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
     @Override
     public void raiseUploadEvent() {
         eventPublisher.publishEvent(new IssueSyncCompletedEvent(IssueSources.GITHUB, OffsetDateTime.now()));
-        log.info("ActionLog.upload All github issues synced successfully");
+        log.info("All github issues synced successfully");
     }
 
     @Override
     public void upload(IssueTables table) {
         Collection<LabelModel> labels = labelService.findAll();
 
-        if (labels.isEmpty()) {
-            log.warn("ActionLog.upload No labels found for GitHub sync. Skipping...");
-            return;
-        }
-
         for (LabelModel label : labels) {
-
-            if (log.isDebugEnabled()) {
-                log.info("Uploading label {}", label);
-            }
-
             String query = String.format("is:issue is:open no:assignee label:\"%s\"", label.getTitle());
+
             taskExecutor.submit(() -> {
                 try {
                     IssueDataDto response = getIssues(new IssueRequestDto(query, null));
                     dataService.save(response, table);
 
-                    String cursor = response.getEndCursor();
-                    while (StringUtils.isNotBlank(cursor)) { //FIXME supply as new task to taskExecutor
-                        response = getIssues(new IssueRequestDto(query, cursor));
+                    boolean hasNextPage = response.hasNextPage();
+                    while (hasNextPage) {
+                        response = getIssues(new IssueRequestDto(query, response.getEndCursor()));
                         dataService.save(response, table);
-                        cursor = response.getEndCursor();
+                        hasNextPage = response.hasNextPage();
                     }
-
                 } catch (Exception e) {
-                    log.error("ActionLog.upload.error uploading issues for label {}", label, e);
+                    log.error("Error uploading issues for label {}", label, e);
                 }
             });
         }

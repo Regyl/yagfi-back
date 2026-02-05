@@ -1,8 +1,8 @@
-package com.github.regyl.gfi.service.impl.other;
+package com.github.regyl.gfi.service.impl.issueload;
 
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.service.ScheduledService;
-import com.github.regyl.gfi.service.source.IssueSourceService;
+import com.github.regyl.gfi.service.issueload.IssueSourceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;

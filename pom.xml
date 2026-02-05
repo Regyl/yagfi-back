@@ -23,6 +23,7 @@
         <lombok.version>1.18.42</lombok.version>
         <jsr310.version>2.21.0</jsr310.version>
         <purl.version>1.5.0</purl.version>
+        <lingua.version>1.2.2</lingua.version>
 
         <!--tests-->
         <assertj.version>3.27.7</assertj.version>
@@ -35,6 +36,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -128,6 +130,11 @@
             <groupId>com.github.package-url</groupId>
             <artifactId>packageurl-java</artifactId>
             <version>${purl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pemistahl</groupId>
+            <artifactId>lingua</artifactId>
+            <version>${lingua.version}</version>
         </dependency>
 
 

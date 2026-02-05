@@ -13,6 +13,8 @@ spring:
     auto-upload:
       enabled: true
       period-mills: 1800000 # 30 minutes
+    feed-generation:
+      enabled: ${FEED_GENERATION_ENABLED:false}
     db:
       schema: gfi
     cyclonedx:

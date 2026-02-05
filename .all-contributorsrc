@@ -33,6 +33,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "erisjacey",
+      "name": "Eris Jacey",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21262729?v=4",
+      "profile": "https://www.erisjacey.dev/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "RellikSai",
+      "name": "RellikSai",
+      "avatar_url": "https://avatars.githubusercontent.com/u/239808274?v=4",
+      "profile": "https://github.com/RellikSai",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

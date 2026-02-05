@@ -24,6 +24,8 @@ public class IssueEntity extends AbstractEntity {
     @NotEmpty
     private String title;
 
+    private String language;
+
     @NotEmpty
     private String url;
 

@@ -13,6 +13,7 @@ import com.github.regyl.gfi.util.ResourceUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.core5.http.HttpHost;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.graphql.client.ClientGraphQlResponse;
 import org.springframework.graphql.client.GraphQlClient;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,17 +25,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Queue;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.LockSupport;
 import java.util.function.BiConsumer;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty(value = "spring.properties.feed-generation.enabled", havingValue = "true")
 public class UserFeedGeneratorServiceImpl implements ScheduledService {
 
     private static final String QUERY = ResourceUtil.getFilePayload("graphql/github-user-repos-request.graphql");
-    private static final AtomicBoolean STATE = new AtomicBoolean(false);
 
     private final GraphQlClient githubClient;
     private final UserFeedRequestRepository repository;
@@ -45,16 +45,12 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
     @Override
     @Scheduled(fixedRate = 60_000, initialDelay = 1_000)
     public void schedule() {
-        if (STATE.get()) {
-            log.debug("Still running");
-            return;
-        }
-        STATE.set(true);
-
-        boolean isAnyAlive = cycloneDxService.anyAlive();
-        if (!isAnyAlive) {
-            log.info("All cdxgen services are busy, will try again later");
-            STATE.set(false);
+        //since spring's scheduling mechanism have limited core pool size
+        //this method should start processing only if it's not already processing
+        //another one feed request
+        boolean isAllAlive = cycloneDxService.allAlive();
+        if (!isAllAlive) {
+            log.info("Some cdxgen services are still busy, will try again later");
             return;
         }
 
@@ -63,7 +59,6 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         );
         if (optionalRequest.isEmpty()) {
             log.debug("No user feed request found, will try again later");
-            STATE.set(false);
             return;
         }
 
@@ -71,8 +66,6 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         log.info("Started feed generation for nickname {}", entity.getNickname());
         repository.updateStatusById(entity.getId(), UserFeedRequestStatuses.PROCESSING);
         process(entity);
-
-        STATE.set(false);
     }
 
     private void process(UserFeedRequestEntity rq) {

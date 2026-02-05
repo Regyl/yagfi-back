@@ -14,6 +14,7 @@
         <result property="repositoryStars" column="repositoryStars"/>
         <result property="repositoryDescription" column="repositoryDescription"/>
         <result property="repositoryLanguage" column="repositoryLanguage"/>
+        <result property="repositoryLicense" column="repositoryLicense"/>
     </resultMap>
 
     <select id="findAllIssues" resultMap="IssueResponseResultMap" parameterType="com.github.regyl.gfi.controller.dto.request.DataRequestDto">
@@ -28,7 +29,8 @@
             er.url AS repositoryUrl,
             er.stars AS repositoryStars,
             er.description AS repositoryDescription,
-            er.language AS repositoryLanguage
+            er.language AS repositoryLanguage,
+            er.license AS repositoryLicense
         FROM gfi.issue_v ei
         INNER JOIN gfi.repository_v er ON ei.repository_id = er.id
         <include refid="dataFilter"/>

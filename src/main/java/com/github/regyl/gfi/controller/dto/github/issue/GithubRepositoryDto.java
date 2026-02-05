@@ -20,5 +20,6 @@ public class GithubRepositoryDto {
     private Integer stargazerCount;
     private OffsetDateTime updatedAt;
     private GithubLanguageDto primaryLanguage;
+    private GithubLicenseInfo licenseInfo;
 
 }

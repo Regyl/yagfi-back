@@ -28,4 +28,18 @@ public class IssueDataDto {
 
         return pageInfo.getEndCursor();
     }
+
+    @JsonIgnore
+    public boolean hasNextPage() {
+        if (search == null) {
+            return false;
+        }
+
+        GithubPageInfoDto pageInfo = search.getPageInfo();
+        if (pageInfo == null) {
+            return false;
+        }
+
+        return pageInfo.isHasNextPage();
+    }
 }

@@ -9,9 +9,6 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class GraphQlClientFactory {
 
-    /**
-     * HttpSyncGraphQlClient uses RestClient to execute GraphQL requests over HTTP through a blocking transport contract and chain of interceptors.
-     */
     @Bean
     public GraphQlClient githubClient(GithubConfigurationProperties configProps) {
         String authHeaderValue = String.format("Bearer %s", configProps.getToken());

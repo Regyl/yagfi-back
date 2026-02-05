@@ -12,9 +12,21 @@ spring:
       core-pool-size: 20
     auto-upload:
       enabled: true
-      period-mills: 600000 # 15 minutes
+      period-mills: 1800000 # 30 minutes
+    feed-generation:
+      enabled: ${FEED_GENERATION_ENABLED:false}
     db:
       schema: gfi
+    cyclonedx:
+      ports:
+        - 9090
+        - 9091
+        - 9092
+        - 9093
+        - 9094
+    email:
+      username: ${EMAIL_USERNAME}
+      password: ${EMAIL_PASSWORD}
   flyway:
     enabled: true
     clean-disabled: true
@@ -42,3 +54,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.github.regyl.gfi.controller.dto
   type-handlers-package: com.github.regyl.gfi.typehandler
+
+logging:
+  level:
+    root: info

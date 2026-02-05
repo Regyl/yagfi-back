@@ -11,15 +11,19 @@ import java.lang.reflect.Method;
 public class DefaultAsyncUncaughtExceptionHandlerImpl implements AsyncUncaughtExceptionHandler {
 
     @Override
-    public void handleUncaughtException(@NonNull Throwable ex, Method method, @Nullable Object... params) {
+    public void handleUncaughtException(@NonNull Throwable ex, @NonNull Method method, @Nullable Object... params) {
         while (ex.getCause() != null) {
             ex = ex.getCause();
         }
 
         if (log.isDebugEnabled()) {
-            log.error("Async uncaught exception of type {} with message {}. method: {}, params: {}", ex.getClass(), ex.getMessage(), method.getName(), params);
+            log.error("Async uncaught exception of type {} with message {}. method: {}, params: {}",
+                    ex.getClass(), ex.getMessage(), method.getName(), params
+            );
         } else {
-            log.error("Async uncaught exception of type {} with message {}. method: {}", ex.getClass(), ex.getMessage(), method.getName());
+            log.error("Async uncaught exception of type {} with message {}. method: {}",
+                    ex.getClass(), ex.getMessage(), method.getName()
+            );
         }
     }
 }

@@ -9,7 +9,7 @@ YAGFI - yet another good first issue
 
 <!-- TOC -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 * [Introduction](#introduction)
   * [Why yet another good-first-issue project?](#why-yet-another-good-first-issue-project)
@@ -69,6 +69,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Ahmed-Sobh77"><img src="https://avatars.githubusercontent.com/u/145682065?v=4?s=100" width="100px;" alt="Ahmed Sobh"/><br /><sub><b>Ahmed Sobh</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=Ahmed-Sobh77" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/vgotsikas"><img src="https://avatars.githubusercontent.com/u/183715641?v=4?s=100" width="100px;" alt="vgotsikas"/><br /><sub><b>vgotsikas</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=vgotsikas" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.facebook.com/jeyhun.mammad.5"><img src="https://avatars.githubusercontent.com/u/82116516?v=4?s=100" width="100px;" alt="Jeyhun Mammadsaidov"/><br /><sub><b>Jeyhun Mammadsaidov</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=jeyhoun" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.erisjacey.dev/"><img src="https://avatars.githubusercontent.com/u/21262729?v=4?s=100" width="100px;" alt="Eris Jacey"/><br /><sub><b>Eris Jacey</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=erisjacey" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

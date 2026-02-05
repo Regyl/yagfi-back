@@ -15,11 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MappedTypes(List.class)
+@SuppressWarnings("unused")
 @MappedJdbcTypes(JdbcType.ARRAY)
 public class StringListTypeHandler extends BaseTypeHandler<List<String>> {
 
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, List<String> parameter, JdbcType jdbcType) throws SQLException {
+    public void setNonNullParameter(PreparedStatement ps, int i,
+                                    List<String> parameter, JdbcType jdbcType) throws SQLException {
         Connection conn = ps.getConnection();
         String[] array = parameter.toArray(new String[0]);
         Array sqlArray = conn.createArrayOf("varchar", array);

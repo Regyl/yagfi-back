@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS e_repository_1
     url         VARCHAR(255)             NOT NULL,
     stars       INTEGER                  NOT NULL,
     description TEXT,
-    language    VARCHAR(255)
+    language    VARCHAR(255),
+    license     VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS e_repository_2
@@ -22,7 +23,8 @@ CREATE TABLE IF NOT EXISTS e_repository_2
     url         VARCHAR(255)             NOT NULL,
     stars       INTEGER                  NOT NULL,
     description TEXT,
-    language    VARCHAR(255)
+    language    VARCHAR(255),
+    license     VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS e_issue_1
@@ -57,18 +59,45 @@ CREATE TABLE IF NOT EXISTS e_issue_2
         ON DELETE CASCADE
 );
 
-CREATE VIEW issue_v as select * from e_issue_1;
-CREATE VIEW repository_v as select * from e_repository_1;
+CREATE TABLE IF NOT EXISTS e_event
+(
+    id               BIGSERIAL PRIMARY KEY,
+    source           VARCHAR(255)             NOT NULL UNIQUE,
+    last_update_dttm TIMESTAMP WITH TIME ZONE NOT NULL,
+    created          TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
 
-CREATE TABLE IF NOT EXISTS gfi.e_log
+CREATE OR REPLACE VIEW issue_v as select * from e_issue_1;
+CREATE OR REPLACE VIEW repository_v as select * from e_repository_1;
+
+CREATE TABLE IF NOT EXISTS e_log
 (
     id             BIGSERIAL PRIMARY KEY,
     created        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     url            TEXT                     NOT NULL,
     http_method    VARCHAR(10)              NOT NULL,
     request_body   JSONB,
-    country        VARCHAR(20),
+    country        VARCHAR(50),
     os             VARCHAR(50),
     browser_family VARCHAR(50),
     device_type    VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS e_user_feed_request
+(
+    id       BIGSERIAL PRIMARY KEY,
+    created  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    nickname VARCHAR(255)             NOT NULL,
+    email    VARCHAR(255)             NOT NULL,
+    status   VARCHAR(50)              NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS e_user_feed_dependency
+(
+    id             BIGSERIAL PRIMARY KEY,
+    created        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    request_id     BIGINT                   NOT NULL REFERENCES e_user_feed_request (id),
+    source_repo    VARCHAR(500)             NOT NULL,
+    dependency_url VARCHAR(500)             NOT NULL,
+    UNIQUE (source_repo, dependency_url)
 );

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.regyl.gfi.repository.UserFeedRequestRepository">
+
+    <resultMap id="UserFeedRequestEntityResultMap" type="com.github.regyl.gfi.entity.UserFeedRequestEntity">
+        <id property="id" column="id"/>
+        <result property="created" column="created"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO gfi.e_user_feed_request (nickname, email, status, created)
+        VALUES (#{nickname}, #{email}, #{status}, #{created})
+    </insert>
+
+    <select id="findOldestByStatus" resultMap="UserFeedRequestEntityResultMap">
+        SELECT
+            id,
+            created,
+            nickname,
+            email
+        FROM gfi.e_user_feed_request
+        WHERE status = #{status}
+        ORDER BY created ASC
+        LIMIT 1
+    </select>
+
+    <update id="updateStatusById">
+        UPDATE gfi.e_user_feed_request
+        SET status = #{status.value}
+        WHERE id = #{id}
+    </update>
+
+    <update id="resetProcessingRecords">
+        UPDATE gfi.e_user_feed_request
+        SET status = 'waiting-for-process'
+        WHERE status = 'processing'
+    </update>
+
+</mapper>

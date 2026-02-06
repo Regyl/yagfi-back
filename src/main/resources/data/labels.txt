@@ -1,57 +1,37 @@
-:gift: BEGINNER
-:thumbsup: good first issue
 beginner
 beginner friendly
-Beginner Suitable
 beginner-friendly
 bite-sized
-bitesize
 co.help-wanted
 code quality
-coding with drew
 contribution
 contribution welcome
-contribution-starter
 difficulty::easy
+difficulty:easy
 doc
 E-easy
 E-less-complex
 easy
-easy addons
 Easy hack
 easy task
-Easy Win
 easy-fix
 easy-pick
-easy-to-contribute
 easy_to_fix
 effort/easy
-exp:novice
 first contribution
 starter issue
-first timers
 first-contribution
 first-timers-only
 flag: good-first-issue
 good first bug
-Good First Bugs
 good first issue
-good first issue :octocat:
-good first issue :thumbsup:
 Good first issue!
 Good First Task
-good for first time contributors
-good starter task
 good-first-bug
 good-first-issue
 Great First Issue
 hacktoberfest
-Help and learn
 hint/good first issue
-info: up for grabs
-jump in
-Jump-In
-junior job
 Junior Jobs
 level:starter
 low hanging fruit
@@ -60,24 +40,16 @@ low-hanging-fruit
 newbie
 newbie-friendly
 Newcomers
-Novice Issues
 please contribute
-please-help
 Portfolio Addition
-probably easy
 scope:small
 Seeking Community Contributors
-simple task
 starter-task
 Status: Up for grabs
-Tag / Good First Issue
 Type: Good first issue
-type: up-for-grabs
 up for grabs
 up-for-grabs
 upforgrabs
-You Can Do This
-you-take-it
 status: ideal-for-contribution
 help wanted
 help-wanted

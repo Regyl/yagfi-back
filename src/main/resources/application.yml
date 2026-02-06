@@ -12,6 +12,7 @@ spring:
       core-pool-size: 20
     feature-enabled:
       auto-upload: true
+      auto-upload-meta: false
       feed-generation: ${FEED_GENERATION_ENABLED:false}
       request-logging: false
     auto-upload:

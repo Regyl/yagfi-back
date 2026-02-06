@@ -5,13 +5,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Mapper
 public interface GitHubMetadataRepository {
 
-    void save(@Param("entity") GitHubMetadataEntity entity);
-
     void saveAll(@Param("entities") Collection<GitHubMetadataEntity> entities);
 
-    Collection<GitHubMetadataEntity> findAll();
+    Optional<GitHubMetadataEntity> findByLabel(@Param("label") String label);
 }

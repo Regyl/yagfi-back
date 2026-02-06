@@ -1,11 +1,11 @@
-package com.github.regyl.gfi.service.impl.issueload;
+package com.github.regyl.gfi.service.impl.issueload.issuesource.github;
 
 import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.IssueRequestDto;
 import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.model.IssueTables;
-import com.github.regyl.gfi.model.LabelModel;
 import com.github.regyl.gfi.model.event.IssueSyncCompletedEvent;
+import com.github.regyl.gfi.service.issueload.GithubQueryBuilderService;
 import com.github.regyl.gfi.service.issueload.IssueSourceService;
 import com.github.regyl.gfi.service.other.DataService;
 import com.github.regyl.gfi.service.other.LabelService;
@@ -37,6 +37,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
     private final ApplicationEventPublisher eventPublisher;
     @Qualifier("issueLoadAsyncExecutor")
     private final ThreadPoolTaskExecutor taskExecutor;
+    private final GithubQueryBuilderService queryBuilderService;
 
     @Override
     public void raiseUploadEvent() {
@@ -46,10 +47,11 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
 
     @Override
     public void upload(IssueTables table) {
-        Collection<LabelModel> labels = labelService.findAll();
+        Collection<String> queries = labelService.findAll().stream()
+                .flatMap(label -> queryBuilderService.apply(label).stream())
+                .toList();
 
-        for (LabelModel label : labels) {
-            String query = String.format("is:issue is:open no:assignee label:\"%s\"", label.getTitle());
+        for (String query : queries) {
 
             taskExecutor.submit(() -> {
                 try {
@@ -63,7 +65,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
                         hasNextPage = response.hasNextPage();
                     }
                 } catch (Exception e) {
-                    log.error("Error uploading issues for label {}", label, e);
+                    log.error("Error uploading issues for query {}", query, e);
                 }
             });
         }

@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.impl.issueload;
+package com.github.regyl.gfi.service.impl.issueload.issuesource.gitlab;
 
 import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.model.IssueTables;
@@ -27,6 +27,6 @@ public class GitlabIssueSourceServiceImpl implements IssueSourceService {
     @Override
     public void raiseUploadEvent() {
         eventPublisher.publishEvent(new IssueSyncCompletedEvent(IssueSources.GITLAB, OffsetDateTime.now()));
-        log.info("ActionLog.upload All gitlab issues synced successfully");
+        log.info("All gitlab issues synced successfully");
     }
 }

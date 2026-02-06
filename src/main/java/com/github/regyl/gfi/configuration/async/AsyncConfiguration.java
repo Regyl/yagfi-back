@@ -29,6 +29,7 @@ public class AsyncConfiguration implements AsyncConfigurer {
         executor.setThreadGroupName("default-group-async-");
         executor.setThreadNamePrefix("default-async-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.setQueueCapacity(Integer.MAX_VALUE);
         executor.initialize();
         return executor;
     }
@@ -47,6 +48,7 @@ public class AsyncConfiguration implements AsyncConfigurer {
         executor.setThreadGroupName("load-group-async-");
         executor.setThreadNamePrefix("load-async-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.setQueueCapacity(Integer.MAX_VALUE);
         executor.initialize();
         return executor;
     }

@@ -18,11 +18,14 @@ import org.springframework.graphql.client.ClientGraphQlResponse;
 import org.springframework.graphql.client.GraphQlClient;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 
+import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.LockSupport;
 
 @Slf4j
 @Component
@@ -50,6 +53,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
         Collection<String> queries = labelService.findAll().stream()
                 .flatMap(label -> queryBuilderService.apply(label).stream())
                 .toList();
+        log.info("Created {} different queries", queries.size());
 
         for (String query : queries) {
 
@@ -64,8 +68,12 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
                         dataService.save(response, table);
                         hasNextPage = response.hasNextPage();
                     }
+                } catch (HttpClientErrorException.Forbidden e) {
+                    //https://docs.github.com/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#secondary-rate-limits
+                    log.error("Exceeded a secondary rate limit: {}", e.getMessage());
+                    LockSupport.parkNanos(Duration.ofSeconds(30).toNanos());
                 } catch (Exception e) {
-                    log.error("Error uploading issues for query {}", query, e);
+                    log.error("Error uploading issues for query: {}", query, e);
                 }
             });
         }

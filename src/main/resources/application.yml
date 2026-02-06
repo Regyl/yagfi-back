@@ -8,8 +8,8 @@ spring:
     github:
       token: ${GithubBearer}
     async:
-      max-pool-size: 100
-      core-pool-size: 20
+      max-pool-size: 5
+      core-pool-size: 5
     feature-enabled:
       auto-upload: true
       auto-upload-meta: false

@@ -7,7 +7,6 @@ import com.github.regyl.gfi.service.issueload.GithubQueryBuilderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,7 +49,7 @@ public class GithubQueryBuilderServiceImpl implements GithubQueryBuilderService 
             queries.add(query);
             start = end;
 
-            if (Duration.between(now, end).toDays() > 0) {
+            if (now.isBefore(end)) {
                 break;
             }
         }
@@ -60,7 +59,7 @@ public class GithubQueryBuilderServiceImpl implements GithubQueryBuilderService 
     }
 
     private String getQuery(LabelModel label, LocalDate startDate, LocalDate endDate) {
-        return String.format("is:issue is:open no:assignee label:\"%s\" created:>=%s created:<%s",
+        return String.format("is:issue is:open no:assignee label:\"%s\" created:%s..%s",
                 label.getTitle(),
                 startDate,
                 endDate

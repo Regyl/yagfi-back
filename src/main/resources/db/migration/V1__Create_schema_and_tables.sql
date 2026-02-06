@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS e_repository_1
     url         VARCHAR(255)             NOT NULL,
     stars       INTEGER                  NOT NULL,
     description TEXT,
-    language    VARCHAR(255)
+    language    VARCHAR(255),
+    license     VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS e_repository_2
@@ -22,7 +23,8 @@ CREATE TABLE IF NOT EXISTS e_repository_2
     url         VARCHAR(255)             NOT NULL,
     stars       INTEGER                  NOT NULL,
     description TEXT,
-    language    VARCHAR(255)
+    language    VARCHAR(255),
+    license     VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS e_issue_1
@@ -36,6 +38,7 @@ CREATE TABLE IF NOT EXISTS e_issue_1
     created_at    TIMESTAMP WITH TIME ZONE NOT NULL,
     repository_id BIGINT                   NOT NULL,
     labels        VARCHAR[],
+    language      VARCHAR(255),
     CONSTRAINT fk_issue_repository FOREIGN KEY (repository_id)
         REFERENCES e_repository_1 (id)
         ON DELETE CASCADE
@@ -52,6 +55,7 @@ CREATE TABLE IF NOT EXISTS e_issue_2
     created_at    TIMESTAMP WITH TIME ZONE NOT NULL,
     repository_id BIGINT                   NOT NULL,
     labels        VARCHAR[],
+    language      VARCHAR(255),
     CONSTRAINT fk_issue_repository FOREIGN KEY (repository_id)
         REFERENCES e_repository_2 (id)
         ON DELETE CASCADE
@@ -65,8 +69,8 @@ CREATE TABLE IF NOT EXISTS e_event
     created          TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
-CREATE VIEW issue_v as select * from e_issue_1;
-CREATE VIEW repository_v as select * from e_repository_1;
+CREATE OR REPLACE VIEW issue_v as select * from e_issue_1;
+CREATE OR REPLACE VIEW repository_v as select * from e_repository_1;
 
 CREATE TABLE IF NOT EXISTS e_log
 (

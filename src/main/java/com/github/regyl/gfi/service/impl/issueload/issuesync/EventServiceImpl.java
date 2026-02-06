@@ -1,11 +1,11 @@
-package com.github.regyl.gfi.service.impl.issuesync;
+package com.github.regyl.gfi.service.impl.issueload.issuesync;
 
 import com.github.regyl.gfi.controller.dto.response.EventResponseDto;
 import com.github.regyl.gfi.entity.EventEntity;
 import com.github.regyl.gfi.exception.EventNotFoundException;
 import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.repository.EventRepository;
-import com.github.regyl.gfi.service.issuesync.EventService;
+import com.github.regyl.gfi.service.issueload.issuesync.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

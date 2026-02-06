@@ -1,14 +1,16 @@
 spring:
   properties:
     host-name: localhost
-    auto-upload:
-      enabled: false
+    feature-enabled:
+      auto-upload: false
+      feed-generation: false
     email:
       username: ${EMAIL_USERNAME:test}
       password: ${EMAIL_PASSWORD:test}
 
 logging:
   level:
+    root: info
     com:
       github:
         regyl:

@@ -18,10 +18,12 @@ public class IssueResponseDto {
     private OffsetDateTime issueUpdated;
     private OffsetDateTime issueCreated;
     private List<String> issueLabels;
+    private String issueLanguage;
 
     private String repositoryTitle;
     private String repositoryUrl;
     private Integer repositoryStars;
     private String repositoryDescription;
     private String repositoryLanguage;
+    private String repositoryLicense;
 }

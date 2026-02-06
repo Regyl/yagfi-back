@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FilterRequestDto {
+public class LicenseFilterDto {
 
-    private LanguageFilterDto languages;
-    private StarsFilterDto stars;
-    private LicenseFilterDto licenses;
+    private List<String> values;
+    private FilterOperator operator;
 }
+

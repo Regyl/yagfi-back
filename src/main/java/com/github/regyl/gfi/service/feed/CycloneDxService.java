@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface CycloneDxService {
 
-    boolean anyAlive();
+    boolean allAlive();
 
     int getFreeServiceQuantity();
 

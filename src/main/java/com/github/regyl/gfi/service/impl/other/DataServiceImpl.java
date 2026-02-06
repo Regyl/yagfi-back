@@ -7,6 +7,7 @@ import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
 import com.github.regyl.gfi.controller.dto.response.IssueResponseDto;
+import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
 import com.github.regyl.gfi.entity.IssueEntity;
 import com.github.regyl.gfi.entity.RepositoryEntity;
 import com.github.regyl.gfi.model.IssueTables;
@@ -62,7 +63,6 @@ public class DataServiceImpl implements DataService {
                 .map(issue -> issueMapper.apply(repoCollection, issue))
                 .toList();
 
-        log.debug("Issues loaded: {}", issues.size());
         issueRepository.saveAll(issues, table.getIssueTableName());
     }
 
@@ -81,5 +81,11 @@ public class DataServiceImpl implements DataService {
     @Override
     public String findRandomIssueUrl(DataRequestDto filters) {
         return dataRepository.findRandomIssueLink(filters);
+    }
+  
+    @Override
+    @Cacheable(cacheNames = "labels")  
+    public List<LabelStatisticResponseDto> findAllLabels() {
+        return dataRepository.findAllLabels();
     }
 }

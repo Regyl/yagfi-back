@@ -10,8 +10,11 @@ spring:
     async:
       max-pool-size: 100
       core-pool-size: 20
+    feature-enabled:
+      auto-upload: true
+      feed-generation: ${FEED_GENERATION_ENABLED:false}
+      request-logging: false
     auto-upload:
-      enabled: true
       period-mills: 1800000 # 30 minutes
     db:
       schema: gfi

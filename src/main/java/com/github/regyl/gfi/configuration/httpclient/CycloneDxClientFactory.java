@@ -46,8 +46,8 @@ public class CycloneDxClientFactory {
     @Bean("cdxgenHealthClient")
     public CloseableHttpClient cdxgenHealthClient() {
         RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectionRequestTimeout(10_000, TimeUnit.MILLISECONDS)
-                .setResponseTimeout(20_000, TimeUnit.MILLISECONDS)
+                .setConnectionRequestTimeout(10, TimeUnit.SECONDS)
+                .setResponseTimeout(20, TimeUnit.SECONDS)
                 .build();
 
         return HttpClientBuilder.create()
@@ -58,8 +58,8 @@ public class CycloneDxClientFactory {
     @Bean("cdxgenSbomClient")
     public CloseableHttpClient cdxgenSbomClient() {
         RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectionRequestTimeout(10_000, TimeUnit.MILLISECONDS)
-                .setResponseTimeout(10, TimeUnit.MINUTES)
+                .setConnectionRequestTimeout(10, TimeUnit.SECONDS)
+                .setResponseTimeout(15, TimeUnit.MINUTES)
                 .build();
 
         return HttpClientBuilder.create()

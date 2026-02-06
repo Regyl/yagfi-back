@@ -3,9 +3,10 @@ package com.github.regyl.gfi.controller;
 import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.request.UserFeedRequestDto;
 import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
+import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
+import com.github.regyl.gfi.service.feed.UserFeedService;
 import com.github.regyl.gfi.service.other.DataService;
-import com.github.regyl.gfi.service.other.UserFeedService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -42,6 +44,11 @@ public class DataController {
         return dataService.findAllLanguages();
     }
 
+    @GetMapping("/labels")
+    public List<LabelStatisticResponseDto> findAllLabels() {
+        return dataService.findAllLabels();
+    }
+    
     @GetMapping("/feed")
     public UserFeedRequestEntity findCustomFeedByNickname(
             @RequestParam("nickname") @NotEmpty String nickname,

@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.other;
+package com.github.regyl.gfi.service.feed;
 
 import com.github.regyl.gfi.controller.dto.request.UserFeedRequestDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;

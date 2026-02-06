@@ -16,7 +16,7 @@ public class TestController {
     private final CycloneDxService cycloneDxService;
 
     @GetMapping
-    public void test() {
-        cycloneDxService.anyAlive();
+    public Object test() {
+        return cycloneDxService.allAlive();
     }
 }

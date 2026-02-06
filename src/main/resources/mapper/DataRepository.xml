@@ -9,11 +9,13 @@
         <result property="issueUpdated" column="issueUpdated"/>
         <result property="issueCreated" column="issueCreated"/>
         <result property="issueLabels" column="issueLabels"/>
+        <result property="issueLanguage" column="issueLanguage"/>
         <result property="repositoryTitle" column="repositoryTitle"/>
         <result property="repositoryUrl" column="repositoryUrl"/>
         <result property="repositoryStars" column="repositoryStars"/>
         <result property="repositoryDescription" column="repositoryDescription"/>
         <result property="repositoryLanguage" column="repositoryLanguage"/>
+        <result property="repositoryLicense" column="repositoryLicense"/>
     </resultMap>
 
     <select id="findAllIssues" resultMap="IssueResponseResultMap" parameterType="com.github.regyl.gfi.controller.dto.request.DataRequestDto">
@@ -24,11 +26,13 @@
             ei.updated_at AS issueUpdated,
             ei.created_at AS issueCreated,
             ei.labels as issueLabels,
+            ei.language as issueLanguage,
             er.title AS repositoryTitle,
             er.url AS repositoryUrl,
             er.stars AS repositoryStars,
             er.description AS repositoryDescription,
-            er.language AS repositoryLanguage
+            er.language AS repositoryLanguage,
+            er.license AS repositoryLicense
         FROM gfi.issue_v ei
         INNER JOIN gfi.repository_v er ON ei.repository_id = er.id
         <include refid="dataFilter"/>
@@ -42,10 +46,10 @@
     </select>
 
     <select id="findAllLanguages" resultType="java.lang.String">
-        select language, count(1) as cnt
+        select repo.language, count(1) as cnt
         from gfi.issue_v issue
         inner join gfi.repository_v repo on issue.repository_id = repo.id
-        group by language
+        group by repo.language
         order by cnt desc
     </select>
 
@@ -56,6 +60,20 @@
         <include refid="dataFilter"/>
         ORDER BY RANDOM() LIMIT 1
     </select>
+
+    
+
+   <select id="findAllLabels" resultType="com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto">
+    WITH labels_cte AS (
+        SELECT unnest(labels) AS label FROM gfi.issue_v
+    )
+    SELECT label, COUNT(1) as count 
+    FROM labels_cte 
+    GROUP BY label 
+    ORDER BY COUNT(1) DESC
+  </select>
+
+  
 
     <sql id="dataFilter">
         <where>
@@ -85,6 +103,26 @@
                     </when>
                     <when test="filter.stars.operator != null and filter.stars.operator.name() == 'LESS'">
                         er.stars &lt; #{filter.stars.value}
+                    </when>
+                </choose>
+            </if>
+            <if test="filter != null and filter.licenses != null and filter.licenses.values != null and filter.licenses.values.size() > 0">
+                <if test="(filter.languages != null and filter.languages.values != null and filter.languages.values.size() > 0)
+                       or (filter.stars != null and filter.stars.value != null)">
+                    AND
+                </if>
+                <choose>
+                    <when test="filter.licenses.operator != null and filter.licenses.operator.name() == 'IN'">
+                        er.license IN
+                        <foreach collection="filter.licenses.values" item="license" open="(" separator="," close=")">
+                            #{license}
+                        </foreach>
+                    </when>
+                    <when test="filter.licenses.operator != null and filter.licenses.operator.name() == 'NOT_IN'">
+                        er.license NOT IN
+                        <foreach collection="filter.licenses.values" item="license" open="(" separator="," close=")">
+                            #{license}
+                        </foreach>
                     </when>
                 </choose>
             </if>

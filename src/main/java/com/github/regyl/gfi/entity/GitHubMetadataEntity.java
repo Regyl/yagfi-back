@@ -13,23 +13,11 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class RepositoryEntity extends AbstractEntity {
-
-    @NotNull
-    private String sourceId;
+public class GitHubMetadataEntity extends AbstractEntity {
 
     @NotEmpty
-    private String title;
-
-    @NotEmpty
-    private String url;
+    private String label;
 
     @NotNull
-    private Integer stars;
-
-    private String description;
-
-    private String language;
-
-    private String license;
+    private Integer issueCount;
 }

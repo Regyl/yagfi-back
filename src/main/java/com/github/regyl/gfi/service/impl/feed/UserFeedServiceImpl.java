@@ -1,9 +1,9 @@
-package com.github.regyl.gfi.service.impl.other;
+package com.github.regyl.gfi.service.impl.feed;
 
 import com.github.regyl.gfi.controller.dto.request.UserFeedRequestDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.repository.UserFeedRequestRepository;
-import com.github.regyl.gfi.service.other.UserFeedService;
+import com.github.regyl.gfi.service.feed.UserFeedService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -106,6 +106,26 @@
                     </when>
                 </choose>
             </if>
+            <if test="filter != null and filter.licenses != null and filter.licenses.values != null and filter.licenses.values.size() > 0">
+                <if test="(filter.languages != null and filter.languages.values != null and filter.languages.values.size() > 0)
+                       or (filter.stars != null and filter.stars.value != null)">
+                    AND
+                </if>
+                <choose>
+                    <when test="filter.licenses.operator != null and filter.licenses.operator.name() == 'IN'">
+                        er.license IN
+                        <foreach collection="filter.licenses.values" item="license" open="(" separator="," close=")">
+                            #{license}
+                        </foreach>
+                    </when>
+                    <when test="filter.licenses.operator != null and filter.licenses.operator.name() == 'NOT_IN'">
+                        er.license NOT IN
+                        <foreach collection="filter.licenses.values" item="license" open="(" separator="," close=")">
+                            #{license}
+                        </foreach>
+                    </when>
+                </choose>
+            </if>
         </where>
     </sql>
 </mapper>

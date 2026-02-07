@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Component
 public class LabelServiceImpl implements LabelService {
@@ -16,7 +17,7 @@ public class LabelServiceImpl implements LabelService {
     static {
         DATA = Arrays.stream(ResourceUtil.getFilePayload("data/labels.txt").split("\r\n"))
                 .map(LabelModel::new)
-                .toList();
+                .collect(Collectors.toSet());
     }
 
     @Override

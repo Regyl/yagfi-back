@@ -17,6 +17,19 @@
  -->
 
 <module name="Checker">
+    <module name="RegexpSingleline">
+        <property name="format" value="//(FIXME REMOVE ME|REMOVE ME|REMOVEME|FIXME REMOVEME)"/>
+        <property name="message" value="Remove this line"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="public class [A-Za-z]*Test \{"/>
+        <property name="message" value="Test classes should not be public"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[А-Яа-яЁё]+"/>
+        <property name="message" value="Enemy languages are forbidden"/>
+    </module>
+
     <module name="SuppressWarningsFilter"/>
 
     <property name="charset" value="UTF-8"/>

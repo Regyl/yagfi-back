@@ -8,15 +8,17 @@ spring:
     github:
       token: ${GithubBearer}
     async:
-      max-pool-size: 5
+      max-pool-size: 10
       core-pool-size: 5
     feature-enabled:
-      auto-upload: true
-      auto-upload-meta: false
+      auto-upload: ${AUTO_UPLOAD_ENABLED:true}
+      auto-upload-meta: ${AUTO_UPLOAD_META_ENABLED:false}
       feed-generation: ${FEED_GENERATION_ENABLED:false}
-      request-logging: false
+      request-logging: ${REQUEST_LOGGING_ENABLED:false}
     auto-upload:
-      period-mills: 1800000 # 30 minutes
+      period-mills: 3600000 # 1 hour
+      core-pool-size: 3
+      query-per-second: 3
     db:
       schema: gfi
     cyclonedx:

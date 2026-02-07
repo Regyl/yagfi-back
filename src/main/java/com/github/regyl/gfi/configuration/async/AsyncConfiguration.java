@@ -11,6 +11,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Collection;
 import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @EnableAsync
@@ -40,17 +41,8 @@ public class AsyncConfiguration implements AsyncConfigurer {
     }
 
     @Bean("issueLoadAsyncExecutor")
-    public ThreadPoolTaskExecutor issueLoadAsyncExecutor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(configProps.getCorePoolSize());
-        executor.setMaxPoolSize(configProps.getMaxPoolSize());
-        executor.setPrestartAllCoreThreads(false);
-        executor.setThreadGroupName("load-group-async-");
-        executor.setThreadNamePrefix("load-async-");
-        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        executor.setQueueCapacity(Integer.MAX_VALUE);
-        executor.initialize();
-        return executor;
+    public Executor issueLoadAsyncExecutor(AutoUploadConfigurationProperties configProps) {
+        return Executors.newWorkStealingPool(configProps.getCorePoolSize());
     }
 
     @Bean("cdxgenTaskPool")

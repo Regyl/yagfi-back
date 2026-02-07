@@ -5,18 +5,15 @@ import com.github.regyl.gfi.service.ScheduledService;
 import com.github.regyl.gfi.service.issueload.IssueSourceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
 import java.util.Collection;
-import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Component
@@ -24,8 +21,6 @@ import java.util.concurrent.locks.LockSupport;
 @ConditionalOnProperty(value = "spring.properties.feature-enabled.auto-upload", havingValue = "true")
 public class IssueLoaderServiceImpl implements ScheduledService {
 
-    @Qualifier("issueLoadAsyncExecutor")
-    private final ThreadPoolTaskExecutor taskExecutor;
     private final Collection<IssueSourceService> sourceServices;
 
     private final JdbcTemplate jdbcTemplate;
@@ -36,20 +31,17 @@ public class IssueLoaderServiceImpl implements ScheduledService {
     public void schedule() {
         log.info("Start issue load task");
         IssueTables table = determineTable();
-        sourceServices.forEach(service -> service.upload(table));
+        Collection<CompletableFuture<Void>> futures = sourceServices.stream()
+                .flatMap(service -> service.upload(table).stream())
+                .toList();
 
-        while (true) {
-            LockSupport.parkNanos(Duration.ofMinutes(1).toNanos());
-            if (taskExecutor.getQueueSize() == 0) {
-                break;
-            }
-        }
+        //waiting all issues to be done
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
 
         sourceServices.forEach(IssueSourceService::raiseUploadEvent);
 
-        log.info("Issue load finished (but maybe not all uploaded to DB yet)");
-
         replaceView(table);
+        log.info("Issue load finished");
     }
 
     private IssueTables determineTable() {

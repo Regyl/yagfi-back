@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.issueload;
+package com.github.regyl.gfi.service.issueload.issuesource.github;
 
 import com.github.regyl.gfi.model.LabelModel;
 

@@ -44,7 +44,7 @@ public class CycloneDxServiceImpl implements CycloneDxService {
     }
 
     @Override
-    public boolean allAlive() {
+    public boolean isFree() {
         return getFreeServiceQuantity() == cycloneDxHosts.size();
     }
 

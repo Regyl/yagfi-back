@@ -135,6 +135,12 @@
             <artifactId>lingua</artifactId>
             <version>${lingua.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.5.0-jre</version>
+            <scope>compile</scope>
+        </dependency>
 
 
         <!--test-->
@@ -192,6 +198,8 @@
                     <configLocation>checkstyle/checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <includeTestResources>true</includeTestResources>
                     <linkXRef>false</linkXRef>
                 </configuration>
                 <executions>

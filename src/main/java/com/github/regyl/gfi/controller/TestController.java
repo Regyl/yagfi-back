@@ -17,6 +17,6 @@ public class TestController {
 
     @GetMapping
     public Object test() {
-        return cycloneDxService.allAlive();
+        return cycloneDxService.isFree();
     }
 }

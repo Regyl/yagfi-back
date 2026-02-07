@@ -10,6 +10,9 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Component
@@ -19,9 +22,10 @@ public class GitlabIssueSourceServiceImpl implements IssueSourceService {
     private final ApplicationEventPublisher eventPublisher;
 
     @Override
-    public void upload(IssueTables table) {
+    public Collection<CompletableFuture<Void>> upload(IssueTables table) {
         //https://docs.gitlab.com/api/graphql/
         //https://gitlab.com/gitlab-org/gitlab-development-kit/-/issues/1822
+        return Collections.emptyList();
     }
 
     @Override

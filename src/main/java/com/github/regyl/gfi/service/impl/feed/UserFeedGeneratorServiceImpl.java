@@ -9,20 +9,16 @@ import com.github.regyl.gfi.repository.UserFeedRequestRepository;
 import com.github.regyl.gfi.service.ScheduledService;
 import com.github.regyl.gfi.service.email.EmailService;
 import com.github.regyl.gfi.service.feed.CycloneDxService;
-import com.github.regyl.gfi.util.ResourceUtil;
+import com.github.regyl.gfi.service.github.GithubClientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.core5.http.HttpHost;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.graphql.client.ClientGraphQlResponse;
-import org.springframework.graphql.client.GraphQlClient;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.locks.LockSupport;
@@ -34,9 +30,7 @@ import java.util.function.BiConsumer;
 @ConditionalOnProperty(value = "spring.properties.feature-enabled.feed-generation", havingValue = "true")
 public class UserFeedGeneratorServiceImpl implements ScheduledService {
 
-    private static final String QUERY = ResourceUtil.getFilePayload("graphql/github-user-repos-request.graphql");
-
-    private final GraphQlClient githubClient;
+    private final GithubClientService<String, UserDataGraphQlResponseDto> githubClient;
     private final UserFeedRequestRepository repository;
     private final CycloneDxService cycloneDxService;
     private final BiConsumer<SbomModel, Throwable> resultConsumer;
@@ -48,8 +42,8 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
         //since spring's scheduling mechanism have limited core pool size
         //this method should start processing only if it's not already processing
         //another one feed request
-        boolean isAllAlive = cycloneDxService.allAlive();
-        if (!isAllAlive) {
+        boolean isFree = cycloneDxService.isFree();
+        if (!isFree) {
             log.info("Some cdxgen services are still busy, will try again later");
             return;
         }
@@ -102,14 +96,8 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
     }
 
     private UserDataGraphQlResponseDto getRepos(String login) {
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("login", login);
-        ClientGraphQlResponse clientGraphQlResponse = githubClient.document(QUERY)
-                .variables(variables)
-                .executeSync();
-        if (!clientGraphQlResponse.isValid()) {
-            log.error("graph ql response is invalid");
-        }
-        return clientGraphQlResponse.toEntity(UserDataGraphQlResponseDto.class);
+
+
+        return githubClient.execute(login);
     }
 }

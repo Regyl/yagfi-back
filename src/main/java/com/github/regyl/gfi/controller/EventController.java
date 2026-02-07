@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -15,6 +16,7 @@ import java.util.List;
 public class EventController {
 
     private final EventService eventService;
+
     @GetMapping
     public List<EventResponseDto> getAllSyncHistory() {
         return eventService.getAllSyncHistory();

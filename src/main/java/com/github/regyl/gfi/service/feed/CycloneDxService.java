@@ -1,14 +1,13 @@
 package com.github.regyl.gfi.service.feed;
 
 import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
+import com.github.regyl.gfi.service.StatefulService;
 import org.apache.hc.core5.http.HttpHost;
 
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 
-public interface CycloneDxService {
-
-    boolean allAlive();
+public interface CycloneDxService extends StatefulService {
 
     int getFreeServiceQuantity();
 

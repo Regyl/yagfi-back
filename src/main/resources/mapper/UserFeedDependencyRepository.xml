@@ -11,4 +11,14 @@
         ON CONFLICT (source_repo, dependency_url) DO NOTHING
     </insert>
 
+    <select id="findSourceRepoStatisticsByRequestId" resultType="com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto">
+        SELECT
+            source_repo as sourceRepo,
+            count(1) as count
+        FROM gfi.e_user_feed_dependency
+        WHERE request_id = #{requestId}
+        GROUP BY source_repo
+        ORDER BY count(1) DESC
+    </select>
+
 </mapper>

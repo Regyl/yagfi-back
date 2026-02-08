@@ -39,4 +39,16 @@
         WHERE status = 'processing'
     </update>
 
+    <select id="findByNickname" resultMap="UserFeedRequestEntityResultMap">
+        SELECT
+            id,
+            created,
+            nickname,
+            email,
+            status
+        FROM gfi.e_user_feed_request
+        WHERE nickname = #{nickname}
+        LIMIT 1
+    </select>
+
 </mapper>

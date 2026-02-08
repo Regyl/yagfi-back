@@ -16,4 +16,6 @@ public interface UserFeedRequestRepository {
     void updateStatusById(Long id, UserFeedRequestStatuses status);
 
     void resetProcessingRecords();
+
+    Optional<UserFeedRequestEntity> findByNickname(String nickname);
 }

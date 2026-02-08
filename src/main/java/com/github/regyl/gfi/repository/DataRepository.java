@@ -1,8 +1,8 @@
 package com.github.regyl.gfi.repository;
 
-import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
-import com.github.regyl.gfi.controller.dto.response.IssueResponseDto;
-import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
+import com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto;
+import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
+import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collection;

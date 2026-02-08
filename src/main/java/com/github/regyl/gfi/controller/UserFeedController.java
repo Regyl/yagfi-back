@@ -33,4 +33,9 @@ public class UserFeedController {
             @RequestParam("nickname") @NotEmpty String nickname) {
         return userFeedService.getSourceRepoStatistics(nickname);
     }
+
+    @GetMapping("/users")
+    public Collection<String> getUsersProcessedFeeds() {
+        return userFeedService.getUsersProcessedFeeds();
+    }
 }

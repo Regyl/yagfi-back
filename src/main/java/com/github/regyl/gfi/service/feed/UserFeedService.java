@@ -11,4 +11,6 @@ public interface UserFeedService {
     UserFeedRequestEntity saveFeedRequest(UserFeedRequestDto feedRequestDto);
 
     Collection<SourceRepoStatisticResponseDto> getSourceRepoStatistics(String nickname);
+
+    Collection<String> getUsersProcessedFeeds();
 }

@@ -51,4 +51,11 @@
         LIMIT 1
     </select>
 
+    <select id="findNicknamesByStatus" resultType="java.lang.String">
+        SELECT nickname
+        FROM gfi.e_user_feed_request
+        WHERE status = #{status}
+        ORDER BY created ASC
+    </select>
+
 </mapper>

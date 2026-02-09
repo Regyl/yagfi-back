@@ -3,6 +3,7 @@ package com.github.regyl.gfi.configuration.async;
 import lombok.RequiredArgsConstructor;
 import org.apache.hc.core5.http.HttpHost;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -46,6 +47,7 @@ public class AsyncConfiguration implements AsyncConfigurer {
     }
 
     @Bean("cdxgenTaskPool")
+    @ConditionalOnProperty(value = "spring.properties.feature-enabled.feed-generation", havingValue = "true")
     public ThreadPoolTaskExecutor cdxgenTaskPool(Collection<HttpHost> cdxgenHosts) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(cdxgenHosts.size());

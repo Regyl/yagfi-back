@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.response;
+package com.github.regyl.gfi.controller.dto.response.statistic;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LabelStatisticResponseDto {
-    private String label;        // "good-first-issue"
+    private String label;
     private Long count;         
 }

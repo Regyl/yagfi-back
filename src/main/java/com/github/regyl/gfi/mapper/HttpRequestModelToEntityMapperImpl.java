@@ -20,6 +20,7 @@ public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestM
         String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
         String country = getCountryFromRequest(request);
         String url = getFullRequestUrl(request);
+        String utmSource = request.getHeader("X-UTM-Source");
 
         return LogEntity.builder()
                 .url(url)
@@ -29,6 +30,7 @@ public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestM
                 .os(UserAgentUtil.parseOS(userAgent))
                 .browserFamily(UserAgentUtil.parseBrowserFamily(userAgent))
                 .deviceType(UserAgentUtil.parseDeviceType(userAgent))
+                .utmSource(utmSource)
                 .build();
     }
 

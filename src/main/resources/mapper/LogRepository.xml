@@ -3,13 +3,13 @@
 <mapper namespace="com.github.regyl.gfi.repository.LogRepository">
 
     <insert id="save">
-        INSERT INTO gfi.e_log (url, http_method, request_body, country, os, browser_family, device_type)
+        INSERT INTO gfi.e_log (url, http_method, request_body, country, os, browser_family, device_type, utm_source)
         VALUES (#{url}, #{httpMethod},
                 <choose>
                     <when test="requestBody != null">CAST(#{requestBody} AS jsonb)</when>
                     <otherwise>NULL</otherwise>
                 </choose>,
-                #{country}, #{os}, #{browserFamily}, #{deviceType})
+                #{country}, #{os}, #{browserFamily}, #{deviceType}, #{utmSource})
     </insert>
 
 </mapper>

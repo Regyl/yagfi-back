@@ -4,6 +4,7 @@ import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Mapper
@@ -16,4 +17,8 @@ public interface UserFeedRequestRepository {
     void updateStatusById(Long id, UserFeedRequestStatuses status);
 
     void resetProcessingRecords();
+
+    Optional<UserFeedRequestEntity> findByNickname(String nickname);
+
+    Collection<String> findNicknamesByStatus(String status);
 }

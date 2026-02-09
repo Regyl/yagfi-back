@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.request;
+package com.github.regyl.gfi.controller.dto.request.issue;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LanguageFilterDto {
+public class LicenseFilterDto {
 
     private List<String> values;
     private FilterOperator operator;
 }
+

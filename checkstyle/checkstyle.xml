@@ -29,6 +29,10 @@
         <property name="format" value="[А-Яа-яЁё]+"/>
         <property name="message" value="Enemy languages are forbidden"/>
     </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="org.junit.jupiter.api.Assertions"/>
+        <property name="message" value="JUnit assertions are forbidden. Please use AssertJ"/>
+    </module>
 
     <module name="SuppressWarningsFilter"/>
 

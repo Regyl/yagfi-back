@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.request;
+package com.github.regyl.gfi.controller.dto.request.feed;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -15,5 +15,6 @@ public class UserFeedRequestDto {
     private String nickname;
 
     @Email
+    @NotEmpty
     private String email;
 }

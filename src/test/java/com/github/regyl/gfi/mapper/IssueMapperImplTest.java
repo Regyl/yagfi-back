@@ -5,15 +5,10 @@ import com.github.regyl.gfi.controller.dto.github.issue.GithubIssueDto;
 import com.github.regyl.gfi.entity.IssueEntity;
 import com.github.regyl.gfi.entity.RepositoryEntity;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -27,7 +22,8 @@ class IssueMapperImplTest {
 
     private IssueMapperImpl target;
 
-    private final Supplier<OffsetDateTime> dateTimeSupplier = () -> OffsetDateTime.of(2026, 2, 6, 1, 20, 0, 0, ZoneOffset.UTC);
+    private final Supplier<OffsetDateTime> dateTimeSupplier =
+            () -> OffsetDateTime.of(2026, 2, 6, 1, 20, 0, 0, ZoneOffset.UTC);
 
     @BeforeEach
     void setUp() {

@@ -8,6 +8,7 @@ difficulty:easy
 doc
 documentation
 component=docs
+type: documentation
 E-easy
 E-less-complex
 easy

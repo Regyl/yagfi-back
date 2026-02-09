@@ -20,4 +20,5 @@ public class LogEntity extends AbstractEntity {
     private String os;
     private String browserFamily;
     private String deviceType;
+    private String utmSource;
 }

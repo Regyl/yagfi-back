@@ -5,6 +5,7 @@ import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.core5.http.HttpHost;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Configuration
+@ConditionalOnProperty(value = "spring.properties.feature-enabled.feed-generation", havingValue = "true")
 public class CycloneDxClientFactory {
 
     @Bean
@@ -29,9 +31,9 @@ public class CycloneDxClientFactory {
 
     @Bean
     public Collection<HttpHost> cycloneDxHosts(CycloneDxConfigurationProperties configProps) {
-        String template = "http://127.0.0.1:";
-        return configProps.getPorts().stream()
-                .map(port -> template + port)
+        String template = "http://";
+        return configProps.getServices().stream()
+                .map(service -> template + service)
                 .map(host -> {
                     try {
                         return HttpHost.create(host);
@@ -47,7 +49,7 @@ public class CycloneDxClientFactory {
     public CloseableHttpClient cdxgenHealthClient() {
         RequestConfig requestConfig = RequestConfig.custom()
                 .setConnectionRequestTimeout(10, TimeUnit.SECONDS)
-                .setResponseTimeout(20, TimeUnit.SECONDS)
+                .setResponseTimeout(5, TimeUnit.SECONDS)
                 .build();
 
         return HttpClientBuilder.create()

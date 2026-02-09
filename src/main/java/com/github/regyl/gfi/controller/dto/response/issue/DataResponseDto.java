@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.response;
+package com.github.regyl.gfi.controller.dto.response.issue;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.controller.dto.request;
+package com.github.regyl.gfi.controller.dto.request.issue;
 
 public enum FilterOperator {
     IN,

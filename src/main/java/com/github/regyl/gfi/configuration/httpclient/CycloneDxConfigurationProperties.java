@@ -9,5 +9,5 @@ import java.util.List;
 @ConfigurationProperties(value = "spring.properties.cyclonedx")
 public class CycloneDxConfigurationProperties {
 
-    private List<Integer> ports;
+    private List<String> services;
 }

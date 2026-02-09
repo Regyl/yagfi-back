@@ -32,21 +32,26 @@ class IssueMapperImplTest {
 
     @ParameterizedTest
     @MethodSource("languages")
-    void testLanguageDetection(String title, String language) {
+    void testLanguageDetection(String title, String expectedLanguage) {
+        // given
         Map<String, RepositoryEntity> repos = new HashMap<>();
         GithubIssueDto dto = new GithubIssueDto();
         dto.setTitle(title);
 
+        // when
         IssueEntity result = target.apply(repos, dto);
 
+        // then
         Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.getLanguage()).isEqualTo(language);
+        Assertions.assertThat(result.getLanguage()).isEqualTo(expectedLanguage);
+
     }
 
     static Stream<Arguments> languages() {
         return Stream.of(
                 Arguments.of("Some text", "ENGLISH"),
-                Arguments.of("Claude: [CODE] MCPConnection 连接超时硬编码为 30000ms 应该可配置", "CHINESE")
+                Arguments.of("Claude: [CODE] MCPConnection 连接超时硬编码为 30000ms 应该可配置", "CHINESE"),
+                Arguments.of("123456 !!!", null)
         );
     }
 }

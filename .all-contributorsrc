@@ -71,6 +71,15 @@
       "contributions": [
         "data"
       ]
+    },
+    {
+      "login": "dhruvg-ship-it",
+      "name": "Dhruv Gupta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/236444300?v=4",
+      "profile": "https://github.com/dhruvg-ship-it",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

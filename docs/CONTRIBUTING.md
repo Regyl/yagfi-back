@@ -27,6 +27,36 @@ everything I would like to see in this project.
 So, if you found a good issue for you (or just my notes from README) - feel free to 
 contact/open an issue and ask any questions if you have some.
 
+# Testing
+
+## Running tests
+```bash
+# Run all tests
+mvn test
+
+# Run only integration tests
+mvn test -Dgroups=Integration
+
+# Run only unit tests
+mvn test -Dgroups=Unit
+```
+
+## Integration tests
+Integration tests use [Testcontainers](https://java.testcontainers.org/) to spin up a real PostgreSQL 15.3
+instance. Flyway migrations run automatically, so tests exercise actual SQL against the real schema.
+
+Docker must be running on your machine for integration tests to work.
+
+### Writing a new integration test
+1. Place it in the same package as the class under test (e.g. `repository/` for repository tests).
+2. Annotate the class with `@DefaultIntegrationTest`, `@SpringBootTest`, `@ActiveProfiles("test")`,
+`@Testcontainers`, and `@Transactional`.
+3. Use `@Nested` inner classes to group tests per method. This keeps the test class extensible as
+more methods are covered.
+4. Test classes must be **package-private** (no `public` modifier) per the project's checkstyle rules.
+
+See `DataRepositoryTest` for a working example.
+
 # AI
 The era we just entered is AI-powered, and it's okay. The question is: do you primarily a developer, 
 or a customer. Here at YAGFI, we are primarily developers who can use AI as a tool, not as 

@@ -9,7 +9,7 @@ YAGFI - yet another good first issue
 
 <!-- TOC -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 * [Introduction](#introduction)
   * [Why yet another good-first-issue project?](#why-yet-another-good-first-issue-project)
@@ -74,6 +74,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/RellikSai"><img src="https://avatars.githubusercontent.com/u/239808274?v=4?s=100" width="100px;" alt="RellikSai"/><br /><sub><b>RellikSai</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=RellikSai" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Xcoder2003X"><img src="https://avatars.githubusercontent.com/u/173279873?v=4?s=100" width="100px;" alt="Ayoub Ait Chikh"/><br /><sub><b>Ayoub Ait Chikh</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=Xcoder2003X" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://www.krishnakamalbaishnab.click"><img src="https://avatars.githubusercontent.com/u/56583543?v=4?s=100" width="100px;" alt="Krishna Kamal Baishnab"/><br /><sub><b>Krishna Kamal Baishnab</b></sub></a><br /><a href="#data-krishnakamalbaishnab" title="Data">🔣</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/dhruvg-ship-it"><img src="https://avatars.githubusercontent.com/u/236444300?v=4?s=100" width="100px;" alt="Dhruv Gupta"/><br /><sub><b>Dhruv Gupta</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=dhruvg-ship-it" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

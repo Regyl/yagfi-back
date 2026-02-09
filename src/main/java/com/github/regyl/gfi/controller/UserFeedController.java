@@ -45,4 +45,10 @@ public class UserFeedController {
             @RequestParam("sourceRepo") @NotEmpty String sourceRepo) {
         return userFeedService.getIssuesBySourceRepo(sourceRepo);
     }
+
+    @GetMapping("/feed-issues")
+    public Collection<IssueResponseDto> getIssuesByNickname(
+            @RequestParam("nickname") @NotEmpty String nickname) {
+        return userFeedService.getIssuesByNickname(nickname);
+    }
 }

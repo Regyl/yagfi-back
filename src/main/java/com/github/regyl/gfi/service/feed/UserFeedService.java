@@ -16,4 +16,6 @@ public interface UserFeedService {
     Collection<String> getUsersProcessedFeeds();
 
     Collection<IssueResponseDto> getIssuesBySourceRepo(String sourceRepo);
+
+    Collection<IssueResponseDto> getIssuesByNickname(String nickname);
 }

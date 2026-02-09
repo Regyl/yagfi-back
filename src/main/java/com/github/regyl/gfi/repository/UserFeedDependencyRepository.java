@@ -17,4 +17,6 @@ public interface UserFeedDependencyRepository {
     Collection<SourceRepoStatisticResponseDto> findSourceRepoStatisticsByRequestId(@Param("requestId") Long requestId);
 
     Collection<IssueResponseDto> findIssuesBySourceRepo(@Param("sourceRepo") String sourceRepo);
+
+    Collection<IssueResponseDto> findIssuesByRequestId(@Param("requestId") Long requestId);
 }

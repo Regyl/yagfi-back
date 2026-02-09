@@ -60,6 +60,33 @@
         FROM gfi.issue_v iv
         INNER JOIN gfi.repository_v rv ON iv.repository_id = rv.id
         INNER JOIN idk ON idk.dependency_url = rv.url
+        order by iv.created_at desc
+    </select>
+
+    <select id="findIssuesByRequestId" resultMap="IssueResponseResultMap">
+        WITH idk AS (
+            SELECT DISTINCT dependency_url
+            FROM gfi.e_user_feed_dependency
+            WHERE request_id = #{requestId}
+        )
+        SELECT
+            iv.id AS issueId,
+            iv.title AS issueTitle,
+            iv.url AS issueUrl,
+            iv.updated_at AS issueUpdated,
+            iv.created_at AS issueCreated,
+            iv.labels AS issueLabels,
+            iv.language AS issueLanguage,
+            rv.title AS repositoryTitle,
+            rv.url AS repositoryUrl,
+            rv.stars AS repositoryStars,
+            rv.description AS repositoryDescription,
+            rv.language AS repositoryLanguage,
+            rv.license AS repositoryLicense
+        FROM gfi.issue_v iv
+        INNER JOIN gfi.repository_v rv ON iv.repository_id = rv.id
+        INNER JOIN idk ON idk.dependency_url = rv.url
+        order by iv.created_at desc
     </select>
 
 </mapper>

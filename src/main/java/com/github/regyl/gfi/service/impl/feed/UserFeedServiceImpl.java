@@ -51,4 +51,14 @@ public class UserFeedServiceImpl implements UserFeedService {
     public Collection<IssueResponseDto> getIssuesBySourceRepo(String sourceRepo) {
         return userFeedDependencyRepository.findIssuesBySourceRepo(sourceRepo);
     }
+
+    @Override
+    public Collection<IssueResponseDto> getIssuesByNickname(String nickname) {
+        Optional<UserFeedRequestEntity> optionalRequest = userFeedRequestRepository.findByNickname(nickname);
+        if (optionalRequest.isEmpty()) {
+            throw new IllegalArgumentException("User feed request not found for nickname: " + nickname);
+        }
+
+        return userFeedDependencyRepository.findIssuesByRequestId(optionalRequest.get().getId());
+    }
 }

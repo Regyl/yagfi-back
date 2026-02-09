@@ -17,6 +17,8 @@ public interface DataService {
 
     Collection<String> findAllLanguages();
 
+    Collection<String> findAllLicenses();
+
     String findRandomIssueUrl(DataRequestDto filters);
 
     List<LabelStatisticResponseDto> findAllLabels();

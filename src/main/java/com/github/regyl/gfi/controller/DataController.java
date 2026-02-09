@@ -37,6 +37,11 @@ public class DataController {
         return dataService.findAllLanguages();
     }
 
+    @GetMapping("/licenses")
+    public Collection<String> findAllLicenses() {
+        return dataService.findAllLicenses();
+    }
+
     @GetMapping("/labels")
     public List<LabelStatisticResponseDto> findAllLabels() {
         return dataService.findAllLabels();

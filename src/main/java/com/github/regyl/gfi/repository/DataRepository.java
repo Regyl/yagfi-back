@@ -15,6 +15,8 @@ public interface DataRepository {
 
     Collection<String> findAllLanguages();
 
+    Collection<String> findAllLicenses();
+
     String findRandomIssueLink(DataRequestDto filters);
 
     List<LabelStatisticResponseDto> findAllLabels();  

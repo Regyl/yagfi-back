@@ -79,6 +79,12 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
+    @Cacheable(cacheNames = "licenses")
+    public Collection<String> findAllLicenses() {
+        return dataRepository.findAllLicenses();
+    }
+
+    @Override
     public String findRandomIssueUrl(DataRequestDto filters) {
         return dataRepository.findRandomIssueLink(filters);
     }

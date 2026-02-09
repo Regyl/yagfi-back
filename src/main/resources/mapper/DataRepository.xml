@@ -53,6 +53,14 @@
         order by cnt desc
     </select>
 
+    <select id="findAllLicenses" resultType="java.lang.String">
+        select license
+        from gfi.repository_v
+        where license is not null
+        group by license
+        order by count(1) desc
+    </select>
+
     <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto">
         SELECT ei.url
         FROM gfi.issue_v ei

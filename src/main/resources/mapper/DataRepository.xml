@@ -46,11 +46,11 @@
     </select>
 
     <select id="findAllLanguages" resultType="java.lang.String">
-        SELECT issue.language
-        FROM gfi.issue_v issue
-        WHERE issue.language IS NOT NULL
-        GROUP BY issue.language
-        ORDER BY COUNT(1) DESC
+        select repo.language
+        from gfi.issue_v issue
+        inner join gfi.repository_v repo on issue.repository_id = repo.id
+        group by repo.language
+        order by count(1) desc
     </select>
 
 
@@ -62,7 +62,6 @@
         ORDER BY RANDOM() LIMIT 1
     </select>
 
-    
 
    <select id="findAllLabels" resultType="com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto">
     WITH labels_cte AS (

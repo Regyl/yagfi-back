@@ -56,4 +56,9 @@ public class DataController {
     ) {
         return userFeedService.saveFeedRequest(new UserFeedRequestDto(nickname, email));
     }
+    @GetMapping("/issue-languages")
+    public Collection<String> findAllIssueLanguages() {
+        return dataService.findAllIssueLanguages();
+    }
+
 }

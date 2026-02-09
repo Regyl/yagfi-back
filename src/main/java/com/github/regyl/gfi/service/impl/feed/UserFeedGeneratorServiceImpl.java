@@ -85,7 +85,7 @@ public class UserFeedGeneratorServiceImpl implements ScheduledService {
 
         EmailModel emailModel = new EmailModel(
                 rq.getEmail(),
-                "Your custom feed generated!",
+                "Your personalized feed generated!",
                 "Feed generation completed. Please check yagfi.com/feed/" + nickname
         );
         emailService.send(emailModel);

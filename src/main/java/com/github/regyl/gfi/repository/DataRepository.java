@@ -4,8 +4,6 @@ import com.github.regyl.gfi.controller.dto.request.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.IssueResponseDto;
 import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -20,7 +18,5 @@ public interface DataRepository {
 
     List<LabelStatisticResponseDto> findAllLabels();  
 
-    
-
-
+    List<String> findAllIssueLanguages();
 }

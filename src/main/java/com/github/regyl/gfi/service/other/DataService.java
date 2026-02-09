@@ -20,4 +20,6 @@ public interface DataService {
     String findRandomIssueUrl(DataRequestDto filters);
 
     List<LabelStatisticResponseDto> findAllLabels();
+
+    Collection<String> findAllIssueLanguages();
 }

@@ -75,6 +75,14 @@
   </select>
 
   
+  <select id="findAllIssueLanguages" resultType="java.lang.String">
+    SELECT issue.language
+    FROM gfi.issue_v issue
+    WHERE issue.language IS NOT NULL
+    GROUP BY issue.language
+    ORDER BY COUNT(1) DESC
+  </select>
+
 
     <sql id="dataFilter">
         <where>

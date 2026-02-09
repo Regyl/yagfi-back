@@ -88,4 +88,11 @@ public class DataServiceImpl implements DataService {
     public List<LabelStatisticResponseDto> findAllLabels() {
         return dataRepository.findAllLabels();
     }
+
+    @Override
+    @Cacheable(cacheNames = "issue-languages")
+    public Collection<String> findAllIssueLanguages() {
+        return dataRepository.findAllIssueLanguages();
+    }
+
 }

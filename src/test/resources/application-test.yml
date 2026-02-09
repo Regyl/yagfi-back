@@ -1,0 +1,13 @@
+spring:
+  properties:
+    host-name: localhost
+    github:
+      token: test-token
+    feature-enabled:
+      auto-upload: false
+      auto-upload-meta: false
+      feed-generation: false
+      request-logging: false
+    email:
+      username: test
+      password: test

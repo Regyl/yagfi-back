@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.regyl.gfi.repository.UserFeedDependencyRepository">
 
+    <resultMap id="IssueResponseResultMap" type="com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto">
+        <result property="issueId" column="issueId"/>
+        <result property="issueTitle" column="issueTitle"/>
+        <result property="issueUrl" column="issueUrl"/>
+        <result property="issueUpdated" column="issueUpdated"/>
+        <result property="issueCreated" column="issueCreated"/>
+        <result property="issueLabels" column="issueLabels" typeHandler="com.github.regyl.gfi.typehandler.StringListTypeHandler"/>
+        <result property="issueLanguage" column="issueLanguage"/>
+        <result property="repositoryTitle" column="repositoryTitle"/>
+        <result property="repositoryUrl" column="repositoryUrl"/>
+        <result property="repositoryStars" column="repositoryStars"/>
+        <result property="repositoryDescription" column="repositoryDescription"/>
+        <result property="repositoryLanguage" column="repositoryLanguage"/>
+        <result property="repositoryLicense" column="repositoryLicense"/>
+    </resultMap>
+
     <insert id="saveAll">
         INSERT INTO gfi.e_user_feed_dependency (request_id, source_repo, dependency_url, created)
         VALUES
@@ -19,6 +35,31 @@
         WHERE request_id = #{requestId}
         GROUP BY source_repo
         ORDER BY count(1) DESC
+    </select>
+
+    <select id="findIssuesBySourceRepo" resultMap="IssueResponseResultMap">
+        WITH idk AS (
+            SELECT DISTINCT dependency_url
+            FROM gfi.e_user_feed_dependency
+            WHERE source_repo = #{sourceRepo}
+        )
+        SELECT
+            iv.id AS issueId,
+            iv.title AS issueTitle,
+            iv.url AS issueUrl,
+            iv.updated_at AS issueUpdated,
+            iv.created_at AS issueCreated,
+            iv.labels AS issueLabels,
+            iv.language AS issueLanguage,
+            rv.title AS repositoryTitle,
+            rv.url AS repositoryUrl,
+            rv.stars AS repositoryStars,
+            rv.description AS repositoryDescription,
+            rv.language AS repositoryLanguage,
+            rv.license AS repositoryLicense
+        FROM gfi.issue_v iv
+        INNER JOIN gfi.repository_v rv ON iv.repository_id = rv.id
+        INNER JOIN idk ON idk.dependency_url = rv.url
     </select>
 
 </mapper>

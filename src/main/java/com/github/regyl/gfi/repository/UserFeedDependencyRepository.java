@@ -1,6 +1,7 @@
 package com.github.regyl.gfi.repository;
 
 import com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto;
+import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.entity.UserFeedDependencyEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,4 +15,6 @@ public interface UserFeedDependencyRepository {
     void saveAll(List<UserFeedDependencyEntity> entities);
 
     Collection<SourceRepoStatisticResponseDto> findSourceRepoStatisticsByRequestId(@Param("requestId") Long requestId);
+
+    Collection<IssueResponseDto> findIssuesBySourceRepo(@Param("sourceRepo") String sourceRepo);
 }

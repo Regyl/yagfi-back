@@ -2,6 +2,7 @@ package com.github.regyl.gfi.service.impl.feed;
 
 import com.github.regyl.gfi.controller.dto.request.feed.UserFeedRequestDto;
 import com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto;
+import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import com.github.regyl.gfi.repository.UserFeedDependencyRepository;
@@ -44,5 +45,10 @@ public class UserFeedServiceImpl implements UserFeedService {
     @Override
     public Collection<String> getUsersProcessedFeeds() {
         return userFeedRequestRepository.findNicknamesByStatus(UserFeedRequestStatuses.PROCESSED.getValue());
+    }
+
+    @Override
+    public Collection<IssueResponseDto> getIssuesBySourceRepo(String sourceRepo) {
+        return userFeedDependencyRepository.findIssuesBySourceRepo(sourceRepo);
     }
 }

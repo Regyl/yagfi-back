@@ -11,6 +11,9 @@ public class EventEntityToResponseDtoMapperImpl implements Function<EventEntity,
 
     @Override
     public EventResponseDto apply(EventEntity entity) {
+        if(entity == null){
+            return null;
+        }
         return EventResponseDto.builder()
                 .source(entity.getSource())
                 .lastUpdateDttm(entity.getLastUpdateDttm())

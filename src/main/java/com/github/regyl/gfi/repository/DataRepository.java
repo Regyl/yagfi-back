@@ -14,13 +14,6 @@ public interface DataRepository {
 
     List<IssueResponseDto> findAllIssues(DataRequestDto requestDto);
 
-    @Select("""
-        SELECT language
-        FROM gfi.issue_v
-        WHERE language IS NOT NULL
-        GROUP BY language
-        ORDER BY COUNT(1) DESC
-    """)
     Collection<String> findAllLanguages();
 
     String findRandomIssueLink(DataRequestDto filters);

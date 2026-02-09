@@ -46,12 +46,13 @@
     </select>
 
     <select id="findAllLanguages" resultType="java.lang.String">
-        select repo.language, count(1) as cnt
-        from gfi.issue_v issue
-        inner join gfi.repository_v repo on issue.repository_id = repo.id
-        group by repo.language
-        order by cnt desc
+        SELECT issue.language
+        FROM gfi.issue_v issue
+        WHERE issue.language IS NOT NULL
+        GROUP BY issue.language
+        ORDER BY COUNT(1) DESC
     </select>
+
 
     <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.DataRequestDto">
         SELECT ei.url

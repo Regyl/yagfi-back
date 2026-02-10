@@ -80,6 +80,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "zerobak13",
+      "name": "박제영",
+      "avatar_url": "https://avatars.githubusercontent.com/u/143867779?v=4",
+      "profile": "https://zerobak13.github.io",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,

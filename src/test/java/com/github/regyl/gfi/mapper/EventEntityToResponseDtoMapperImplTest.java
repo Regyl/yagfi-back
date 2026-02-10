@@ -19,8 +19,6 @@ class EventEntityToResponseDtoMapperImplTest {
     @InjectMocks
     private EventEntityToResponseDtoMapperImpl mapper;
 
-
-
     @Test
     void apply_nullInput_returnsNull() {
         assertThat(mapper.apply(null)).isNull();

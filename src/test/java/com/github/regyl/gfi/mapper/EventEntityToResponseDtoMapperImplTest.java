@@ -6,16 +6,23 @@ import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import com.github.regyl.gfi.annotation.DefaultUnitTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@DefaultUnitTest
+@ExtendWith(MockitoExtension.class)
 class EventEntityToResponseDtoMapperImplTest {
+    @InjectMocks
+    private EventEntityToResponseDtoMapperImpl mapper;
 
-    private final EventEntityToResponseDtoMapperImpl mapper =
-            new EventEntityToResponseDtoMapperImpl();
+
 
     @Test
     void apply_nullInput_returnsNull() {
-        assertNull(mapper.apply(null));
+        assertThat(mapper.apply(null)).isNull();
     }
 
     @Test
@@ -29,8 +36,8 @@ class EventEntityToResponseDtoMapperImplTest {
 
         EventResponseDto result = mapper.apply(entity);
 
-        assertNotNull(result);
-        assertEquals(entity.getSource(), result.getSource());
-        assertEquals(entity.getLastUpdateDttm(), result.getLastUpdateDttm());
+        assertThat(result).isNotNull();
+        assertThat(result.getSource()).isEqualTo(entity.getSource());
+        assertThat(result.getLastUpdateDttm()).isEqualTo(entity.getLastUpdateDttm());
     }
 }

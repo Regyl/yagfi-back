@@ -17,9 +17,9 @@ public class RepositoryMapperImpl implements Function<GithubRepositoryDto, Repos
 
     @Override
     public RepositoryEntity apply(GithubRepositoryDto dto) {
-        if (dto == null) return null;
-
-
+        if (dto == null) {
+            return null;
+        }
         String primaryLanguage = dto.getPrimaryLanguage() == null ? null : dto.getPrimaryLanguage().getName();
         String license = dto.getLicenseInfo() == null ? null : dto.getLicenseInfo().getName();
         return RepositoryEntity.builder()

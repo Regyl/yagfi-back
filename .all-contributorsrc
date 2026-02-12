@@ -91,6 +91,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "PedroAlex65",
+      "name": "Pedro Alex",
+      "avatar_url": "https://avatars.githubusercontent.com/u/113649289?v=4",
+      "profile": "https://www.linkedin.com/in/pedro-alex-rosa-brito-63749b235",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,

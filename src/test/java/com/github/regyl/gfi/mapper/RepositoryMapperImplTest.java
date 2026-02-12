@@ -20,18 +20,15 @@ import static org.mockito.Mockito.when;
  class RepositoryMapperImplTest {
     @InjectMocks
     private RepositoryMapperImpl repositoryMapper;
-
     @Mock
     private Supplier<OffsetDateTime> dateTimeSupplier;
-
     @Test
-    public void resultNullTest() {
+     void resultNullTest() {
         RepositoryEntity result = repositoryMapper.apply(null);
         assertNull(result, "Mapping a null input should return null");
     }
-
     @Test
-    public void shouldMapFullDtoToRepositoryEntity() {
+     void shouldMapFullDtoToRepositoryEntity() {
         GithubRepositoryDto dto = new GithubRepositoryDto();
         dto.setId("1");
         dto.setNameWithOwner("Regyl/project");
@@ -49,5 +46,4 @@ import static org.mockito.Mockito.when;
         assertEquals("Um projeto icrivel", resultado.getDescription());
         assertEquals(now, resultado.getCreated());
     }
-
 }

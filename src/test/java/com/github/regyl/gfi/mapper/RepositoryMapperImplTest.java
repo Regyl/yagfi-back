@@ -6,13 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.OffsetDateTime;
 import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class RepositoryMapperImplTest {
@@ -22,28 +25,23 @@ public class RepositoryMapperImplTest {
     @Mock
     private Supplier<OffsetDateTime> dateTimeSupplier;
 
-
     @Test
     public void resultNullTest() {
         RepositoryEntity result = repositoryMapper.apply(null);
-        assertNull(result, "O Mapeamento de entrada nula deve retornar nulo");
+        assertNull(result, "Mapping a null input should return null");
     }
 
     @Test
     public void shouldMapFullDtoToRepositoryEntity() {
-
         GithubRepositoryDto dto = new GithubRepositoryDto();
         dto.setId("1");
         dto.setNameWithOwner("Regyl/project");
         dto.setUrl("https://github.com/Regyl/gfi");
         dto.setStargazerCount(100);
         dto.setDescription("Um projeto icrivel");
-
         OffsetDateTime now = OffsetDateTime.now();
-        Mockito.when(dateTimeSupplier.get()).thenReturn(now);
-
+        when(dateTimeSupplier.get()).thenReturn(now);
         RepositoryEntity resultado = repositoryMapper.apply(dto);
-
         assertNotNull(resultado, "The result must not be null.");
         assertEquals("1", resultado.getSourceId());
         assertEquals("Regyl/project", resultado.getTitle());
@@ -52,4 +50,5 @@ public class RepositoryMapperImplTest {
         assertEquals("Um projeto icrivel", resultado.getDescription());
         assertEquals(now, resultado.getCreated());
     }
+
 }

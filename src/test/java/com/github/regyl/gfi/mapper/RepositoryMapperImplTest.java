@@ -39,7 +39,7 @@ class RepositoryMapperImplTest {
         dto.setNameWithOwner("Regyl/project");
         dto.setUrl("https://github.com/Regyl/gfi");
         dto.setStargazerCount(100);
-        dto.setDescription("Um projeto icrivel");
+        dto.setDescription("A great repository description");
 
         OffsetDateTime now = OffsetDateTime.now();
         when(dateTimeSupplier.get()).thenReturn(now);
@@ -53,7 +53,7 @@ class RepositoryMapperImplTest {
         assertThat(resultado.getTitle()).isEqualTo("Regyl/project");
         assertThat(resultado.getUrl()).isEqualTo("https://github.com/Regyl/gfi");
         assertThat(resultado.getStars()).isEqualTo(100);
-        assertThat(resultado.getDescription()).isEqualTo("Um projeto incrivel");
+        assertThat(resultado.getDescription()).isEqualTo("A great repository description");
         assertThat(resultado.getCreated()).isEqualTo(now);
     }
 }

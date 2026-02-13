@@ -20,8 +20,8 @@ import java.util.function.Supplier;
 @RequiredArgsConstructor
 public class IssueMapperImpl implements BiFunction<Map<String, RepositoryEntity>, GithubIssueDto, IssueEntity> {
 
-    private static final LanguageDetector LANGUAGE_DETECTOR = LanguageDetectorBuilder.fromAllLanguages()
-            .withLowAccuracyMode()
+    private static final LanguageDetector LANGUAGE_DETECTOR = LanguageDetectorBuilder
+            .fromAllLanguages()
             .build();
 
     private final Supplier<OffsetDateTime> dateTimeSupplier;

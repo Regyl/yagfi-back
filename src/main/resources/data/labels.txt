@@ -51,3 +51,4 @@ up-for-grabs
 help wanted
 help-wanted
 Help Wanted
+kind/quick-win

@@ -5,6 +5,7 @@ import com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.repository.DataRepository;
 import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
+import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.List;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -169,11 +173,50 @@ class DataRepositoryTest {
     }
 
     private void insertRepository(Long id, String sourceId, String license) {
+    @Nested
+    class FindAllLabelsTest {
+
+        @Test
+        void testFindAllLabelsWhenNoData() {
+            List<LabelStatisticResponseDto> labels = dataRepository.findAllLabels();
+
+            assertThat(labels).isEmpty();
+        }
+
+        @Test
+        void testFindAllLabels() {
+            insertRepository(1L, "repo1", "Apache-2.0");
+            insertRepository(2L, "repo2", "MIT");
+
+            insertIssue("sourceId1", 1L, List.of("Label1", "Label2"));
+            insertIssue("sourceId2", 1L, List.of("Label1"));
+            insertIssue("sourceId3", 1L, List.of("Label1"));
+            insertIssue("sourceId4", 2L, List.of("Label1"));
+            insertIssue("sourceId5", 2L, List.of("Label2"));
+
+            List<LabelStatisticResponseDto> labels = dataRepository.findAllLabels();
+
+            Map<String, Long> result =
+                    labels.stream()
+                            .collect(Collectors.toMap(
+                                    LabelStatisticResponseDto::getLabel,
+                                    LabelStatisticResponseDto::getCount
+                            ));
+
+
+            assertThat(result)
+                    .hasSize(2)
+                    .containsEntry("Label1", 4L)
+                    .containsEntry("Label2", 2L);
+        }
+    }
+
+    private void insertRepository(Long id, String sourceId, String license) {
         jdbcTemplate.update(
                 "INSERT INTO gfi.e_repository_1 "
-                        + "(source_id, title, url, stars, license) "
-                        + "VALUES (?, ?, ?, ?, ?)",
-                sourceId, "title-" + sourceId,
+                        + "(id, source_id, title, url, stars, license) "
+                        + "VALUES (?, ?, ?, ?, ?, ?)",
+                id, sourceId, "title-" + sourceId,
                 "https://github.com/" + sourceId, 100, license
         );
     }

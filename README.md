@@ -9,7 +9,7 @@ YAGFI - yet another good first issue
 
 <!-- TOC -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 * [Introduction](#introduction)
   * [Why yet another good-first-issue project?](#why-yet-another-good-first-issue-project)
@@ -79,6 +79,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dhruvg-ship-it"><img src="https://avatars.githubusercontent.com/u/236444300?v=4?s=100" width="100px;" alt="Dhruv Gupta"/><br /><sub><b>Dhruv Gupta</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=dhruvg-ship-it" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://zerobak13.github.io"><img src="https://avatars.githubusercontent.com/u/143867779?v=4?s=100" width="100px;" alt="박제영"/><br /><sub><b>박제영</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=zerobak13" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/pedro-alex-rosa-brito-63749b235"><img src="https://avatars.githubusercontent.com/u/113649289?v=4?s=100" width="100px;" alt="Pedro Alex"/><br /><sub><b>Pedro Alex</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=PedroAlex65" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/janhlavati"><img src="https://avatars.githubusercontent.com/u/71602504?v=4?s=100" width="100px;" alt="Jan Hlavati"/><br /><sub><b>Jan Hlavati</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=janhlavati" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>

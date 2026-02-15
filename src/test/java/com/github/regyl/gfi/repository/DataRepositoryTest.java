@@ -67,6 +67,46 @@ class DataRepositoryTest {
         }
     }
 
+    @Nested
+    class FindAllIssueLanguages {
+
+        @Test
+        void testOrderedByFrequency() {
+
+            insertRepository("main-repo", "MIT");
+
+            insertIssue("Java");
+            insertIssue("Python");
+            insertIssue("Java");
+            insertIssue("JavaScript");
+            insertIssue("Java");
+            insertIssue("Python");
+            insertIssue(null);
+
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+            assertThat(languages).containsExactly("Java", "Python", "JavaScript");
+        }
+
+        @Test
+        void testEmptyWhenNoData() {
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+            assertThat(languages).isEmpty();
+        }
+    }
+
+    private void insertIssue(String language) {
+        String randomId = java.util.UUID.randomUUID().toString();
+        jdbcTemplate.update(
+                "INSERT INTO gfi.e_issue_1 (source_id, title, url, updated_at, created_at, repository_id, language) "
+                        + "VALUES (?, ?, ?, NOW(), NOW(), (SELECT id FROM gfi.e_repository_1 LIMIT 1), ?)",
+                randomId,
+                "Title " + randomId,
+                "http://github.com" + randomId,
+                language
+        );
+    }
+
+
     private void insertRepository(String sourceId, String license) {
         jdbcTemplate.update(
                 "INSERT INTO gfi.e_repository_1 "

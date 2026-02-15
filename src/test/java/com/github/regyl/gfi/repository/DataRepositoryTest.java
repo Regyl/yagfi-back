@@ -67,6 +67,38 @@ class DataRepositoryTest {
         }
     }
 
+    @Nested
+    class FindAllIssueLanguages {
+
+        @Test
+        void testOrderedByFrequency() {
+            insertIssue("Java");
+            insertIssue("Python");
+            insertIssue("Java");
+            insertIssue("JavaScript");
+            insertIssue("Java");
+            insertIssue("Python");
+            insertIssue(null);
+
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+            assertThat(languages).containsExactly("Java", "Python", "JavaScript");
+        }
+
+        @Test
+        void testEmptyWhenNoData() {
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+            assertThat(languages).isEmpty();
+        }
+    }
+
+    private void insertIssue(String language) {
+        jdbcTemplate.update(
+                "INSERT INTO gfi.e_issue_1 (language, ...) VALUES (?, ...)",
+                language
+        );
+    }
+
+
     private void insertRepository(String sourceId, String license) {
         jdbcTemplate.update(
                 "INSERT INTO gfi.e_repository_1 "

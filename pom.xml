@@ -26,6 +26,7 @@
         <purl.version>1.5.0</purl.version>
         <lingua.version>1.2.2</lingua.version>
         <guava.version>33.5.0-jre</guava.version>
+        <caffeine.version>3.2.3</caffeine.version>
 
         <!--tests-->
         <assertj.version>3.27.7</assertj.version>
@@ -159,6 +160,11 @@
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine.version}</version>
         </dependency>
 
 

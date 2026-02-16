@@ -32,7 +32,10 @@ class LinkUtilTest {
                 Arguments.of("git://github.com/ckknight/random-js", "https://github.com/ckknight/random-js"),
                 Arguments.of("https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.scandir", "https://github.com/nodelib/nodelib"),
                 Arguments.of("scm:git@github.com:Netflix/netflix-commons", "https://github.com/Netflix/netflix-commons"),
-                Arguments.of("git@github.com:cdi-spec/cdi", "https://github.com/cdi-spec/cdi")
+                Arguments.of("git@github.com:cdi-spec/cdi", "https://github.com/cdi-spec/cdi"),
+                Arguments.of("https://github.com/jboss-logging/jboss-logging/tree/main/", "https://github.com/jboss-logging/jboss-logging"),
+                Arguments.of("https://github.com/mybatis/spring/", "https://github.com/mybatis/spring"),
+                Arguments.of("https://github.com/RustCrypto/formats/tree/master/pkcs1", "https://github.com/RustCrypto/formats")
         );
     }
 }

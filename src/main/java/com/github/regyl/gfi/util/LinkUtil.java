@@ -43,9 +43,13 @@ public class LinkUtil {
             url = url.substring(0, dotGitIndex);
         }
 
-        int treeIndex = url.indexOf("/tree/master");
+        int treeIndex = url.indexOf("/tree");
         if (treeIndex != -1) {
             url = url.substring(0, treeIndex);
+        }
+
+        if (url.endsWith("/")) {
+            url = url.substring(0, url.length() - 1);
         }
 
         return url;

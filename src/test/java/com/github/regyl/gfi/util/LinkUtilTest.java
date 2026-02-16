@@ -35,7 +35,8 @@ class LinkUtilTest {
                 Arguments.of("git@github.com:cdi-spec/cdi", "https://github.com/cdi-spec/cdi"),
                 Arguments.of("https://github.com/jboss-logging/jboss-logging/tree/main/", "https://github.com/jboss-logging/jboss-logging"),
                 Arguments.of("https://github.com/mybatis/spring/", "https://github.com/mybatis/spring"),
-                Arguments.of("https://github.com/RustCrypto/formats/tree/master/pkcs1", "https://github.com/RustCrypto/formats")
+                Arguments.of("https://github.com/RustCrypto/formats/tree/master/pkcs1", "https://github.com/RustCrypto/formats"),
+                Arguments.of("https://github.com/emotion-js/emotion/tree/main/packages/react", "https://github.com/emotion-js/emotion")
         );
     }
 }

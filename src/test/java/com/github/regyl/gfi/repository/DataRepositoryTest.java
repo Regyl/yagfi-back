@@ -1,5 +1,7 @@
 package com.github.regyl.gfi.repository;
-
+import java.util.List;
+import com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto;
+import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.annotation.DefaultIntegrationTest;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -66,7 +68,31 @@ class DataRepositoryTest {
             assertThat(licenses).isEmpty();
         }
     }
+	@Nested
+    	class FindAllIssues {
 
+        	@Test
+       	 	void testReturnsIssuesWithNoFilters() {
+            	long repoId1 = insertRepositoryWithDetails("repo1", "Java", "MIT", 100);
+            	long repoId2 = insertRepositoryWithDetails("repo2", "Python", "Apache-2.0", 200);
+            
+            	insertIssue("issue1", "First Issue", repoId1, new String[]{"bug", "good-first-issue"}, "Java");
+            	insertIssue("issue2", "Second Issue", repoId2, new String[]{"enhancement"}, "Python");
+            
+            	DataRequestDto request = new DataRequestDto();
+            	List<IssueResponseDto> issues = dataRepository.findAllIssues(request);
+            
+            	assertThat(issues).hasSize(2);
+        }
+
+        @Test
+        void testEmptyWhenNoData() {
+            DataRequestDto request = new DataRequestDto();
+            List<IssueResponseDto> issues = dataRepository.findAllIssues(request);
+            
+            assertThat(issues).isEmpty();
+        }
+    }
     private void insertRepository(String sourceId, String license) {
         jdbcTemplate.update(
                 "INSERT INTO gfi.e_repository_1 "
@@ -74,6 +100,29 @@ class DataRepositoryTest {
                         + "VALUES (?, ?, ?, ?, ?)",
                 sourceId, "title-" + sourceId,
                 "https://github.com/" + sourceId, 100, license
+        );
+    }
+private long insertRepositoryWithDetails(String sourceId, String language, String license, int stars) {
+        jdbcTemplate.update(
+                "INSERT INTO gfi.e_repository_1 "
+                        + "(source_id, title, url, stars, description, language, license) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                sourceId, "title-" + sourceId,
+                "https://github.com/" + sourceId, stars, "Description for " + sourceId, language, license
+        );
+        return jdbcTemplate.queryForObject(
+                "SELECT id FROM gfi.e_repository_1 WHERE source_id = ?",
+                Long.class, sourceId
+        );
+    }
+
+    private void insertIssue(String sourceId, String title, long repositoryId, String[] labels, String language) {
+        jdbcTemplate.update(
+                "INSERT INTO gfi.e_issue_1 "
+                        + "(source_id, title, url, updated_at, created_at, repository_id, labels, language) "
+                        + "VALUES (?, ?, ?, NOW(), NOW(), ?, ?, ?)",
+                sourceId, title,
+                "https://github.com/test/" + sourceId, repositoryId, labels, language
         );
     }
 }

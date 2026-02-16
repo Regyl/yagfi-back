@@ -5,6 +5,7 @@ import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
 import com.github.regyl.gfi.controller.dto.request.issue.IssueRequestDto;
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.service.github.GithubClientService;
+import com.github.regyl.gfi.service.impl.GithubRetryService;
 import com.github.regyl.gfi.service.issueload.issuesource.github.runnable.RunnableManagerService;
 import com.github.regyl.gfi.service.other.DataService;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +30,14 @@ public class GithubIIssueRunnableManagerServiceImpl implements RunnableManagerSe
     //dependencies for runnable
     private final GithubClientService<IssueRequestDto, IssueDataDto> githubClient;
     private final DataService dataService;
+    
+    private final GithubRetryService retryService;
 
     @Override
     public Collection<CompletableFuture<Void>> apply(IssueTables table, BlockingQueue<IssueRequestDto> queries) {
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         for (int i = 0; i < configProps.getCorePoolSize(); i++) {
-            Runnable runnable = new GithubIssueRunnableImpl(table, queries, dataService, githubClient);
+            Runnable runnable = new GithubIssueRunnableImpl(table, queries, dataService, githubClient,retryService);
             CompletableFuture<Void> future = CompletableFuture.runAsync(runnable, executor);
             futures.add(future);
         }

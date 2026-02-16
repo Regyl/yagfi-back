@@ -5,6 +5,7 @@ import com.github.regyl.gfi.controller.dto.request.issue.IssueRequestDto;
 import com.github.regyl.gfi.exception.RateLimitExceedException;
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.service.github.GithubClientService;
+import com.github.regyl.gfi.service.impl.GithubRetryService;
 import com.github.regyl.gfi.service.other.DataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ public class GithubIssueRunnableImpl implements Runnable {
     //services
     private final DataService dataService;
     private final GithubClientService<IssueRequestDto, IssueDataDto> githubClient;
+    private final GithubRetryService retryService;
 
     @Override
     public void run() {
@@ -47,7 +49,7 @@ public class GithubIssueRunnableImpl implements Runnable {
             }
 
             try {
-                IssueDataDto response = githubClient.execute(task);
+            	IssueDataDto response = retryService.fetchWithRetry(task);
                 dataService.save(response, table);
 
                 if (response.hasNextPage()) {
@@ -63,6 +65,8 @@ public class GithubIssueRunnableImpl implements Runnable {
             }
         }
     }
+    
+   
 }
 
 

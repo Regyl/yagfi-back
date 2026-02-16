@@ -1,8 +1,20 @@
 <!-- TOC -->
 * [Contributing to YAGFI](#contributing-to-yagfi)
+  * [Local Development Setup](#local-development-setup)
+    * [Required Environment Variables](#required-environment-variables)
   * [Suggest labels](#suggest-labels)
   * [Frontend issues](#frontend-issues)
   * [Backend issues](#backend-issues)
+* [Testing](#testing)
+  * [Running tests](#running-tests)
+  * [Integration tests](#integration-tests)
+    * [Writing a new integration test](#writing-a-new-integration-test)
+  * [Unit tests](#unit-tests)
+    * [Structure](#structure)
+    * [Naming](#naming)
+    * [Assertions](#assertions)
+    * [Test body](#test-body)
+    * [Example](#example)
 * [AI](#ai)
   * [Why fully AI-generated PRs without understanding are not helpful](#why-fully-ai-generated-prs-without-understanding-are-not-helpful)
 <!-- TOC -->
@@ -10,6 +22,17 @@
 # Contributing to YAGFI
 The YAGFI project welcomes contributions from everyone. There are a number of ways you 
 can help:
+
+## Local Development Setup
+
+### Required Environment Variables
+
+Ensure the following environment variables are set before running the application:
+
+| Variable        | Description                                      | How to obtain                                                               |
+|-----------------|--------------------------------------------------|-----------------------------------------------------------------------------|
+| `GithubBearer`  | GitHub personal access token for GraphQL API     | [Create token](https://github.com/settings/tokens) with `public_repo` scope |
+| `IP_INFO_TOKEN` | ipinfo.io API token for IP-to-country resolution | [Sign up at ipinfo.io](https://ipinfo.io/signup) (free tier: 50k req/month) |
 
 ## Suggest labels
 Feel free to open an issue with *another one* custom good-first-issue label with example 
@@ -56,6 +79,46 @@ more methods are covered.
 4. Test classes must be **package-private** (no `public` modifier) per the project's checkstyle rules.
 
 See `DataRepositoryTest` for a working example.
+
+## Unit tests
+
+Unit tests use Mockito for mocking. Key conventions:
+
+### Structure
+- Annotate with `@DefaultUnitTest` (bundles Mockito extension + strict stubs)
+- Test classes must be **package-private** (checkstyle rule)
+- Use `@Mock` for dependencies, `@InjectMocks` for the class under test
+- Place test class in the same package as the class under test
+
+### Naming
+- **Test methods**: `methodName_condition_expectedBehavior`
+  - e.g., `getCountry_clientReturnsValidResponse_returnsCountryString`
+  - e.g., `getCountry_clientThrowsException_returnsNull`
+- **Test class**: `{ClassUnderTest}Test`
+
+### Assertions
+- Use AssertJ fluent assertions (`assertThat`)
+- One logical assertion per test; chained assertions on the same object are fine
+
+### Test body
+- Follow **Arrange / Act / Assert** structure, separated by blank lines — no explicit comments needed
+- The test name and structure should be self-documenting
+
+### Example
+```java
+@Test
+void getCountry_clientReturnsValidResponse_returnsCountryString() {
+    when(ipInfoConfig.getToken()).thenReturn("test-token");
+    when(ipInfoClient.getIpInfo("Bearer test-token", "1.2.3.4"))
+            .thenReturn(new IpInfoResponseDto("US"));
+
+    String result = ipInfoService.getCountry("1.2.3.4");
+
+    assertThat(result).isEqualTo("US");
+}
+```
+
+See `IpInfoServiceImplTest` for a working example.
 
 # AI
 The era we just entered is AI-powered, and it's okay. The question is: do you primarily a developer, 

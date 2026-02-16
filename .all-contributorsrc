@@ -100,6 +100,24 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "janhlavati",
+      "name": "Jan Hlavati",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71602504?v=4",
+      "profile": "https://github.com/janhlavati",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "Akash073-hub",
+      "name": "akash bhat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/196612145?v=4",
+      "profile": "https://www.hackerrank.com/profile/akashramachandr2",
+      "contributions": [
+        "data"
+      ]
     }
   ],
   "contributorsPerLine": 7,

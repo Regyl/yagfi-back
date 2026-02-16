@@ -1,4 +1,5 @@
 package com.github.regyl.gfi.repository;
+
 import java.util.List;
 import com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto;
 import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
@@ -68,21 +69,49 @@ class DataRepositoryTest {
             assertThat(licenses).isEmpty();
         }
     }
-	@Nested
-    	class FindAllIssues {
 
-        	@Test
-       	 	void testReturnsIssuesWithNoFilters() {
-            	long repoId1 = insertRepositoryWithDetails("repo1", "Java", "MIT", 100);
-            	long repoId2 = insertRepositoryWithDetails("repo2", "Python", "Apache-2.0", 200);
+    @Nested
+    class FindAllIssueLanguages {
+
+        @Test
+        void testOrderedByFrequency() {
+            long repoId = insertRepositoryWithDetails("main-repo", "Java", "MIT", 100);
+
+            insertIssue("issue1", "Issue 1", repoId, new String[]{}, "Java");
+            insertIssue("issue2", "Issue 2", repoId, new String[]{}, "Python");
+            insertIssue("issue3", "Issue 3", repoId, new String[]{}, "Java");
+            insertIssue("issue4", "Issue 4", repoId, new String[]{}, "JavaScript");
+            insertIssue("issue5", "Issue 5", repoId, new String[]{}, "Java");
+            insertIssue("issue6", "Issue 6", repoId, new String[]{}, "Python");
+            insertIssue("issue7", "Issue 7", repoId, new String[]{}, null);
+
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+            assertThat(languages).containsExactly("Java", "Python", "JavaScript");
+        }
+
+        @Test
+        void testEmptyWhenNoData() {
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+
+            assertThat(languages).isEmpty();
+        }
+    }
+
+    @Nested
+    class FindAllIssues {
+
+        @Test
+        void testReturnsIssuesWithNoFilters() {
+            long repoId1 = insertRepositoryWithDetails("repo1", "Java", "MIT", 100);
+            long repoId2 = insertRepositoryWithDetails("repo2", "Python", "Apache-2.0", 200);
             
-            	insertIssue("issue1", "First Issue", repoId1, new String[]{"bug", "good-first-issue"}, "Java");
-            	insertIssue("issue2", "Second Issue", repoId2, new String[]{"enhancement"}, "Python");
+            insertIssue("issue1", "First Issue", repoId1, new String[]{"bug", "good-first-issue"}, "Java");
+            insertIssue("issue2", "Second Issue", repoId2, new String[]{"enhancement"}, "Python");
             
-            	DataRequestDto request = new DataRequestDto();
-            	List<IssueResponseDto> issues = dataRepository.findAllIssues(request);
+            DataRequestDto request = new DataRequestDto();
+            List<IssueResponseDto> issues = dataRepository.findAllIssues(request);
             
-            	assertThat(issues).hasSize(2);
+            assertThat(issues).hasSize(2);
         }
 
         @Test
@@ -93,6 +122,7 @@ class DataRepositoryTest {
             assertThat(issues).isEmpty();
         }
     }
+
     private void insertRepository(String sourceId, String license) {
         jdbcTemplate.update(
                 "INSERT INTO gfi.e_repository_1 "
@@ -102,7 +132,8 @@ class DataRepositoryTest {
                 "https://github.com/" + sourceId, 100, license
         );
     }
-private long insertRepositoryWithDetails(String sourceId, String language, String license, int stars) {
+
+    private long insertRepositoryWithDetails(String sourceId, String language, String license, int stars) {
         jdbcTemplate.update(
                 "INSERT INTO gfi.e_repository_1 "
                         + "(source_id, title, url, stars, description, language, license) "

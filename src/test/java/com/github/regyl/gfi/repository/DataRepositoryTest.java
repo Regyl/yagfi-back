@@ -1,5 +1,7 @@
 package com.github.regyl.gfi.repository;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -20,8 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @DefaultIntegrationTest
 @SpringBootTest

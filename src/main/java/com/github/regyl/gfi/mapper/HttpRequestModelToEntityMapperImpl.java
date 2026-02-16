@@ -2,6 +2,7 @@ package com.github.regyl.gfi.mapper;
 
 import com.github.regyl.gfi.entity.LogEntity;
 import com.github.regyl.gfi.model.HttpRequestModel;
+import com.github.regyl.gfi.service.ipinfo.IpInfoService;
 import com.github.regyl.gfi.util.UserAgentUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import java.util.function.Function;
 @Component
 @RequiredArgsConstructor
 public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestModel, LogEntity> {
+
+    private final IpInfoService ipInfoService;
 
     @Override
     public LogEntity apply(HttpRequestModel model) {
@@ -35,7 +38,7 @@ public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestM
     }
 
     private String getCountryFromRequest(HttpServletRequest request) {
-        return null; //TODO no way to get country properly
+        return ipInfoService.getCountry(request.getRemoteAddr());
     }
 
     private String getFullRequestUrl(HttpServletRequest request) {

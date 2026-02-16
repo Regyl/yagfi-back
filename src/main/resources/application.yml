@@ -7,6 +7,9 @@ spring:
     host-name: ${APP_HOST_NAME}
     github:
       token: ${GithubBearer}
+    ipinfo:
+      token: ${IP_INFO_TOKEN}
+      cache-size: ${IP_INFO_CACHE_SIZE:1000}
     async:
       max-pool-size: 10
       core-pool-size: 5

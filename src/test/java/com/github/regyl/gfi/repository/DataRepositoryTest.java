@@ -1,3 +1,5 @@
+package com.github.regyl.gfi.repository;
+
 import java.util.Collection;
 import java.util.List;
 

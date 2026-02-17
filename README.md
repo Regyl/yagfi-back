@@ -9,7 +9,7 @@ YAGFI - yet another good first issue
 
 <!-- TOC -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 * [Introduction](#introduction)
   * [Why yet another good-first-issue project?](#why-yet-another-good-first-issue-project)
@@ -82,6 +82,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/janhlavati"><img src="https://avatars.githubusercontent.com/u/71602504?v=4?s=100" width="100px;" alt="Jan Hlavati"/><br /><sub><b>Jan Hlavati</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=janhlavati" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.hackerrank.com/profile/akashramachandr2"><img src="https://avatars.githubusercontent.com/u/196612145?v=4?s=100" width="100px;" alt="akash bhat"/><br /><sub><b>akash bhat</b></sub></a><br /><a href="#data-Akash073-hub" title="Data">🔣</a> <a href="https://github.com/Regyl/yagfi-back/commits?author=Akash073-hub" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/aljalo"><img src="https://avatars.githubusercontent.com/u/139382603?v=4?s=100" width="100px;" alt="Ali Al-Jalo"/><br /><sub><b>Ali Al-Jalo</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=aljalo" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/akilan590"><img src="https://avatars.githubusercontent.com/u/191360429?v=4?s=100" width="100px;" alt="Akilan"/><br /><sub><b>Akilan</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=akilan590" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>

@@ -13,9 +13,12 @@ import java.util.function.Function;
 @Component
 @RequiredArgsConstructor
 public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestModel, LogEntity> {
-
     @Override
     public LogEntity apply(HttpRequestModel model) {
+        if (model == null) {
+            return null;
+        }
+
         HttpServletRequest request = model.getRequest();
         String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
         String country = getCountryFromRequest(request);
@@ -35,7 +38,7 @@ public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestM
     }
 
     private String getCountryFromRequest(HttpServletRequest request) {
-        return null; //TODO no way to get country properly
+        return null; // TODO no way to get country properly
     }
 
     private String getFullRequestUrl(HttpServletRequest request) {

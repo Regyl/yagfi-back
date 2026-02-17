@@ -86,7 +86,7 @@
     FROM gfi.issue_v issue
     WHERE issue.language IS NOT NULL
     GROUP BY issue.language
-    ORDER BY COUNT(1) DESC
+    ORDER BY COUNT(1) DESC, issue.language ASC
   </select>
 
 

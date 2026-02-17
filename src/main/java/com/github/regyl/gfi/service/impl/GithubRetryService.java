@@ -18,12 +18,8 @@ public class GithubRetryService {
 
     private final GithubClientService<IssueRequestDto, IssueDataDto> githubClient;
 
-    @Retryable(
-        includes = { HttpServerErrorException.BadGateway.class },
-        maxRetries = 4,
-        delayString = "500ms",
-        multiplier = 1.5
-    )
+    @Retryable(includes = {
+            HttpServerErrorException.BadGateway.class }, maxRetries = 4, delayString = "500ms", multiplier = 1.5)
     public IssueDataDto fetchWithRetry(IssueRequestDto task) {
         log.info("Fetching issues for query: {}", task.getQuery());
         return githubClient.execute(task);

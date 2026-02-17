@@ -119,6 +119,15 @@
         "data",
         "test"
       ]
+    },
+    {
+      "login": "aljalo",
+      "name": "Ali Al-Jalo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/139382603?v=4",
+      "profile": "https://github.com/aljalo",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

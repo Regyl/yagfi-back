@@ -1,6 +1,10 @@
 package com.github.regyl.gfi.repository;
 
 import com.github.regyl.gfi.annotation.DefaultIntegrationTest;
+import com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto;
+import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
+import com.github.regyl.gfi.repository.DataRepository;
+import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
 import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -15,8 +19,11 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
-import java.sql.Array;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.List;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,13 +58,13 @@ class DataRepositoryTest {
 
         @Test
         void testOrderedByFrequency() {
-            insertRepository(1L, "repo1", "Apache-2.0");
-            insertRepository(2L, "repo2", "MIT");
-            insertRepository(3L, "repo3", "GPL-3.0");
-            insertRepository(4L, "repo4", "MIT");
-            insertRepository(5L, "repo5", "MIT");
-            insertRepository(6L, "repo6", "Apache-2.0");
-            insertRepository(7L, "repo7", null);
+            insertRepository("repo1", "Apache-2.0");
+            insertRepository("repo2", "MIT");
+            insertRepository("repo3", "GPL-3.0");
+            insertRepository("repo4", "MIT");
+            insertRepository("repo5", "MIT");
+            insertRepository("repo6", "Apache-2.0");
+            insertRepository("repo7", null);
 
             Collection<String> licenses = dataRepository.findAllLicenses();
 
@@ -73,6 +80,59 @@ class DataRepositoryTest {
     }
 
     @Nested
+    class FindAllIssueLanguages {
+
+        @Test
+        void testOrderedByFrequency() {
+            long repoId = insertRepositoryWithDetails("main-repo", "Java", "MIT", 100);
+
+            insertIssue("issue1", "Issue 1", repoId, new String[]{}, "Java");
+            insertIssue("issue2", "Issue 2", repoId, new String[]{}, "Python");
+            insertIssue("issue3", "Issue 3", repoId, new String[]{}, "Java");
+            insertIssue("issue4", "Issue 4", repoId, new String[]{}, "JavaScript");
+            insertIssue("issue5", "Issue 5", repoId, new String[]{}, "Java");
+            insertIssue("issue6", "Issue 6", repoId, new String[]{}, "Python");
+            insertIssue("issue7", "Issue 7", repoId, new String[]{}, null);
+
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+            assertThat(languages).containsExactly("Java", "Python", "JavaScript");
+        }
+
+        @Test
+        void testEmptyWhenNoData() {
+            Collection<String> languages = dataRepository.findAllIssueLanguages();
+
+            assertThat(languages).isEmpty();
+        }
+    }
+
+    @Nested
+    class FindAllIssues {
+
+        @Test
+        void testReturnsIssuesWithNoFilters() {
+            long repoId1 = insertRepositoryWithDetails("repo1", "Java", "MIT", 100);
+            long repoId2 = insertRepositoryWithDetails("repo2", "Python", "Apache-2.0", 200);
+
+            insertIssue("issue1", "First Issue", repoId1, new String[]{"bug", "good-first-issue"}, "Java");
+            insertIssue("issue2", "Second Issue", repoId2, new String[]{"enhancement"}, "Python");
+
+            DataRequestDto request = new DataRequestDto();
+            List<IssueResponseDto> issues = dataRepository.findAllIssues(request);
+
+            assertThat(issues).hasSize(2);
+        }
+
+        @Test
+        void testEmptyWhenNoData() {
+            DataRequestDto request = new DataRequestDto();
+            List<IssueResponseDto> issues = dataRepository.findAllIssues(request);
+
+            assertThat(issues).isEmpty();
+        }
+    }
+
+    @Nested
     class FindAllLabelsTest {
 
         @Test
@@ -84,14 +144,14 @@ class DataRepositoryTest {
 
         @Test
         void testFindAllLabels() {
-            insertRepository(1L, "repo1", "Apache-2.0");
-            insertRepository(2L, "repo2", "MIT");
+            long repoId1 = insertRepositoryWithDetails("repo1", "Java", "MIT", 100);
+            long repoId2 = insertRepositoryWithDetails("repo2", "Python", "Apache-2.0", 200);
 
-            insertIssue("sourceId1", 1L, List.of("Label1", "Label2"));
-            insertIssue("sourceId2", 1L, List.of("Label1"));
-            insertIssue("sourceId3", 1L, List.of("Label1"));
-            insertIssue("sourceId4", 2L, List.of("Label1"));
-            insertIssue("sourceId5", 2L, List.of("Label2"));
+            insertIssue("issue1", "First Issue", repoId1, new String[]{"Label1", "Label2"}, "Java");
+            insertIssue("issue2", "Second Issue", repoId1, new String[]{"Label1"}, "Python");
+            insertIssue("issue3", "Third Issue", repoId1, new String[]{"Label1"}, "Python");
+            insertIssue("issue4", "Fourth Issue", repoId2, new String[]{"Label1"}, "Python");
+            insertIssue("issue5", "Fifth Issue", repoId2, new String[]{"Label2"}, "Python");
 
             List<LabelStatisticResponseDto> labels = dataRepository.findAllLabels();
 
@@ -110,45 +170,37 @@ class DataRepositoryTest {
         }
     }
 
-    private void insertRepository(Long id, String sourceId, String license) {
+    private void insertRepository(String sourceId, String license) {
         jdbcTemplate.update(
                 "INSERT INTO gfi.e_repository_1 "
-                        + "(id, source_id, title, url, stars, license) "
-                        + "VALUES (?, ?, ?, ?, ?, ?)",
-                id, sourceId, "title-" + sourceId,
+                        + "(source_id, title, url, stars, license) "
+                        + "VALUES (?, ?, ?, ?, ?)",
+                sourceId, "title-" + sourceId,
                 "https://github.com/" + sourceId, 100, license
         );
     }
 
-    private void insertIssue(
-            String sourceId,
-            Long repositoryId,
-            List<String> labels
-    ) {
-        jdbcTemplate.update(connection -> {
-            var ps = connection.prepareStatement(
-                    "INSERT INTO gfi.e_issue_1 "
-                            + "(source_id, title, url, updated_at, created_at, repository_id, labels, language) "
-                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-            );
+    private long insertRepositoryWithDetails(String sourceId, String language, String license, int stars) {
+        jdbcTemplate.update(
+                "INSERT INTO gfi.e_repository_1 "
+                        + "(source_id, title, url, stars, description, language, license) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                sourceId, "title-" + sourceId,
+                "https://github.com/" + sourceId, stars, "Description for " + sourceId, language, license
+        );
+        return jdbcTemplate.queryForObject(
+                "SELECT id FROM gfi.e_repository_1 WHERE source_id = ?",
+                Long.class, sourceId
+        );
+    }
 
-            ps.setString(1, sourceId);
-            ps.setString(2, "title-" + sourceId);
-            ps.setString(3, "https://github.com/" + sourceId);
-            ps.setObject(4, java.time.OffsetDateTime.now());
-            ps.setObject(5, java.time.OffsetDateTime.now());
-            ps.setLong(6, repositoryId);
-
-            if (labels != null && !labels.isEmpty()) {
-                Array sqlArray = connection.createArrayOf("VARCHAR", labels.toArray(new String[0]));
-                ps.setArray(7, sqlArray);
-            } else {
-                ps.setArray(7, null);
-            }
-
-            ps.setString(8, "EN");
-
-            return ps;
-        });
+    private void insertIssue(String sourceId, String title, long repositoryId, String[] labels, String language) {
+        jdbcTemplate.update(
+                "INSERT INTO gfi.e_issue_1 "
+                        + "(source_id, title, url, updated_at, created_at, repository_id, labels, language) "
+                        + "VALUES (?, ?, ?, NOW(), NOW(), ?, ?, ?)",
+                sourceId, title,
+                "https://github.com/test/" + sourceId, repositoryId, labels, language
+        );
     }
 }

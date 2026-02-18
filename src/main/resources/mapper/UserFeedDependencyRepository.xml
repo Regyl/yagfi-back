@@ -29,12 +29,16 @@
 
     <select id="findSourceRepoStatisticsByRequestId" resultType="com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto">
         SELECT
-            source_repo as sourceRepo,
-            count(1) as count
-        FROM gfi.e_user_feed_dependency
-        WHERE request_id = #{requestId}
-        GROUP BY source_repo
-        ORDER BY count(1) DESC
+            e_dep.source_repo AS sourceRepo,
+            e_dep.dependency_url AS dependencyUrl,
+            count(iv.id) AS issueCnt,
+            rv.stars AS stars
+        FROM gfi.e_user_feed_dependency e_dep
+        LEFT JOIN gfi.repository_v rv ON e_dep.dependency_url = rv.url
+        LEFT JOIN gfi.issue_v iv ON rv.id = iv.repository_id
+        WHERE e_dep.request_id = #{requestId}
+        GROUP BY e_dep.source_repo, e_dep.dependency_url, rv.stars
+        ORDER BY rv.stars DESC NULLS LAST
     </select>
 
     <select id="findIssuesBySourceRepo" resultMap="IssueResponseResultMap">

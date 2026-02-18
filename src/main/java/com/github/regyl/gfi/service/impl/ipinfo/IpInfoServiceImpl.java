@@ -1,6 +1,5 @@
 package com.github.regyl.gfi.service.impl.ipinfo;
 
-import com.github.regyl.gfi.configuration.ipinfo.IpInfoConfigurationProperties;
 import com.github.regyl.gfi.controller.dto.external.ipinfo.IpInfoResponseDto;
 import com.github.regyl.gfi.feign.IpInfoClient;
 import com.github.regyl.gfi.service.ipinfo.IpInfoService;
@@ -18,16 +17,12 @@ public class IpInfoServiceImpl implements IpInfoService {
 
     private final IpInfoClient ipInfoClient;
 
-    private final IpInfoConfigurationProperties ipInfoConfig;
-
     @Override
     @Cacheable(cacheNames = "ipinfo", cacheManager = "ipInfoCacheManager",
             unless = "#result == null")
     public String getCountry(String ip) {
-        String authToken = "Bearer " + ipInfoConfig.getToken();
-
         try {
-            return Optional.ofNullable(ipInfoClient.getIpInfo(authToken, ip))
+            return Optional.ofNullable(ipInfoClient.getIpInfo(ip))
                     .map(IpInfoResponseDto::getCountry)
                     .orElse(null);
         } catch (Exception e) {

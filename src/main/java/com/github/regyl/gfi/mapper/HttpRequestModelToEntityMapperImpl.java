@@ -19,6 +19,10 @@ public class HttpRequestModelToEntityMapperImpl implements Function<HttpRequestM
 
     @Override
     public LogEntity apply(HttpRequestModel model) {
+        if (model == null) {
+            return null;
+        }
+
         HttpServletRequest request = model.getRequest();
         String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
         String country = getCountryFromRequest(request);

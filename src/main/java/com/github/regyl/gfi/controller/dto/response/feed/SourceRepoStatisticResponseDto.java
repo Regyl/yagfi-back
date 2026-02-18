@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 public class SourceRepoStatisticResponseDto {
 
     private String sourceRepo;
-    private Long count;
+    private String dependencyUrl;
+    private Long issueCnt;
+    private Long stars;
 }

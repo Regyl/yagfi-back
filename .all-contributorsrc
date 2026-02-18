@@ -116,7 +116,26 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/196612145?v=4",
       "profile": "https://www.hackerrank.com/profile/akashramachandr2",
       "contributions": [
-        "data"
+        "data",
+        "test"
+      ]
+    },
+    {
+      "login": "aljalo",
+      "name": "Ali Al-Jalo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/139382603?v=4",
+      "profile": "https://github.com/aljalo",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "akilan590",
+      "name": "Akilan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/191360429?v=4",
+      "profile": "https://github.com/akilan590",
+      "contributions": [
+        "test"
       ]
     }
   ],

@@ -137,6 +137,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "thebrodigy",
+      "name": "Billy Labay",
+      "avatar_url": "https://avatars.githubusercontent.com/u/254190372?v=4",
+      "profile": "https://www.linkedin.com/in/billy-labay",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,

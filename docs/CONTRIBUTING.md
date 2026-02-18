@@ -32,7 +32,7 @@ Ensure the following environment variables are set before running the applicatio
 | Variable        | Description                                      | How to obtain                                                               |
 |-----------------|--------------------------------------------------|-----------------------------------------------------------------------------|
 | `GithubBearer`  | GitHub personal access token for GraphQL API     | [Create token](https://github.com/settings/tokens) with `public_repo` scope |
-| `IP_INFO_TOKEN` | ipinfo.io API token for IP-to-country resolution | [Sign up at ipinfo.io](https://ipinfo.io/signup) (free tier: 50k req/month) |
+| `IP_INFO_TOKEN` | ipinfo.io API token for IP-to-country resolution | [Sign up at ipinfo.io](https://ipinfo.io/signup) (Lite plan: free, unlimited requests, country-level data) |
 
 ## Suggest labels
 Feel free to open an issue with *another one* custom good-first-issue label with example 
@@ -108,9 +108,9 @@ Unit tests use Mockito for mocking. Key conventions:
 ```java
 @Test
 void getCountry_clientReturnsValidResponse_returnsCountryString() {
-    when(ipInfoConfig.getToken()).thenReturn("test-token");
-    when(ipInfoClient.getIpInfo("Bearer test-token", "1.2.3.4"))
-            .thenReturn(new IpInfoResponseDto("US"));
+    IpInfoResponseDto response = new IpInfoResponseDto();
+    response.setCountry("US");
+    when(ipInfoClient.getIpInfo("1.2.3.4")).thenReturn(response);
 
     String result = ipInfoService.getCountry("1.2.3.4");
 

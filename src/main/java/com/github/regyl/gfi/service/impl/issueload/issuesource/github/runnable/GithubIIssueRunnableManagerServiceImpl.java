@@ -37,7 +37,7 @@ public class GithubIIssueRunnableManagerServiceImpl implements RunnableManagerSe
     public Collection<CompletableFuture<Void>> apply(IssueTables table, BlockingQueue<IssueRequestDto> queries) {
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         for (int i = 0; i < configProps.getCorePoolSize(); i++) {
-            Runnable runnable = new GithubIssueRunnableImpl(table, queries, dataService, githubClient,retryService);
+            Runnable runnable = new GithubIssueRunnableImpl(table, queries, dataService, githubClient, retryService);
             CompletableFuture<Void> future = CompletableFuture.runAsync(runnable, executor);
             futures.add(future);
         }

@@ -5,7 +5,6 @@ import com.github.regyl.gfi.controller.dto.request.issue.IssueRequestDto;
 import com.github.regyl.gfi.exception.RateLimitExceedException;
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.service.github.GithubClientService;
-import com.github.regyl.gfi.service.impl.GithubRetryService;
 import com.github.regyl.gfi.service.other.DataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +13,8 @@ import java.time.Duration;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
+
+import org.springframework.web.client.HttpServerErrorException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,8 +29,8 @@ public class GithubIssueRunnableImpl implements Runnable {
     //services
     private final DataService dataService;
     private final GithubClientService<IssueRequestDto, IssueDataDto> githubClient;
-    private final GithubRetryService retryService;
-
+    int attempt = 0;
+    
     @Override
     public void run() {
         AtomicInteger counter = new AtomicInteger(0);
@@ -49,14 +50,18 @@ public class GithubIssueRunnableImpl implements Runnable {
             }
 
             try {
-            	IssueDataDto response = retryService.fetchWithRetry(task);
+                
+            	IssueDataDto response = githubClient.execute(task);
                 dataService.save(response, table);
 
                 if (response.hasNextPage()) {
                     IssueRequestDto nextTask = new IssueRequestDto(task.getQuery(), response.getEndCursor());
                     queue.offer(nextTask);
                 }
-            } catch (RateLimitExceedException e) {
+            } 
+            catch (HttpServerErrorException.BadGateway e) {
+                log.error("Exceeded Bad Gateway Exception Retry {}", e.getMessage());
+              }catch (RateLimitExceedException e) {
                 log.error("Exceeded a secondary rate limit, return task to queue");
                 queue.offer(task);
                 LockSupport.parkNanos(Duration.ofSeconds(60).toNanos());

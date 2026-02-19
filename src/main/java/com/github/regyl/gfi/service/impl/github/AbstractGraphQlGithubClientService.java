@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.graphql.client.ClientGraphQlResponse;
 import org.springframework.graphql.client.GraphQlClient;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.Map;
 
@@ -22,13 +23,16 @@ public abstract class AbstractGraphQlGithubClientService<T, S> implements Github
     private RateLimiter rateLimiter;
     @Autowired
     private GraphQlClient githubClient;
-
     @Override
     public S execute(T rq) {
         Map<String, Object> variables = toVariables(rq);
         try {
             rateLimiter.acquire();
             return run0(variables);
+        }
+        catch (HttpServerErrorException.BadGateway e) {
+            log.error("Exceeded Bad Gateway Exception Retry limit: {}", e.getMessage());
+            throw e;
         } catch (HttpClientErrorException.Forbidden e) {
             //https://docs.github.com/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#secondary-rate-limits
             log.error("Exceeded a secondary rate limit: {}", e.getMessage());

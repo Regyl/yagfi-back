@@ -10,14 +10,19 @@ import java.time.OffsetDateTime;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-@Component
 @RequiredArgsConstructor
-public class UserFeedRequestDtoToEntityMapperImpl implements Function<UserFeedRequestDto, UserFeedRequestEntity> {
+@Component
+public class  UserFeedRequestDtoToEntityMapperImpl implements Function<UserFeedRequestDto, UserFeedRequestEntity> {
 
     private final Supplier<OffsetDateTime> dateTimeSupplier;
 
     @Override
     public UserFeedRequestEntity apply(UserFeedRequestDto dto) {
+        if (dto == null) {
+            return null;
+        }
+
+
         return UserFeedRequestEntity.builder()
                 .nickname(dto.getNickname())
                 .email(dto.getEmail())

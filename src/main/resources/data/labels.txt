@@ -38,4 +38,3 @@ up-for-grabs
 Help Wanted
 kind/quick-win
 documentation (cleanup)
-IdealFirstBug

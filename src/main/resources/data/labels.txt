@@ -54,3 +54,4 @@ Help Wanted
 kind/quick-win
 type: documentation (cleanup)
 IdealFirstBug
+discussion welcome

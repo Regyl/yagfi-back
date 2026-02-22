@@ -1,9 +1,15 @@
 beginner
+beginner friendly
 beginner-friendly
 code quality
 contribution
 contribution welcome
 difficulty:easy
+doc
+documentation
+component=docs
+Documentation
+type: documentation
 E-easy
 E-less-complex
 easy
@@ -17,14 +23,20 @@ starter issue
 first-contribution
 first-timers-only
 flag: good-first-issue
-Good First Issue
+good first bug
+good first issue
+Good first issue!
 Good First Task
+good-first-bug
+good-first-issue
 Great First Issue
 hacktoberfest
 hint/good first issue
 Junior Jobs
 level:starter
+low hanging fruit
 Low-Hanging Fruit
+low-hanging-fruit
 newbie
 newbie-friendly
 Newcomers
@@ -34,8 +46,11 @@ starter-task
 Status: Up for grabs
 status: ideal-for-contribution
 Suggested
+up for grabs
 up-for-grabs
+help wanted
+help-wanted
 Help Wanted
 kind/quick-win
-documentation (cleanup)
+type: documentation (cleanup)
 IdealFirstBug

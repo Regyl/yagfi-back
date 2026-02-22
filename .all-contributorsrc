@@ -146,6 +146,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "ByGamer01",
+      "name": "David ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/192821691?v=4",
+      "profile": "https://davidgil.netlify.app",
+      "contributions": [
+        "data"
+      ]
     }
   ],
   "contributorsPerLine": 7,

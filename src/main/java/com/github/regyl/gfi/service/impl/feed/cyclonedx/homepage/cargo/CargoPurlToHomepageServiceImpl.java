@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.service.impl.feed.cyclonedx.homepage.cargo;
 
 import com.github.packageurl.PackageURL;
-import com.github.regyl.gfi.controller.dto.external.crates.CratesIoResponseDto;
+import com.github.regyl.gfi.dto.external.crates.CratesIoResponseDto;
 import com.github.regyl.gfi.feign.CratesIoClient;
 import com.github.regyl.gfi.service.feed.PurlToHomepageService;
 import feign.FeignException;

@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.mapper;
 
-import com.github.regyl.gfi.controller.dto.github.issue.GithubRepositoryDto;
+import com.github.regyl.gfi.dto.github.issue.GithubRepositoryDto;
 import com.github.regyl.gfi.entity.RepositoryEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

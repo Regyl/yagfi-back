@@ -1,11 +1,9 @@
 package com.github.regyl.gfi.repository;
 
 import com.github.regyl.gfi.annotation.DefaultIntegrationTest;
-import com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto;
-import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
-import com.github.regyl.gfi.repository.DataRepository;
-import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
-import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
+import com.github.regyl.gfi.dto.request.issue.DataRequestDto;
+import com.github.regyl.gfi.dto.response.issue.IssueResponseDto;
+import com.github.regyl.gfi.dto.response.statistic.LabelStatisticResponseDto;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +18,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.List;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

@@ -1,13 +1,13 @@
 package com.github.regyl.gfi.service.impl.other;
 
-import com.github.regyl.gfi.controller.dto.github.issue.GithubIssueDto;
-import com.github.regyl.gfi.controller.dto.github.issue.GithubRepositoryDto;
-import com.github.regyl.gfi.controller.dto.github.issue.GithubSearchDto;
-import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
-import com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto;
-import com.github.regyl.gfi.controller.dto.response.issue.DataResponseDto;
-import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
-import com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto;
+import com.github.regyl.gfi.dto.github.issue.GithubIssueDto;
+import com.github.regyl.gfi.dto.github.issue.GithubRepositoryDto;
+import com.github.regyl.gfi.dto.github.issue.GithubSearchDto;
+import com.github.regyl.gfi.dto.github.issue.IssueDataDto;
+import com.github.regyl.gfi.dto.request.issue.DataRequestDto;
+import com.github.regyl.gfi.dto.response.issue.DataResponseDto;
+import com.github.regyl.gfi.dto.response.issue.IssueResponseDto;
+import com.github.regyl.gfi.dto.response.statistic.LabelStatisticResponseDto;
 import com.github.regyl.gfi.entity.IssueEntity;
 import com.github.regyl.gfi.entity.RepositoryEntity;
 import com.github.regyl.gfi.model.IssueTables;

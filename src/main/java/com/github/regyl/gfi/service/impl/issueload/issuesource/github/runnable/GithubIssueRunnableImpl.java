@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.service.impl.issueload.issuesource.github.runnable;
 
-import com.github.regyl.gfi.controller.dto.github.issue.IssueDataDto;
-import com.github.regyl.gfi.controller.dto.request.issue.IssueRequestDto;
+import com.github.regyl.gfi.dto.github.issue.IssueDataDto;
+import com.github.regyl.gfi.dto.request.issue.IssueRequestDto;
 import com.github.regyl.gfi.exception.RateLimitExceedException;
 import com.github.regyl.gfi.model.IssueTables;
 import com.github.regyl.gfi.service.github.GithubClientService;

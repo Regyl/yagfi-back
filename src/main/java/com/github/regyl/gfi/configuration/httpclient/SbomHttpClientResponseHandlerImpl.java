@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.configuration.httpclient;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
+import com.github.regyl.gfi.dto.cyclonedx.sbom.SbomResponseDto;
 import org.apache.hc.client5.http.impl.classic.AbstractHttpClientResponseHandler;
 import org.apache.hc.core5.annotation.Contract;
 import org.apache.hc.core5.annotation.ThreadingBehavior;

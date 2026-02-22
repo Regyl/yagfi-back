@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.impl.ipinfo;
 
-import com.github.regyl.gfi.controller.dto.external.ipinfo.IpInfoResponseDto;
+import com.github.regyl.gfi.dto.external.ipinfo.IpInfoResponseDto;
 import com.github.regyl.gfi.feign.IpInfoClient;
 import com.github.regyl.gfi.service.ipinfo.IpInfoService;
 import lombok.RequiredArgsConstructor;

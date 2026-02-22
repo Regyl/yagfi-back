@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.regyl.gfi.repository.UserFeedDependencyRepository">
 
-    <resultMap id="IssueResponseResultMap" type="com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto">
+    <resultMap id="IssueResponseResultMap" type="com.github.regyl.gfi.dto.response.issue.IssueResponseDto">
         <result property="issueId" column="issueId"/>
         <result property="issueTitle" column="issueTitle"/>
         <result property="issueUrl" column="issueUrl"/>
@@ -27,7 +27,7 @@
         ON CONFLICT (source_repo, dependency_url) DO NOTHING
     </insert>
 
-    <select id="findSourceRepoStatisticsByRequestId" resultType="com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto">
+    <select id="findSourceRepoStatisticsByRequestId" resultType="com.github.regyl.gfi.dto.response.feed.SourceRepoStatisticResponseDto">
         SELECT
             e_dep.source_repo AS sourceRepo,
             e_dep.dependency_url AS dependencyUrl,

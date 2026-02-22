@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.impl.github;
 
-import com.github.regyl.gfi.controller.dto.github.rest.GithubSearchResponseDto;
+import com.github.regyl.gfi.dto.github.rest.GithubSearchResponseDto;
 import com.github.regyl.gfi.exception.RateLimitExceedException;
 import com.github.regyl.gfi.model.MetadataRequestModel;
 import com.github.regyl.gfi.service.github.GithubClientService;

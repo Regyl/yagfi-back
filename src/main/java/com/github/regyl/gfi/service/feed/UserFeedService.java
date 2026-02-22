@@ -1,8 +1,8 @@
 package com.github.regyl.gfi.service.feed;
 
-import com.github.regyl.gfi.controller.dto.request.feed.UserFeedRequestDto;
-import com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto;
-import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
+import com.github.regyl.gfi.dto.request.feed.UserFeedRequestDto;
+import com.github.regyl.gfi.dto.response.feed.SourceRepoStatisticResponseDto;
+import com.github.regyl.gfi.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 
 import java.util.Collection;

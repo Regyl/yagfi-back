@@ -1,8 +1,8 @@
 package com.github.regyl.gfi.service.impl.feed.cyclonedx;
 
 import com.github.packageurl.PackageURL;
-import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomComponentDto;
-import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
+import com.github.regyl.gfi.dto.cyclonedx.sbom.SbomComponentDto;
+import com.github.regyl.gfi.dto.cyclonedx.sbom.SbomResponseDto;
 import com.github.regyl.gfi.entity.UserFeedDependencyEntity;
 import com.github.regyl.gfi.model.SbomModel;
 import com.github.regyl.gfi.repository.UserFeedDependencyRepository;

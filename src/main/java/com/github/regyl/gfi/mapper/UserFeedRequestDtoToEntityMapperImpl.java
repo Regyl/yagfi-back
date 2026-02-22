@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.mapper;
 
-import com.github.regyl.gfi.controller.dto.request.feed.UserFeedRequestDto;
+import com.github.regyl.gfi.dto.request.feed.UserFeedRequestDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import lombok.RequiredArgsConstructor;

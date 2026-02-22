@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.mapper;
 
-import com.github.regyl.gfi.controller.dto.response.EventResponseDto;
+import com.github.regyl.gfi.dto.response.EventResponseDto;
 import com.github.regyl.gfi.entity.EventEntity;
 import org.springframework.stereotype.Component;
 

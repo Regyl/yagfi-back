@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.feign;
 
-import com.github.regyl.gfi.controller.dto.external.crates.CratesIoResponseDto;
+import com.github.regyl.gfi.dto.external.crates.CratesIoResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

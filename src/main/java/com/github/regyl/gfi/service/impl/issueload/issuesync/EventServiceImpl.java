@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.impl.issueload.issuesync;
 
-import com.github.regyl.gfi.controller.dto.response.EventResponseDto;
+import com.github.regyl.gfi.dto.response.EventResponseDto;
 import com.github.regyl.gfi.entity.EventEntity;
 import com.github.regyl.gfi.exception.EventNotFoundException;
 import com.github.regyl.gfi.model.IssueSources;

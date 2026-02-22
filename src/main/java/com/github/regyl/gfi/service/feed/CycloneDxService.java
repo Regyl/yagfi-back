@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.service.feed;
 
-import com.github.regyl.gfi.controller.dto.cyclonedx.sbom.SbomResponseDto;
+import com.github.regyl.gfi.dto.cyclonedx.sbom.SbomResponseDto;
 import com.github.regyl.gfi.service.StatefulService;
 import org.apache.hc.core5.http.HttpHost;
 

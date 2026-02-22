@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.feign;
 
-import com.github.regyl.gfi.controller.dto.external.pypi.PypiResponseDto;
+import com.github.regyl.gfi.dto.external.pypi.PypiResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

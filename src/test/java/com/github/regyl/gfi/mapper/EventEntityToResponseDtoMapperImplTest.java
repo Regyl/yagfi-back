@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.mapper;
 
 import com.github.regyl.gfi.annotation.DefaultUnitTest;
-import com.github.regyl.gfi.controller.dto.response.EventResponseDto;
+import com.github.regyl.gfi.dto.response.EventResponseDto;
 import com.github.regyl.gfi.entity.EventEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

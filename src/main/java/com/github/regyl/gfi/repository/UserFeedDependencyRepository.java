@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.repository;
 
-import com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto;
-import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
+import com.github.regyl.gfi.dto.response.feed.SourceRepoStatisticResponseDto;
+import com.github.regyl.gfi.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.entity.UserFeedDependencyEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

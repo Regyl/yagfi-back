@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.regyl.gfi.repository.DataRepository">
 
-    <resultMap id="IssueResponseResultMap" type="com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto">
+    <resultMap id="IssueResponseResultMap" type="com.github.regyl.gfi.dto.response.issue.IssueResponseDto">
         <result property="issueId" column="issueId"/>
         <result property="issueTitle" column="issueTitle"/>
         <result property="issueUrl" column="issueUrl"/>
@@ -18,7 +18,7 @@
         <result property="repositoryLicense" column="repositoryLicense"/>
     </resultMap>
 
-    <select id="findAllIssues" resultMap="IssueResponseResultMap" parameterType="com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto">
+    <select id="findAllIssues" resultMap="IssueResponseResultMap" parameterType="com.github.regyl.gfi.dto.request.issue.DataRequestDto">
         SELECT
             ei.id AS issueId,
             ei.title AS issueTitle,
@@ -61,7 +61,7 @@
         order by count(1) desc
     </select>
 
-    <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto">
+    <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.dto.request.issue.DataRequestDto">
         SELECT ei.url
         FROM gfi.issue_v ei
         INNER JOIN gfi.repository_v er ON ei.repository_id = er.id
@@ -70,7 +70,7 @@
     </select>
 
 
-   <select id="findAllLabels" resultType="com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto">
+   <select id="findAllLabels" resultType="com.github.regyl.gfi.dto.response.statistic.LabelStatisticResponseDto">
     WITH labels_cte AS (
         SELECT unnest(labels) AS label FROM gfi.issue_v
     )

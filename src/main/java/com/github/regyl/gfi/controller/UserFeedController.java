@@ -1,8 +1,8 @@
 package com.github.regyl.gfi.controller;
 
-import com.github.regyl.gfi.controller.dto.request.feed.UserFeedRequestDto;
-import com.github.regyl.gfi.controller.dto.response.feed.SourceRepoStatisticResponseDto;
-import com.github.regyl.gfi.controller.dto.response.issue.IssueResponseDto;
+import com.github.regyl.gfi.dto.request.feed.UserFeedRequestDto;
+import com.github.regyl.gfi.dto.response.feed.SourceRepoStatisticResponseDto;
+import com.github.regyl.gfi.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.service.feed.UserFeedService;
 import jakarta.validation.Valid;

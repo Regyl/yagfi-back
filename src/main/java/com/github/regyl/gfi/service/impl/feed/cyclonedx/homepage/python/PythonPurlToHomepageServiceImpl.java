@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.service.impl.feed.cyclonedx.homepage.python;
 
 import com.github.packageurl.PackageURL;
-import com.github.regyl.gfi.controller.dto.external.pypi.PypiResponseDto;
+import com.github.regyl.gfi.dto.external.pypi.PypiResponseDto;
 import com.github.regyl.gfi.feign.PypiClient;
 import com.github.regyl.gfi.service.feed.PurlToHomepageService;
 import com.github.regyl.gfi.util.LinkUtil;

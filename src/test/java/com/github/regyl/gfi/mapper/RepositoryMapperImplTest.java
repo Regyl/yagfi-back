@@ -1,7 +1,7 @@
 package com.github.regyl.gfi.mapper;
 
 import com.github.regyl.gfi.annotation.DefaultUnitTest;
-import com.github.regyl.gfi.controller.dto.github.issue.GithubRepositoryDto;
+import com.github.regyl.gfi.dto.github.issue.GithubRepositoryDto;
 import com.github.regyl.gfi.entity.RepositoryEntity;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

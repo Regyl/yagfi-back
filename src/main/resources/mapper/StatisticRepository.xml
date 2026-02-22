@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.regyl.gfi.repository.StatisticRepository">
 
-    <select id="getLanguageStatistics" resultType="com.github.regyl.gfi.controller.dto.response.statistic.LanguageStatisticResponseDto">
+    <select id="getLanguageStatistics" resultType="com.github.regyl.gfi.dto.response.statistic.LanguageStatisticResponseDto">
         select language, count(1) as quantity
         from gfi.issue_v issue
             inner join gfi.repository_v repo on issue.repository_id = repo.id

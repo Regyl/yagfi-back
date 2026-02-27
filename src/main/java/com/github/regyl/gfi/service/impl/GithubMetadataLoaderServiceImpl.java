@@ -18,7 +18,9 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.CountDownLatch;
 import java.util.function.Supplier;
+
 
 @Slf4j
 @Component
@@ -31,25 +33,29 @@ public class GithubMetadataLoaderServiceImpl implements ScheduledService {
     @Qualifier("scrappingStartDate")
     private final Supplier<LocalDate> scrappingStartDate;
     private final GitHubMetadataRepository metadataRepository;
+    private final CountDownLatch metadataLatch;
 
     @Async
-    @Override
-    @Scheduled(fixedRate = 604_800_000, initialDelay = 1_000) //1 week
+    @Scheduled(fixedRate = 604_800_000, initialDelay = 1_000)
     public void schedule() {
-        String dateFilter = scrappingStartDate.get().toString();
-        log.info("Start collecting GitHub metadata for labels from {}", dateFilter);
-        Collection<LabelModel> labels = labelService.findAll();
+        try {
+            String dateFilter = scrappingStartDate.get().toString();
+            log.info("Start collecting GitHub metadata for labels from {}", dateFilter);
+            Collection<LabelModel> labels = labelService.findAll();
 
-        Collection<GitHubMetadataEntity> entities = new ArrayList<>();
-        for (LabelModel labelModel : labels) {
-            String label = labelModel.getTitle();
-            MetadataRequestModel model = new MetadataRequestModel(label, dateFilter);
-            int totalCount = githubClient.execute(model);
-            log.info("Found {} GitHub issues for label {}", totalCount, label);
-            entities.add(new GitHubMetadataEntity(label, totalCount));
+            Collection<GitHubMetadataEntity> entities = new ArrayList<>();
+            for (LabelModel labelModel : labels) {
+                String label = labelModel.getTitle();
+                MetadataRequestModel model = new MetadataRequestModel(label, dateFilter);
+                int totalCount = githubClient.execute(model);
+                log.info("Found {} GitHub issues for label {}", totalCount, label);
+                entities.add(new GitHubMetadataEntity(label, totalCount));
+            }
+
+            metadataRepository.saveAll(entities);
+            log.info("Finished collecting GitHub metadata for labels");
+        } finally {
+            metadataLatch.countDown();
         }
-
-        metadataRepository.saveAll(entities);
-        log.info("Finished collecting GitHub metadata for labels");
     }
 }

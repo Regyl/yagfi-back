@@ -173,6 +173,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "Massinl",
+      "name": "Massini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/142462048?v=4",
+      "profile": "https://github.com/Massinl",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

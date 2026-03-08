@@ -34,6 +34,14 @@ Ensure the following environment variables are set before running the applicatio
 | `GithubBearer`  | GitHub personal access token for GraphQL API     | [Create token](https://github.com/settings/tokens) with `public_repo` scope |
 | `IP_INFO_TOKEN` | ipinfo.io API token for IP-to-country resolution | [Sign up at ipinfo.io](https://ipinfo.io/signup) (Lite plan: free, unlimited requests, country-level data) |
 
+Place these in a `.env` file at the project root (gitignored) and run:
+
+```bash
+make dev
+```
+
+This starts PostgreSQL and runs the app with the local profile. Run `make help` to see all available targets.
+
 ## Suggest labels
 Feel free to open an issue with *another one* custom good-first-issue label with example 
 where it's used.
@@ -54,14 +62,9 @@ contact/open an issue and ask any questions if you have some.
 
 ## Running tests
 ```bash
-# Run all tests
-mvn test
-
-# Run only integration tests
-mvn test -Dgroups=Integration
-
-# Run only unit tests
-mvn test -Dgroups=Unit
+make test                  # all tests
+make test-integration      # integration tests only (Docker must be running)
+make test-unit             # unit tests only
 ```
 
 ## Integration tests

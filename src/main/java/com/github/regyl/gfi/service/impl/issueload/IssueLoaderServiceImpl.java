@@ -30,7 +30,7 @@ public class IssueLoaderServiceImpl implements ScheduledService {
     @Override
     @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
     public void schedule() {
-        if(loadLocker.getLoadingInfo()) {
+        if (loadLocker.getLoadingInfo()) {
             log.info("Github Metadata data is still loading...");
             return;
         }

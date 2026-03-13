@@ -25,10 +25,15 @@ public class IssueLoaderServiceImpl implements ScheduledService {
 
     private final JdbcTemplate jdbcTemplate;
     private final CacheManager cacheManager;
+    private final LoadLocker loadLocker;
 
     @Override
     @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
     public void schedule() {
+        if(loadLocker.getLoadingInfo()) {
+            log.info("Github Metadata data is still loading...");
+            return;
+        }
         log.info("Start issue load task");
         IssueTables table = determineTable();
         Collection<CompletableFuture<Void>> futures = sourceServices.stream()

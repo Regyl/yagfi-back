@@ -10,7 +10,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Collection;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @DefaultUnitTest
 public class IssueLoaderServiceImplTest {

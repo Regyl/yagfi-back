@@ -1,15 +1,15 @@
 package com.github.regyl.gfi.mapper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.time.OffsetDateTime;
 import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 
 import com.github.regyl.gfi.dto.request.feed.UserFeedRequestDto;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserFeedRequestDtoToEntityMapperImplTest {
 
@@ -28,13 +28,13 @@ class UserFeedRequestDtoToEntityMapperImplTest {
 		UserFeedRequestDtoToEntityMapperImpl mapper = new UserFeedRequestDtoToEntityMapperImpl(supplier);
 
 		UserFeedRequestDto dto = new UserFeedRequestDto();
-		dto.setNickname("TestUser");
+		dto.setNickname("testUser");
 		dto.setEmail("user@test.com");
 
 		var entity = mapper.apply(dto);
 
 		assertNotNull(entity);
-		assertEquals("TestUser", entity.getNickname());
+		assertEquals("testUser", entity.getNickname());
 		assertEquals("user@test.com", entity.getEmail());
 		assertNotNull(entity.getCreated());
 		assertNotNull(entity.getStatus());

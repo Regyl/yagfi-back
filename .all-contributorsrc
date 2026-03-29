@@ -182,6 +182,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "YALI58",
+      "name": "yali",
+      "avatar_url": "https://avatars.githubusercontent.com/u/175293979?v=4",
+      "profile": "https://github.com/YALI58",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,

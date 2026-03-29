@@ -18,6 +18,9 @@ public class UserFeedRequestDtoToEntityMapperImpl implements Function<UserFeedRe
 
     @Override
     public UserFeedRequestEntity apply(UserFeedRequestDto dto) {
+        if (dto == null) {
+            return null;
+        }
         return UserFeedRequestEntity.builder()
                 .nickname(dto.getNickname())
                 .email(dto.getEmail())

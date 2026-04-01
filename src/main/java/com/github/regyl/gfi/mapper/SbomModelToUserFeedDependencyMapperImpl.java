@@ -4,9 +4,11 @@ import com.github.regyl.gfi.entity.UserFeedDependencyEntity;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.SbomModel;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
+import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
@@ -19,6 +21,10 @@ public class SbomModelToUserFeedDependencyMapperImpl
 
     @Override
     public UserFeedDependencyEntity apply(SbomModel model, String dependencyUrl) {
+        if (Objects.isNull(model) || StringUtils.isEmpty(dependencyUrl)) {
+            return null;
+        }
+
         UserFeedRequestEntity rq = model.getRq();
         String sourceRepo = model.getRepositoryUrl();
 

@@ -21,8 +21,9 @@ public class SbomModelToUserFeedDependencyMapperImpl
 
     @Override
     public UserFeedDependencyEntity apply(SbomModel model, String dependencyUrl) {
-        if (Objects.isNull(model) || StringUtils.isEmpty(dependencyUrl))
+        if (Objects.isNull(model) || StringUtils.isEmpty(dependencyUrl)) {
             return null;
+        }
 
         UserFeedRequestEntity rq = model.getRq();
         String sourceRepo = model.getRepositoryUrl();

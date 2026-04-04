@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 
 @Slf4j
 @Component
@@ -25,23 +26,26 @@ public class IssueLoaderServiceImpl implements ScheduledService {
 
     private final JdbcTemplate jdbcTemplate;
     private final CacheManager cacheManager;
+    private final CountDownLatch metadataLatch;
 
-    @Override
-    @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
+    @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 2000)
     public void schedule() {
-        log.info("Start issue load task");
-        IssueTables table = determineTable();
-        Collection<CompletableFuture<Void>> futures = sourceServices.stream()
-                .flatMap(service -> service.upload(table).stream())
-                .toList();
+        try {
+            metadataLatch.await();
+            log.info("Start issue load task");
+            IssueTables table = determineTable();
+            Collection<CompletableFuture<Void>> futures = sourceServices.stream()
+                    .flatMap(service -> service.upload(table).stream())
+                    .toList();
 
-        //waiting all issues to be done
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
-
-        sourceServices.forEach(IssueSourceService::raiseUploadEvent);
-
-        replaceView(table);
-        log.info("Issue load finished");
+            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+            sourceServices.forEach(IssueSourceService::raiseUploadEvent);
+            replaceView(table);
+            log.info("Issue load finished");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.error("IssueLoader interrupted while waiting for metadata", e);
+        }
     }
 
     private IssueTables determineTable() {

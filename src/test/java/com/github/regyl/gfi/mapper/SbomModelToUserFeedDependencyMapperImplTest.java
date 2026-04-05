@@ -14,7 +14,7 @@ import java.time.OffsetDateTime;
 import java.util.function.Supplier;
 
 @DefaultUnitTest
-public class SbomModelToUserFeedDependencyMapperImplTest {
+class SbomModelToUserFeedDependencyMapperImplTest {
 
     @InjectMocks
     private SbomModelToUserFeedDependencyMapperImpl sbomModelToUserMapper;
@@ -23,12 +23,12 @@ public class SbomModelToUserFeedDependencyMapperImplTest {
     private Supplier<OffsetDateTime> dateTimeSupplier;
 
     @Test
-    public void testForModelAsNullInput() {
+    void testForModelAsNullInput() {
         Assertions.assertNull(sbomModelToUserMapper.apply(null, "https://xyz.com"));
     }
 
     @Test
-    public void testForDependencyUrlAsNullInput() {
+    void testForDependencyUrlAsNullInput() {
         UserFeedRequestEntity userFeedRequestEntity = new UserFeedRequestEntity();
         userFeedRequestEntity.setId(1L);
         SbomModel sbomModel = new SbomModel(userFeedRequestEntity, null, "https://xyz.com");
@@ -37,7 +37,7 @@ public class SbomModelToUserFeedDependencyMapperImplTest {
     }
 
     @Test
-    public void testForValidInput() {
+    void testForValidInput() {
         UserFeedRequestEntity userFeedRequestEntity = new UserFeedRequestEntity();
         userFeedRequestEntity.setId(1L);
         SbomModel sbomModel = new SbomModel(userFeedRequestEntity, null, "https://xyz.com");

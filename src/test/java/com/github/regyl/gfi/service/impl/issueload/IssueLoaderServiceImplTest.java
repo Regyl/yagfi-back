@@ -9,10 +9,11 @@ import org.springframework.cache.CacheManager;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @DefaultUnitTest
 public class IssueLoaderServiceImplTest {
@@ -41,10 +42,16 @@ public class IssueLoaderServiceImplTest {
     }
 
     @Test
-    void issueLoaderServiceScheduleWorkTest() {
+    void shouldExecuteUploadFlowWhenNotLoading() {
         when(loadLocker.getLoadingInfo()).thenReturn(false);
+        IssueSourceService service = mock(IssueSourceService.class);
+        when(sourceServices.stream()).thenReturn(java.util.stream.Stream.of(service));
+        when(service.upload(any())).thenReturn(java.util.List.of(CompletableFuture.completedFuture(null)));
+
         issueLoaderService.schedule();
 
         verify(loadLocker).getLoadingInfo();
+        verify(service).upload(any());
+        verify(service, atMostOnce()).raiseUploadEvent();
     }
 }

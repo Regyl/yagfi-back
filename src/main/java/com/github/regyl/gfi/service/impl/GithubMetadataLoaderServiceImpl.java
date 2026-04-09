@@ -38,22 +38,29 @@ public class GithubMetadataLoaderServiceImpl implements ScheduledService {
     @Override
     @Scheduled(fixedRate = 604_800_000, initialDelay = 1_000) //1 week
     public void schedule() {
-        loadLocker.startLoading();
-        String dateFilter = scrappingStartDate.get().toString();
-        log.info("Start collecting GitHub metadata for labels from {}", dateFilter);
-        Collection<LabelModel> labels = labelService.findAll();
 
-        Collection<GitHubMetadataEntity> entities = new ArrayList<>();
-        for (LabelModel labelModel : labels) {
-            String label = labelModel.getTitle();
-            MetadataRequestModel model = new MetadataRequestModel(label, dateFilter);
-            int totalCount = githubClient.execute(model);
-            log.info("Found {} GitHub issues for label {}", totalCount, label);
-            entities.add(new GitHubMetadataEntity(label, totalCount));
+        loadLocker.startLoading();
+        try {
+            String dateFilter = scrappingStartDate.get().toString();
+            log.info("Start collecting GitHub metadata for labels from {}", dateFilter);
+            Collection<LabelModel> labels = labelService.findAll();
+
+            Collection<GitHubMetadataEntity> entities = new ArrayList<>();
+            for (LabelModel labelModel : labels) {
+                String label = labelModel.getTitle();
+                MetadataRequestModel model = new MetadataRequestModel(label, dateFilter);
+                int totalCount = githubClient.execute(model);
+                log.info("Found {} GitHub issues for label {}", totalCount, label);
+                entities.add(new GitHubMetadataEntity(label, totalCount));
+            }
+
+            metadataRepository.saveAll(entities);
+        } catch (Exception e) {
+            log.error("Exception occured while saving GitHubMetaData : {}", e.getMessage());
+        } finally {
+            loadLocker.stopLoading();
         }
 
-        metadataRepository.saveAll(entities);
-        loadLocker.stopLoading();
         log.info("Finished collecting GitHub metadata for labels");
     }
 }

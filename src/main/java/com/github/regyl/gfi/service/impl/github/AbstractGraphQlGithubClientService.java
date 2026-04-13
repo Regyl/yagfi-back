@@ -53,7 +53,7 @@ public abstract class AbstractGraphQlGithubClientService<T, S> implements Github
                 }
 
                 try {
-                    Thread.sleep(2000); // wait before retry
+                    Thread.sleep(2000);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }

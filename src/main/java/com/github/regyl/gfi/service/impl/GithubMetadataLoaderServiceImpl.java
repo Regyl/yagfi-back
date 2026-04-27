@@ -6,6 +6,7 @@ import com.github.regyl.gfi.model.MetadataRequestModel;
 import com.github.regyl.gfi.repository.GitHubMetadataRepository;
 import com.github.regyl.gfi.service.ScheduledService;
 import com.github.regyl.gfi.service.github.GithubClientService;
+import com.github.regyl.gfi.service.impl.issueload.IssueLoadingLockService;
 import com.github.regyl.gfi.service.other.LabelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,11 +32,17 @@ public class GithubMetadataLoaderServiceImpl implements ScheduledService {
     @Qualifier("scrappingStartDate")
     private final Supplier<LocalDate> scrappingStartDate;
     private final GitHubMetadataRepository metadataRepository;
+    private final IssueLoadingLockService issueLoadingLockService;
 
     @Async
     @Override
     @Scheduled(fixedRate = 604_800_000, initialDelay = 1_000) //1 week
     public void schedule() {
+        if (issueLoadingLockService.isIssueLoadInProgress()) {
+            log.info("Skip metadata load because issue loading is in progress");
+            return;
+        }
+
         String dateFilter = scrappingStartDate.get().toString();
         log.info("Start collecting GitHub metadata for labels from {}", dateFilter);
         Collection<LabelModel> labels = labelService.findAll();

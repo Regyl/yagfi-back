@@ -22,6 +22,7 @@ import java.util.concurrent.CompletableFuture;
 public class IssueLoaderServiceImpl implements ScheduledService {
 
     private final Collection<IssueSourceService> sourceServices;
+    private final IssueLoadingLockService issueLoadingLockService;
 
     private final JdbcTemplate jdbcTemplate;
     private final CacheManager cacheManager;
@@ -29,19 +30,28 @@ public class IssueLoaderServiceImpl implements ScheduledService {
     @Override
     @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
     public void schedule() {
+        if (!issueLoadingLockService.tryAcquireIssueLoadLock()) {
+            log.info("Issue load task is already running, skip this execution");
+            return;
+        }
+
         log.info("Start issue load task");
-        IssueTables table = determineTable();
-        Collection<CompletableFuture<Void>> futures = sourceServices.stream()
-                .flatMap(service -> service.upload(table).stream())
-                .toList();
+        try {
+            IssueTables table = determineTable();
+            Collection<CompletableFuture<Void>> futures = sourceServices.stream()
+                    .flatMap(service -> service.upload(table).stream())
+                    .toList();
 
-        //waiting all issues to be done
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+            //waiting all issues to be done
+            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
 
-        sourceServices.forEach(IssueSourceService::raiseUploadEvent);
+            sourceServices.forEach(IssueSourceService::raiseUploadEvent);
 
-        replaceView(table);
-        log.info("Issue load finished");
+            replaceView(table);
+            log.info("Issue load finished");
+        } finally {
+            issueLoadingLockService.releaseIssueLoadLock();
+        }
     }
 
     private IssueTables determineTable() {

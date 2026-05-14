@@ -1,51 +1,59 @@
-package com.github.regyl.gfi.mapper;
+@Test
+void shouldReturnNullWhenModelIsNull() {
+    // Given
 
-import com.github.regyl.gfi.annotation.DefaultUnitTest;
-import com.github.regyl.gfi.entity.UserFeedDependencyEntity;
-import com.github.regyl.gfi.entity.UserFeedRequestEntity;
-import com.github.regyl.gfi.model.SbomModel;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+    // When
+    UserFeedDependencyEntity result =
+            sbomModelToUserMapper.apply(null, "https://xyz.com");
 
-import java.time.OffsetDateTime;
-import java.util.function.Supplier;
+    // Then
+    Assertions.assertNull(result);
+}
 
-@DefaultUnitTest
-class SbomModelToUserFeedDependencyMapperImplTest {
+@Test
+void shouldReturnNullWhenDependencyUrlIsNull() {
+    // Given
+    UserFeedRequestEntity request = new UserFeedRequestEntity();
+    request.setId(1L);
 
-    @InjectMocks
-    private SbomModelToUserFeedDependencyMapperImpl sbomModelToUserMapper;
+    SbomModel model =
+            new SbomModel(request, null, "https://xyz.com");
 
-    @Mock
-    private Supplier<OffsetDateTime> dateTimeSupplier;
+    // When
+    UserFeedDependencyEntity result =
+            sbomModelToUserMapper.apply(model, null);
 
-    @Test
-    void testForModelAsNullInput() {
-        Assertions.assertNull(sbomModelToUserMapper.apply(null, "https://xyz.com"));
-    }
+    // Then
+    Assertions.assertNull(result);
+}
 
-    @Test
-    void testForDependencyUrlAsNullInput() {
-        UserFeedRequestEntity userFeedRequestEntity = new UserFeedRequestEntity();
-        userFeedRequestEntity.setId(1L);
-        SbomModel sbomModel = new SbomModel(userFeedRequestEntity, null, "https://xyz.com");
+@Test
+void shouldMapAllFieldsForValidInput() {
+    // Given
+    OffsetDateTime now = OffsetDateTime.now();
 
-        Assertions.assertNull(sbomModelToUserMapper.apply(sbomModel, null));
-    }
+    Mockito.when(dateTimeSupplier.get()).thenReturn(now);
 
-    @Test
-    void testForValidInput() {
-        UserFeedRequestEntity userFeedRequestEntity = new UserFeedRequestEntity();
-        userFeedRequestEntity.setId(1L);
-        SbomModel sbomModel = new SbomModel(userFeedRequestEntity, null, "https://xyz.com");
+    UserFeedRequestEntity request = new UserFeedRequestEntity();
+    request.setId(1L);
 
-        Mockito.when(dateTimeSupplier.get()).thenReturn(OffsetDateTime.now());
-        UserFeedDependencyEntity userFeedDependencyEntity = sbomModelToUserMapper.apply(sbomModel, "https://xyz.com");
+    SbomModel model =
+            new SbomModel(request, null, "https://github.com/example/repo");
 
-        Assertions.assertNotNull(userFeedDependencyEntity);
-        Assertions.assertEquals("https://xyz.com", userFeedDependencyEntity.getDependencyUrl());
-    }
+    // When
+    UserFeedDependencyEntity result =
+            sbomModelToUserMapper.apply(model, "https://dependency.com");
+
+    // Then
+    Assertions.assertNotNull(result);
+    Assertions.assertEquals(1L, result.getRequestId());
+    Assertions.assertEquals(
+            "https://github.com/example/repo",
+            result.getSourceRepo()
+    );
+    Assertions.assertEquals(
+            "https://dependency.com",
+            result.getDependencyUrl()
+    );
+    Assertions.assertEquals(now, result.getCreated());
 }

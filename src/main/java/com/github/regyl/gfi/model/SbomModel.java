@@ -7,6 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+@Builder
 public class SbomModel {
 
     private UserFeedRequestEntity rq;

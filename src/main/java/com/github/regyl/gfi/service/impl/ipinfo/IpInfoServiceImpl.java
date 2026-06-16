@@ -15,12 +15,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class IpInfoServiceImpl implements IpInfoService {
 
+    private static final String LOCAL_IP = "0:0:0:0:0:0:0:1";
+
     private final IpInfoClient ipInfoClient;
 
     @Override
     @Cacheable(cacheNames = "ipinfo", cacheManager = "ipInfoCacheManager",
             unless = "#result == null")
     public String getCountry(String ip) {
+        if (LOCAL_IP.equals(ip)) {
+            return null;
+        }
+
         try {
             return Optional.ofNullable(ipInfoClient.getIpInfo(ip))
                     .map(IpInfoResponseDto::getCountry)

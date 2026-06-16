@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.1</version>
+        <version>4.1.0</version>
         <relativePath/>
     </parent>
 
@@ -15,9 +15,9 @@
 
     <properties>
         <!--core-->
-        <spring.version>4.0.1</spring.version>
+        <mybatis-spring.version>4.0.1</mybatis-spring.version>
         <postgresql.version>42.7.7</postgresql.version>
-        <spring-cloud.version>2025.1.1</spring-cloud.version>
+        <spring-cloud.version>2025.1.2</spring-cloud.version>
 
         <!--libs-->
         <user-agent-parser.version>1.6.1</user-agent-parser.version>
@@ -92,13 +92,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-flyway</artifactId>
-            <version>${spring.version}</version>
+            <version>${mybatis-spring.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${spring.version}</version>
+            <version>${mybatis-spring.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -208,6 +208,12 @@
             <groupId>com.tngtech.archunit</groupId>
             <artifactId>archunit-junit5-engine</artifactId>
             <version>${archunit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <version>2.4-groovy-5.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

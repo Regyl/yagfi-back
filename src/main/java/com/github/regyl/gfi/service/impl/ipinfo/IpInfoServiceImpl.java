@@ -8,14 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class IpInfoServiceImpl implements IpInfoService {
 
-    private static final String LOCAL_IP = "0:0:0:0:0:0:0:1";
+    private static final Collection<String> LOCAL_IPS = Set.of("0:0:0:0:0:0:0:1", "127.0.0.1");
 
     private final IpInfoClient ipInfoClient;
 
@@ -23,7 +25,7 @@ public class IpInfoServiceImpl implements IpInfoService {
     @Cacheable(cacheNames = "ipinfo", cacheManager = "ipInfoCacheManager",
             unless = "#result == null")
     public String getCountry(String ip) {
-        if (LOCAL_IP.equals(ip)) {
+        if (LOCAL_IPS.contains(ip)) {
             return null;
         }
 

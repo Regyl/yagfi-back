@@ -62,6 +62,18 @@ mybatis:
   type-aliases-package: com.github.regyl.gfi.controller.dto
   type-handlers-package: com.github.regyl.gfi.typehandler
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 logging:
   level:
     root: info

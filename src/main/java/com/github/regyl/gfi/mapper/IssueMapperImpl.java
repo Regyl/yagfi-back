@@ -22,6 +22,7 @@ public class IssueMapperImpl implements BiFunction<Map<String, RepositoryEntity>
 
     private static final LanguageDetector LANGUAGE_DETECTOR = LanguageDetectorBuilder
             .fromAllLanguages()
+            .withLowAccuracyMode()
             .build();
 
     private final Supplier<OffsetDateTime> dateTimeSupplier;

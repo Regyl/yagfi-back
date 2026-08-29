@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "ipInfoClient", url = "https://ipinfo.io",
+@FeignClient(name = "ipInfoClient", url = "https://api.ipinfo.io",
         configuration = IpInfoFeignConfiguration.class)
 public interface IpInfoClient {
 

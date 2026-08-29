@@ -14,6 +14,7 @@ YAGFI - yet another good first issue
 * [Introduction](#introduction)
   * [Why yet another good-first-issue project?](#why-yet-another-good-first-issue-project)
   * [Implementation](#implementation)
+  * [Local Deployment](#local-development)
   * [Frontend](#frontend)
 * [What's next](#whats-next)
 <!-- TOC -->  
@@ -44,6 +45,35 @@ To compare with, look for other similar projects:
 - Data updates every 12 minutes since GitHub rate limit allows no more
 - The list of current supported issues is [here](https://github.com/Regyl/yagfi-back/blob/master/src/main/resources/data/labels.txt)
   - See [CONTRIBUTING](https://github.com/Regyl/yagfi-back/tree/master/docs/CONTRUBUTING.md) if you found some unsupported labels
+
+
+  ## Local Development
+
+### Prerequisites
+
+- Java 25
+- Maven
+- PostgreSQL
+- Git
+
+### Environment Variables
+
+Create a `.env` file based on `.env.example`.
+
+The following variables are required:
+
+| Variable | Description |
+|----------|-------------|
+| APP_HOST_NAME | PostgreSQL host |
+| GithubBearer | GitHub Personal Access Token |
+| IP_INFO_TOKEN | API token from ipinfo.io |
+| EMAIL_USERNAME | SMTP username |
+| EMAIL_PASSWORD | SMTP password |
+
+### PostgreSQL
+
+The application connects to PostgreSQL using
+
 
 ## Frontend
 Frontend for this project is placed [here](https://github.com/Regyl/yagfi-front). Yes, it's vibe-coded. 

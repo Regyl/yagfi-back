@@ -45,16 +45,16 @@ class RepositoryMapperImplTest {
         when(dateTimeSupplier.get()).thenReturn(now);
 
         // When
-        RepositoryEntity result = repositoryMapper.apply(dto);
+        RepositoryEntity resultado = repositoryMapper.apply(dto);
 
         // Then
-        assertThat(result).isNotNull();
-        assertThat(result.getSourceId()).isEqualTo("1");
-        assertThat(result.getTitle()).isEqualTo("Regyl/project");
-        assertThat(result.getUrl()).isEqualTo("https://github.com/Regyl/gfi");
-        assertThat(result.getStars()).isEqualTo(100);
-        assertThat(result.getDescription()).isEqualTo("A great repository description");
-        assertThat(result.getCreated()).isEqualTo(now);
+        assertThat(resultado).isNotNull();
+        assertThat(resultado.getSourceId()).isEqualTo("1");
+        assertThat(resultado.getTitle()).isEqualTo("Regyl/project");
+        assertThat(resultado.getUrl()).isEqualTo("https://github.com/Regyl/gfi");
+        assertThat(resultado.getStars()).isEqualTo(100);
+        assertThat(resultado.getDescription()).isEqualTo("A great repository description");
+        assertThat(resultado.getCreated()).isEqualTo(now);
     }
 
 }

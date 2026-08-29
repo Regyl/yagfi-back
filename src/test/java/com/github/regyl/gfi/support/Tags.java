@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.model;
+package com.github.regyl.gfi.support;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

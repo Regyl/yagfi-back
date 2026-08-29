@@ -9,6 +9,7 @@ import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  * Resolves Python package PURLs to GitHub repository URLs via PyPI API.
@@ -45,7 +46,7 @@ public class PythonPurlToHomepageServiceImpl implements PurlToHomepageService {
         }
 
         String packageName = purl.getName();
-        if (packageName == null || packageName.isEmpty()) {
+        if (!StringUtils.hasLength(packageName)) {
             log.warn("Python purl has empty package name: {}", purl);
             return null;
         }
@@ -85,9 +86,10 @@ public class PythonPurlToHomepageServiceImpl implements PurlToHomepageService {
     }
 
     private boolean isGitHubUrl(String url) {
-        if (url == null || url.isEmpty()) {
+        if (!StringUtils.hasLength(url)) {
             return false;
         }
+
         return url.contains("github.com");
     }
 }

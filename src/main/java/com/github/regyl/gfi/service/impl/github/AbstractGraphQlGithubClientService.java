@@ -30,9 +30,10 @@ public abstract class AbstractGraphQlGithubClientService<T, S> implements Github
             rateLimiter.acquire();
             return run0(variables);
         } catch (HttpClientErrorException.Forbidden e) {
+            String msg = String.format("Exceeded a secondary rate limit: %s", e.getMessage());
             //https://docs.github.com/graphql/overview/rate-limits-and-node-limits-for-the-graphql-api#secondary-rate-limits
-            log.error("Exceeded a secondary rate limit: {}", e.getMessage());
-            throw new RateLimitExceedException();
+            log.error(msg);
+            throw new RateLimitExceedException(msg);
         } catch (Exception e) {
             log.error("Error fetching github GraphQL response for params: {}", variables, e);
             return null;

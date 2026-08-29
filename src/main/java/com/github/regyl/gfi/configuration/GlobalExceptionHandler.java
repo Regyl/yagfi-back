@@ -1,6 +1,7 @@
-package com.github.regyl.gfi.exception;
+package com.github.regyl.gfi.configuration;
 
-import com.github.regyl.gfi.exception.response.ErrorResponse;
+import com.github.regyl.gfi.dto.response.ErrorResponseDto;
+import com.github.regyl.gfi.exception.EventNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,19 +21,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     private final Supplier<OffsetDateTime> dateTimeSupplier;
 
     @ExceptionHandler(EventNotFoundException.class)
-    public ErrorResponse handleEventNotFoundException(EventNotFoundException e) {
+    public ErrorResponseDto handleEventNotFoundException(EventNotFoundException e) {
         log.error("ActionLog.eventNotFoundException ", e);
         return buildResponse(HttpStatus.NOT_FOUND, "Event Not Found Exception");
     }
 
     @ExceptionHandler(HttpClientErrorException.Unauthorized.class)
-    public ErrorResponse handleHttpClientErrorException(HttpClientErrorException.Unauthorized ex) {
+    public ErrorResponseDto handleHttpClientErrorException(HttpClientErrorException.Unauthorized ex) {
         log.error("ActionLog.handleUnauthorized - Auth failure: {}", ex.getMessage());
         return buildResponse(HttpStatus.UNAUTHORIZED, "Git API authorization failed. Check your token.");
     }
 
-    private ErrorResponse buildResponse(HttpStatus status, String message) {
-        return ErrorResponse.builder()
+    private ErrorResponseDto buildResponse(HttpStatus status, String message) {
+        return ErrorResponseDto.builder()
                 .timestamp(dateTimeSupplier.get())
                 .status(status.value())
                 .error(status.getReasonPhrase())

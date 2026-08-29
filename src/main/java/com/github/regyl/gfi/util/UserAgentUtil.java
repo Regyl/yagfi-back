@@ -2,6 +2,7 @@ package com.github.regyl.gfi.util;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import ua_parser.Client;
 import ua_parser.Parser;
 
@@ -12,9 +13,10 @@ public class UserAgentUtil {
     private static final Parser PARSER = new Parser();
 
     public static String parseOS(String userAgent) {
-        if (userAgent == null || userAgent.isEmpty()) {
+        if (!StringUtils.hasLength(userAgent)) {
             return null;
         }
+
         try {
             Client client = PARSER.parse(userAgent);
             String osFamily = client.os != null ? client.os.family : null;
@@ -41,7 +43,7 @@ public class UserAgentUtil {
     }
 
     public static String parseBrowserFamily(String userAgent) {
-        if (userAgent == null || userAgent.isEmpty()) {
+        if (!StringUtils.hasLength(userAgent)) {
             return null;
         }
 
@@ -56,9 +58,10 @@ public class UserAgentUtil {
     }
 
     public static String parseDeviceType(String userAgent) {
-        if (userAgent == null || userAgent.isEmpty()) {
+        if (!StringUtils.hasLength(userAgent)) {
             return null;
         }
+
         try {
             Client client = PARSER.parse(userAgent);
             String deviceFamily = client.device != null ? client.device.family : null;

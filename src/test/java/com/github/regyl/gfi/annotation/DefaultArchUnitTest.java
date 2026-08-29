@@ -1,6 +1,7 @@
 package com.github.regyl.gfi.annotation;
 
-import com.github.regyl.gfi.model.Tags;
+import com.github.regyl.gfi.support.Tags;
+import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import org.junit.jupiter.api.Tag;
 
@@ -12,6 +13,9 @@ import java.lang.annotation.Target;
 @Tag(Tags.UNIT)
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@AnalyzeClasses(packages = "com.github.regyl.gfi")
-public @interface ArchUnitTest {
+@AnalyzeClasses(
+        packages = "com.github.regyl.gfi",
+        importOptions = { ImportOption.DoNotIncludeTests.class }
+)
+public @interface DefaultArchUnitTest {
 }

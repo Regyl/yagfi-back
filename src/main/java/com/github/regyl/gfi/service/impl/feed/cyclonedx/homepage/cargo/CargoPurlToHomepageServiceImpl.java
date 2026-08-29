@@ -8,6 +8,7 @@ import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  * Resolves Cargo package PURLs to homepage URLs via crates.io API.
@@ -41,7 +42,7 @@ public class CargoPurlToHomepageServiceImpl implements PurlToHomepageService {
         }
 
         String crateName = purl.getName();
-        if (crateName == null || crateName.isEmpty()) {
+        if (!StringUtils.hasLength(crateName)) {
             log.warn("Cargo purl has empty crate name: {}", purl);
             return null;
         }

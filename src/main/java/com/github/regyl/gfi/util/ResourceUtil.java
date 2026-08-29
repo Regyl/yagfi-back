@@ -1,5 +1,6 @@
 package com.github.regyl.gfi.util;
 
+import com.github.regyl.gfi.exception.NonRetryableException;
 import lombok.experimental.UtilityClass;
 
 import java.io.IOException;
@@ -19,9 +20,9 @@ public class ResourceUtil {
             Path path = Path.of(resource.toURI());
             return Files.readString(path, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to read file: " + filePath, e);
+            throw new NonRetryableException("Failed to read file: " + filePath, e);
         } catch (Exception e) {
-            throw new RuntimeException("Unexpected error while loading file: " + filePath, e);
+            throw new NonRetryableException("Unexpected error while loading file: " + filePath, e);
         }
     }
 }

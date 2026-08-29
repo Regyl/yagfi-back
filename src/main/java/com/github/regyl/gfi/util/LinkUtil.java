@@ -1,12 +1,13 @@
 package com.github.regyl.gfi.util;
 
 import lombok.experimental.UtilityClass;
+import org.springframework.util.StringUtils;
 
 @UtilityClass
 public class LinkUtil {
 
     public static String normalizeRepositoryUrl(String url) {
-        if (url == null || url.isEmpty()) {
+        if (!StringUtils.hasLength(url)) {
             return null;
         }
 

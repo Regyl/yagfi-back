@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.exception.response;
+package com.github.regyl.gfi.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import java.util.Map;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ErrorResponse {
+public class ErrorResponseDto {
 
     private int status;
     private String path;

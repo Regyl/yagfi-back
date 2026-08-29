@@ -1,5 +1,6 @@
 package com.github.regyl.gfi.repository;
 
+import com.github.regyl.gfi.annotation.DefaultMyBatisMapper;
 import com.github.regyl.gfi.dto.response.feed.SourceRepoStatisticResponseDto;
 import com.github.regyl.gfi.dto.response.issue.IssueResponseDto;
 import com.github.regyl.gfi.entity.UserFeedDependencyEntity;
@@ -9,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Collection;
 import java.util.List;
 
-@Mapper
+@DefaultMyBatisMapper
 public interface UserFeedDependencyRepository {
 
     void saveAll(List<UserFeedDependencyEntity> entities);

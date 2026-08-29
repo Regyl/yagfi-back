@@ -1,7 +1,8 @@
 package com.github.regyl.gfi.exception;
 
-public class RateLimitExceedException extends RuntimeException {
+public class RateLimitExceedException extends RetryableException {
 
-    public RateLimitExceedException() {
+    public RateLimitExceedException(String message) {
+        super(message);
     }
 }

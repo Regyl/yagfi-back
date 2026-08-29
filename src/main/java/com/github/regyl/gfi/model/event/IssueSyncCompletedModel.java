@@ -8,7 +8,7 @@ import java.time.OffsetDateTime;
 
 @Data
 @RequiredArgsConstructor
-public class IssueSyncCompletedEvent {
+public class IssueSyncCompletedModel {
 
     private final IssueSources source;
     private final OffsetDateTime syncTime;

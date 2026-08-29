@@ -1,5 +1,6 @@
 package com.github.regyl.gfi.repository;
 
+import com.github.regyl.gfi.annotation.DefaultMyBatisMapper;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
 import com.github.regyl.gfi.model.UserFeedRequestStatuses;
 import org.apache.ibatis.annotations.Mapper;
@@ -7,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.Collection;
 import java.util.Optional;
 
-@Mapper
+@DefaultMyBatisMapper
 public interface UserFeedRequestRepository {
 
     void save(UserFeedRequestEntity entity);

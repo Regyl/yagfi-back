@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -15,12 +16,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class IpInfoServiceImpl implements IpInfoService {
 
+    private static final String LOCAL_IP = "0:0:0:0:0:0:0:1";
+
     private final IpInfoClient ipInfoClient;
 
     @Override
     @Cacheable(cacheNames = "ipinfo", cacheManager = "ipInfoCacheManager",
             unless = "#result == null")
     public String getCountry(String ip) {
+        if (!StringUtils.hasLength(ip) || LOCAL_IP.equals(ip)) {
+            return null;
+        }
+
         try {
             return Optional.ofNullable(ipInfoClient.getIpInfo(ip))
                     .map(IpInfoResponseDto::getCountry)

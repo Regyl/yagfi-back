@@ -37,6 +37,14 @@
         <property name="format" value="\.now\(\)"/>
         <property name="message" value="Calling DateTime.now() is forbidden. Use supplier"/>
     </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[A-Za-z]+ != null &amp;&amp; ![A-Za-z]+\.(isBlank|isEmpty)\(\)"/>
+        <property name="message" value="Please use StringUtils::hasLength"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[A-Za-z]+ == null \|\| [A-Za-z]+\.(isBlank|isEmpty)\(\)"/>
+        <property name="message" value="Please use StringUtils::hasLength"/>
+    </module>
 
     <module name="SuppressWarningsFilter"/>
 

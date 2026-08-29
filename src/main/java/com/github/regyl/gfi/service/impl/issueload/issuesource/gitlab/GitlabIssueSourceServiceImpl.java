@@ -2,7 +2,7 @@ package com.github.regyl.gfi.service.impl.issueload.issuesource.gitlab;
 
 import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.model.IssueTables;
-import com.github.regyl.gfi.model.event.IssueSyncCompletedEvent;
+import com.github.regyl.gfi.model.event.IssueSyncCompletedModel;
 import com.github.regyl.gfi.service.issueload.IssueSourceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +32,7 @@ public class GitlabIssueSourceServiceImpl implements IssueSourceService {
 
     @Override
     public void raiseUploadEvent() {
-        eventPublisher.publishEvent(new IssueSyncCompletedEvent(IssueSources.GITLAB, dateTimeSupplier.get()));
+        eventPublisher.publishEvent(new IssueSyncCompletedModel(IssueSources.GITLAB, dateTimeSupplier.get()));
         log.info("All gitlab issues synced successfully");
     }
 }

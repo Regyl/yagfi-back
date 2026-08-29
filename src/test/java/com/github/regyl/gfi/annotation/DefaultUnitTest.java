@@ -1,6 +1,6 @@
 package com.github.regyl.gfi.annotation;
 
-import com.github.regyl.gfi.model.Tags;
+import com.github.regyl.gfi.support.Tags;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

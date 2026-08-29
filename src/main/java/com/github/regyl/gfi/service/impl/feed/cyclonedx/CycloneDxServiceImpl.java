@@ -2,6 +2,7 @@ package com.github.regyl.gfi.service.impl.feed.cyclonedx;
 
 import com.github.regyl.gfi.dto.cyclonedx.health.HealthResponseDto;
 import com.github.regyl.gfi.dto.cyclonedx.sbom.SbomResponseDto;
+import com.github.regyl.gfi.exception.NonRetryableException;
 import com.github.regyl.gfi.service.feed.CycloneDxService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -73,7 +74,7 @@ public class CycloneDxServiceImpl implements CycloneDxService {
             log.warn("Unable to process repository {} since it's huge", url);
             return CompletableFuture.failedFuture(e);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new NonRetryableException(e);
         }
     }
 

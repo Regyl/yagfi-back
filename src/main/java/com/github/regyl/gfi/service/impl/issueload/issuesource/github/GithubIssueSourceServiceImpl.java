@@ -3,7 +3,7 @@ package com.github.regyl.gfi.service.impl.issueload.issuesource.github;
 import com.github.regyl.gfi.dto.request.issue.IssueRequestDto;
 import com.github.regyl.gfi.model.IssueSources;
 import com.github.regyl.gfi.model.IssueTables;
-import com.github.regyl.gfi.model.event.IssueSyncCompletedEvent;
+import com.github.regyl.gfi.model.event.IssueSyncCompletedModel;
 import com.github.regyl.gfi.service.issueload.IssueSourceService;
 import com.github.regyl.gfi.service.issueload.issuesource.github.GithubQueryBuilderService;
 import com.github.regyl.gfi.service.issueload.issuesource.github.runnable.RunnableManagerService;
@@ -34,7 +34,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
 
     @Override
     public void raiseUploadEvent() {
-        eventPublisher.publishEvent(new IssueSyncCompletedEvent(IssueSources.GITHUB, dateTimeSupplier.get()));
+        eventPublisher.publishEvent(new IssueSyncCompletedModel(IssueSources.GITHUB, dateTimeSupplier.get()));
         log.info("All github issues synced successfully");
     }
 

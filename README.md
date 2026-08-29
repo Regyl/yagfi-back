@@ -9,7 +9,7 @@ YAGFI - yet another good first issue
 
 <!-- TOC -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-22-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 * [Introduction](#introduction)
   * [Why yet another good-first-issue project?](#why-yet-another-good-first-issue-project)
@@ -92,6 +92,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Massinl"><img src="https://avatars.githubusercontent.com/u/142462048?v=4?s=100" width="100px;" alt="Massini"/><br /><sub><b>Massini</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=Massinl" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/YALI58"><img src="https://avatars.githubusercontent.com/u/175293979?v=4?s=100" width="100px;" alt="yali"/><br /><sub><b>yali</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=YALI58" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AnasHamid"><img src="https://avatars.githubusercontent.com/u/34275363?v=4?s=100" width="100px;" alt="AnasHamid"/><br /><sub><b>AnasHamid</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=AnasHamid" title="Tests">⚠️</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Raj24Patel"><img src="https://avatars.githubusercontent.com/u/170671114?v=4?s=100" width="100px;" alt="Raj Patel"/><br /><sub><b>Raj Patel</b></sub></a><br /><a href="https://github.com/Regyl/yagfi-back/commits?author=Raj24Patel" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
